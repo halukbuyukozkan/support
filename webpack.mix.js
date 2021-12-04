@@ -12,12 +12,11 @@ const mix = require('laravel-mix');
  */
 
 mix.js('resources/js/app.js', 'public/js')
-    .sass('resources/sass/app.scss', 'public/css')
+    .sass('resources/sass/app.scss', 'public/css', {
+        processUrls: false
+    })
+    .copyDirectory('node_modules/@fortawesome/fontawesome-free/webfonts', 'public/webfonts')
     .webpackConfig(require('./webpack.config'));
-
-// Dashboard theme assets...
-mix.js('resources/js/dashboard.js', 'public/js')
-    .sass('resources/sass/dashboard/dashboard.scss', 'public/css');
 
 if (mix.inProduction()) {
     mix.version();

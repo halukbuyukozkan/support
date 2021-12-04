@@ -1,13 +1,12 @@
-@props(['active'])
+@props(['active', 'icon'])
 
 @php
-    $classes = ($active ?? false)
-                ? 'nav-link active font-weight-bolder'
-                : 'nav-link';
+$classes = $active ?? false ? 'nav-link active font-weight-bolder' : 'nav-link';
 @endphp
 
-<li class="nav-item d-none d-sm-inline-block">
+<li class="nav-item">
     <a {{ $attributes->merge(['class' => $classes]) }}>
-        {{ $slot }}
+        <i class="{{ $icon }}"></i>
+        <span class="d-none d-sm-inline-block">{{ $slot }}</span>
     </a>
 </li>

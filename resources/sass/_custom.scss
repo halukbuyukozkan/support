@@ -1,3 +1,9 @@
+// If you want to add something do it here
+
+.navbar-nav>.user-menu>.dropdown-menu {
+  width: 210px;
+}
+
 // Custom style...
 
 .antialiased {
@@ -59,52 +65,6 @@
   animation-name: slideIn;
 }
 
-.bg-indigo {
-  background-color: #6574cd !important;
-}
-
-.h-5 {
-  height: 1.25rem !important;
-}
-
-.w-5 {
-  height: 1.25rem !important;
-}
-
-.flex-1 {
-  flex: 1 1 0%;
-}
-
-// Extra large devices (large desktops, 1200px and up)
-@media (min-width: 1200px) {
-  .container {
-    max-width: 1250px;
-  }
-}
-
-.bg-light {
-  background: #f3f4f6 !important;
-}
-
-.card {
-  border-radius: 0.475rem;
-  border: 0;
-}
-
-.card-footer {
-  padding: 0.75rem 1.25rem;
-  background-color: #f9fafb;
-  border-top: 0;
-}
-
-.card-footer:last-child {
-  border-radius: 0 0 0.475rem 0.475rem;
-}
-
-.dropdown-menu {
-  width: 220px;
-}
-
-.small {
-  font-size: .875rem !important;
+.card-header {
+  font-size: 1.33rem;
 }
