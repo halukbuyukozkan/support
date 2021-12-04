@@ -16,7 +16,7 @@
     </ul>
 
     <!-- Right navbar links -->
-    <ul class="navbar-nav ms-auto">
+    <ul class="navbar-nav ml-auto">
         <!-- Authentication Links -->
         @auth
             <x-dropdown id="navbarDropdown" class="user-menu">
@@ -28,9 +28,8 @@
                     <!-- Authentication -->
                     <form method="POST" id="logout-form" action="{{ route('logout') }}">
                         @csrf
-                        <x-dropdown-link href="{{ route('logout') }}"
-                                         onclick="event.preventDefault();
-                                                             document.getElementById('logout-form').submit();">
+                        <x-dropdown-link href="{{ route('logout') }}" onclick="event.preventDefault();
+                                                                document.getElementById('logout-form').submit();">
                             {{ __('Log Out') }}
                         </x-dropdown-link>
                     </form>
