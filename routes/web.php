@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\RoleController;
 use App\Http\Controllers\AccountController;
+use App\Http\Controllers\PermissionController;
 
 /*
 |--------------------------------------------------------------------------
@@ -25,6 +26,7 @@ Route::get('/dashboard', function () {
 
 Route::middleware(['auth'])->group(function () {
     Route::resource('role', RoleController::class);
+    Route::resource('permission', PermissionController::class);
 });
 
 Route::middleware(['auth'])->prefix('account')->name('account.')->group(function () {

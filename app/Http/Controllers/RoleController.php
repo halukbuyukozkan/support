@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Spatie\Permission\Models\Permission;
 use Spatie\Permission\Models\Role;
 
 class RoleController extends Controller
@@ -27,7 +28,7 @@ class RoleController extends Controller
     public function create(Request $request)
     {
         $role = new Role($request->old());
-        $permissions = [];
+        $permissions = Permission::all();
 
         return view('role.form', compact('role', 'permissions'));
     }
@@ -42,8 +43,10 @@ class RoleController extends Controller
     {
         $data = $request->validate([
             'name' => 'required|unique:roles,name',
+            'permissions' => 'array|exists:permissions,id',
         ]);
         $role = Role::create($data);
+        $role->syncPermissions($data['permissions']);
 
         return redirect()->route('role.index')->with('success', 'Role created successfully');
     }
@@ -68,7 +71,7 @@ class RoleController extends Controller
     public function edit(Request $request, Role $role)
     {
         $role->fill($request->old());
-        $permissions = [];
+        $permissions = Permission::all();
 
         return view('role.form', compact('role', 'permissions'));
     }
@@ -83,10 +86,12 @@ class RoleController extends Controller
     public function update(Request $request, Role $role)
     {
         $data = $request->validate([
-            'name' => 'required|unique:roles,name',
+            'name' => 'required|unique:roles,name,' . $role->id,
+            'permissions' => 'array|exists:permissions,id',
         ]);
         $role->fill($data);
         $role->save();
+        $role->syncPermissions($data['permissions']);
 
         return redirect()->route('role.index')->with('success', 'Role updated successfully');
     }
