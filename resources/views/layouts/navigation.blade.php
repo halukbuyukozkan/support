@@ -28,11 +28,17 @@
                 </x-slot>
 
                 <x-slot name="content">
+                    <x-dropdown-link href="{{ route('account.settings') }}" class="py-2">
+                        <i class="fas fa-cogs"></i>
+                        {{ __('Settings') }}
+                    </x-dropdown-link>
+
                     <!-- Authentication -->
                     <form method="POST" id="logout-form" action="{{ route('logout') }}">
                         @csrf
                         <x-dropdown-link href="{{ route('logout') }}"
                             onclick="event.preventDefault();document.getElementById('logout-form').submit();">
+                            <i class="fas fa-sign-out-alt"></i>
                             {{ __('Log Out') }}
                         </x-dropdown-link>
                     </form>

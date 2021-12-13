@@ -66,6 +66,11 @@
                 <div class="container-fluid">
                     <div class="row">
                         <div class="col">
+                            @include('layouts.alerts')
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col">
                             {{ $slot }}
                         </div>
 

@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\AccountController;
 
 /*
 |--------------------------------------------------------------------------
@@ -21,4 +22,10 @@ Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth'])->name('dashboard');
 
-require __DIR__.'/auth.php';
+Route::middleware(['auth'])->prefix('account')->name('account.')->group(function () {
+    Route::get('/', [AccountController::class, 'settings'])->name('settings');
+    Route::get('/security', [AccountController::class, 'security'])->name('security');
+    Route::post('/security/changepassword', [AccountController::class, 'changePassword'])->name('security.changepassword');
+});
+
+require __DIR__ . '/auth.php';
