@@ -5,7 +5,7 @@
         </h2>
     </x-slot>
 
-    <div class="card my-4">
+    <div class="card">
         <div class="card-body">
             You're logged in!
         </div>

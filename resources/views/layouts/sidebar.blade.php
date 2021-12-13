@@ -10,3 +10,6 @@
 <x-side-link href="{{ route('dashboard') }}" icon="fas fa-book" :active="request()->routeIs('dashboard')">
     {{ __('Example') }}
 </x-side-link>
+<x-side-link href="{{ route('role.index') }}" icon="fas fa-users" :active="request()->routeIs('role.*')">
+    {{ __('Roles') }}
+</x-side-link>
