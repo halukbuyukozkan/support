@@ -1,6 +1,12 @@
-        <footer class="main-footer">
-            <div class="float-right d-none d-sm-block">
-                <b><a href="https://jetstream.laravel.com">Jetstream</a></b>
+<footer class="main-footer">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-lg-6 text-center text-lg-left">
+                <span>&copy; {{ date('Y') }} | {{ config('app.name') }}</span>
             </div>
-            <strong>Powered by</strong> <a href="https://adminlte.io">AdminLTE</a>
-        </footer>
+            <div class="col-lg-6 text-center text-lg-right">
+                <span>Powered by <a href="https://cekirdekod.com" target="_blank">Çekirdekod</a></span>
+            </div>
+        </div>
+    </div>
+</footer>
