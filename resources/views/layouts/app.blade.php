@@ -75,7 +75,7 @@
                         </div>
 
                         @if (isset($aside))
-                            <div class="col-lg-3">
+                            <div class="col-lg-3 order-lg-first">
                                 {{ $aside }}
                             </div>
                         @endif
