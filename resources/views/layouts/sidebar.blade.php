@@ -13,7 +13,10 @@
 
 @if (auth()->user()->hasPermissionTo('role.management'))
     <x-side-accordion :title="__('System')" icon="fas fa-cogs" :active="request()->routeIs(['role.*','permission.*'])">
-        <x-side-link href="{{ route('role.index') }}" icon="fas fa-users" :active="request()->routeIs('role.*')">
+        <x-side-link href="{{ route('user.index') }}" icon="fas fa-users" :active="request()->routeIs('user.*')">
+            {{ __('Users') }}
+        </x-side-link>
+        <x-side-link href="{{ route('role.index') }}" icon="fas fa-users-cog" :active="request()->routeIs('role.*')">
             {{ __('Roles') }}
         </x-side-link>
         <x-side-link href="{{ route('permission.index') }}" icon="fas fa-list"
