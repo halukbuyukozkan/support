@@ -10,7 +10,7 @@ class RoleController extends Controller
 {
     public function __construct()
     {
-        $this->middleware(['can:role.management']);
+        $this->middleware(['can:management.role']);
     }
 
     /**
