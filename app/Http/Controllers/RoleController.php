@@ -51,7 +51,7 @@ class RoleController extends Controller
             'permissions' => 'array|exists:permissions,id',
         ]);
         $role = Role::create($data);
-        $role->syncPermissions($data['permissions']);
+        $role->syncPermissions($data['permissions'] ?? []);
 
         return redirect()->route('role.index')->with('success', 'Role created successfully');
     }
@@ -96,7 +96,7 @@ class RoleController extends Controller
         ]);
         $role->fill($data);
         $role->save();
-        $role->syncPermissions($data['permissions']);
+        $role->syncPermissions($data['permissions'] ?? []);
 
         return redirect()->route('role.index')->with('success', 'Role updated successfully');
     }
