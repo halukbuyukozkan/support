@@ -1,4 +1,4 @@
-@php($title = $role->exists ? __('Edit :role Role', ['role' => $role->name]) : 'Create Role')
+@php($title = $role->exists ? __('Edit :role Role', ['role' => $role->name]) : __('Create Role'))
 <x-app-layout>
     <x-slot name="header">
         <h2>
@@ -15,7 +15,7 @@
         <div class="card">
             <div class="card-body">
                 <div class="form-group">
-                    <label for="name">Name</label>
+                    <label for="name">{{ __('Name') }}</label>
                     <input type="text" class="form-control @error('name') is-invalid @enderror" id="name" name="name"
                         value="{{ old('name', $role->name) }}" required>
                     @error('name')
@@ -25,7 +25,7 @@
                     @enderror
                 </div>
                 <div class="form-group">
-                    <label for="permissions">Permissions</label>
+                    <label for="permissions">{{ __('Permissions') }}</label>
                     <select class="form-control @error('permissions') is-invalid @enderror" id="permissions"
                         name="permissions[]" multiple>
                         @foreach ($permissions as $permission)

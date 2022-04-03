@@ -1,4 +1,4 @@
-@php($title = $user->exists ? __('Edit :user User', ['user' => $user->name]) : 'Create User')
+@php($title = $user->exists ? __('Edit :user User', ['user' => $user->name]) : __('Create User'))
 <x-app-layout>
     <x-slot name="header">
         <h2>
@@ -15,7 +15,7 @@
         <div class="card">
             <div class="card-body">
                 <div class="form-group">
-                    <label for="name">Name</label>
+                    <label for="name">{{ __('Name') }}</label>
                     <input type="text" class="form-control @error('name') is-invalid @enderror" id="name" name="name"
                         value="{{ old('name', $user->name) }}" required>
                     @error('name')
@@ -25,7 +25,7 @@
                     @enderror
                 </div>
                 <div class="form-group">
-                    <label for="email">Email</label>
+                    <label for="email">{{ __('Email') }}</label>
                     <input type="email" class="form-control @error('email') is-invalid @enderror" id="email" name="email"
                         value="{{ old('email', $user->email) }}" required>
                     @error('email')
@@ -35,7 +35,7 @@
                     @enderror
                 </div>
                 <div class="form-group">
-                    <label for="password">Password</label>
+                    <label for="password">{{ __('Password') }}</label>
                     <input type="password" class="form-control @error('password') is-invalid @enderror" id="password"
                         name="password">
                     @error('password')
@@ -45,7 +45,7 @@
                     @enderror
                 </div>
                 <div class="form-group">
-                    <label for="password_confirmation">Password Confirmation</label>
+                    <label for="password_confirmation">{{ __('Password Confirmation') }}</label>
                     <input type="password" class="form-control @error('password_confirmation') is-invalid @enderror"
                         id="password_confirmation" name="password_confirmation">
                     @error('password_confirmation')
@@ -55,11 +55,12 @@
                     @enderror
                 </div>
                 <div class="form-group">
-                    <label for="roles">Roles</label>
+                    <label for="roles">{{ __('Roles') }}</label>
                     <select class="form-control @error('roles') is-invalid @enderror" id="roles" name="roles[]"
                         multiple>
                         @foreach ($roles as $role)
-                            <option value="{{ $role->id }}" {{ $user->roles->contains($role) ? 'selected' : '' }}>
+                            <option value="{{ $role->id }}"
+                                {{ $user->roles->contains($role) ? 'selected' : '' }}>
                                 {{ $role->name }}
                             </option>
                         @endforeach
