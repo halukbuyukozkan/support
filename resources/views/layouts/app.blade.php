@@ -27,7 +27,7 @@
         <!-- Main Sidebar Container -->
         <aside class="main-sidebar sidebar-dark-primary elevation-2">
             <!-- Brand Logo -->
-            <a href="/" class="brand-link">
+            <a href="{{ url('/') }}" class="brand-link">
                 <x-application-logo width="36" class="brand-image" />
                 <span class="brand-text font-weight-bolder">{{ config('app.name') }}</span>
             </a>
