@@ -22,7 +22,7 @@ class RoleController extends Controller
     {
         $roles = Role::paginate();
 
-        return view('role.index', compact('roles'));
+        return view('admin.role.index', compact('roles'));
     }
 
     /**
@@ -35,7 +35,7 @@ class RoleController extends Controller
         $role = new Role($request->old());
         $permissions = Permission::all();
 
-        return view('role.form', compact('role', 'permissions'));
+        return view('admin.role.form', compact('role', 'permissions'));
     }
 
     /**
@@ -53,7 +53,7 @@ class RoleController extends Controller
         $role = Role::create($data);
         $role->syncPermissions($data['permissions'] ?? []);
 
-        return redirect()->route('role.index')->with('success', 'Role created successfully');
+        return redirect()->route('admin.role.index')->with('success', 'Role created successfully');
     }
 
     /**
@@ -78,7 +78,7 @@ class RoleController extends Controller
         $role->fill($request->old());
         $permissions = Permission::all();
 
-        return view('role.form', compact('role', 'permissions'));
+        return view('admin.role.form', compact('role', 'permissions'));
     }
 
     /**
@@ -98,7 +98,7 @@ class RoleController extends Controller
         $role->save();
         $role->syncPermissions($data['permissions'] ?? []);
 
-        return redirect()->route('role.index')->with('success', 'Role updated successfully');
+        return redirect()->route('admin.role.index')->with('success', 'Role updated successfully');
     }
 
     /**
@@ -111,6 +111,6 @@ class RoleController extends Controller
     {
         $role->delete();
 
-        return redirect()->route('role.index')->with('success', 'Role deleted successfully');
+        return redirect()->route('admin.role.index')->with('success', 'Role deleted successfully');
     }
 }

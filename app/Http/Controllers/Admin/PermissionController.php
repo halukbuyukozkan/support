@@ -21,7 +21,7 @@ class PermissionController extends Controller
     {
         $permissions = Permission::paginate();
 
-        return view('permission.index', compact('permissions'));
+        return view('admin.permission.index', compact('permissions'));
     }
 
     /**
@@ -33,7 +33,7 @@ class PermissionController extends Controller
     {
         $permission = new Permission($request->old());
 
-        return view('permission.form', compact('permission'));
+        return view('admin.permission.form', compact('permission'));
     }
 
     /**
@@ -50,7 +50,7 @@ class PermissionController extends Controller
 
         $permission = Permission::create($data);
 
-        return redirect()->route('permission.index')->with('success', __('Permission created successfully'));
+        return redirect()->route('admin.permission.index')->with('success', __('Permission created successfully'));
     }
 
     /**
@@ -74,7 +74,7 @@ class PermissionController extends Controller
     {
         $permission->fill($request->old());
 
-        return view('permission.form', compact('permission'));
+        return view('admin.permission.form', compact('permission'));
     }
 
     /**
@@ -92,7 +92,7 @@ class PermissionController extends Controller
 
         $permission->update($data);
 
-        return redirect()->route('permission.index')->with('success', __('Permission updated successfully'));
+        return redirect()->route('admin.permission.index')->with('success', __('Permission updated successfully'));
     }
 
     /**
@@ -105,6 +105,6 @@ class PermissionController extends Controller
     {
         $permission->delete();
 
-        return redirect()->route('permission.index')->with('success', __('Permission deleted successfully'));
+        return redirect()->route('admin.permission.index')->with('success', __('Permission deleted successfully'));
     }
 }
