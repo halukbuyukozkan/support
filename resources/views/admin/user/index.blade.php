@@ -1,10 +1,10 @@
 <x-app-layout>
     <x-slot name="header">
         <h2>
-            {{ __('Roles') }}
-            <a href="{{ route('role.create') }}" class="btn btn-primary float-right">
+            {{ __('Users') }}
+            <a href="{{ route('admin.user.create') }}" class="btn btn-primary float-right">
                 <i class="fa fa-plus"></i>
-                {{ __('Create Role') }}
+                {{ __('Create User') }}
             </a>
         </h2>
     </x-slot>
@@ -15,20 +15,28 @@
                 <thead>
                     <tr>
                         <th>{{ __('Name') }}</th>
+                        <th>{{ __('Email') }}</th>
+                        <th>{{ __('Roles') }}</th>
                         <th style="width: 200px">{{ __('Actions') }}</th>
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach ($roles as $role)
+                    @foreach ($users as $user)
                         <tr>
-                            <td>{{ $role->name }}</td>
+                            <td>{{ $user->name }}</td>
+                            <td>{{ $user->email }}</td>
+                            <td>
+                                @foreach ($user->roles as $role)
+                                    <span class="badge badge-primary">{{ $role->name }}</span>
+                                @endforeach
+                            </td>
                             <td class="text-right text-nowrap">
-                                <a href="{{ route('role.edit', $role) }}" class="btn btn-sm btn-primary">
+                                <a href="{{ route('admin.user.edit', $user) }}" class="btn btn-sm btn-primary">
                                     <i class="fas fa-edit"></i>
                                     <span class="d-none d-sm-inline">{{ __('Edit') }}</span>
                                 </a>
-                                <form action="{{ route('role.destroy', $role) }}" method="POST" class="d-inline-block"
-                                    onsubmit="return confirm('{{ __('Are you sure?') }}');">
+                                <form action="{{ route('admin.user.destroy', $user) }}" method="POST"
+                                    class="d-inline-block" onsubmit="return confirm('{{ __('Are you sure?') }}');">
                                     @csrf
                                     @method('DELETE')
                                     <button type="submit" class="btn btn-sm btn-danger">
@@ -43,7 +51,7 @@
             </table>
         </div>
         <div class="card-footer">
-            {{ $roles->links() }}
+            {{ $users->links() }}
         </div>
     </div>
 </x-app-layout>

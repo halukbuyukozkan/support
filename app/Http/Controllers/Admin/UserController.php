@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
 
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -23,7 +23,7 @@ class UserController extends Controller
     {
         $users = User::paginate();
 
-        return view('user.index', compact('users'));
+        return view('admin.user.index', compact('users'));
     }
 
     /**
@@ -36,7 +36,7 @@ class UserController extends Controller
         $user = new User($request->old());
         $roles = Role::all();
 
-        return view('user.form', compact('user', 'roles'));
+        return view('admin.user.form', compact('user', 'roles'));
     }
 
     /**
@@ -59,7 +59,7 @@ class UserController extends Controller
         $user = User::create($data);
         $user->syncRoles($data['roles'] ?? []);
 
-        return redirect()->route('user.index')->with('success', __('User created successfully'));
+        return redirect()->route('admin.user.index')->with('success', __('User created successfully'));
     }
 
     /**
@@ -84,7 +84,7 @@ class UserController extends Controller
         $user->fill($request->old());
         $roles = Role::all();
 
-        return view('user.form', compact('user', 'roles'));
+        return view('admin.user.form', compact('user', 'roles'));
     }
 
     /**
@@ -112,7 +112,7 @@ class UserController extends Controller
         $user->update($data);
         $user->syncRoles($data['roles'] ?? []);
 
-        return redirect()->route('user.index')->with('success', __('User updated successfully'));
+        return redirect()->route('admin.user.index')->with('success', __('User updated successfully'));
     }
 
     /**
@@ -125,6 +125,6 @@ class UserController extends Controller
     {
         $user->delete();
 
-        return redirect()->route('user.index')->with('success', __('User deleted successfully'));
+        return redirect()->route('admin.user.index')->with('success', __('User deleted successfully'));
     }
 }

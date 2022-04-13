@@ -1,10 +1,10 @@
 <x-app-layout>
     <x-slot name="header">
         <h2>
-            {{ __('Users') }}
-            <a href="{{ route('user.create') }}" class="btn btn-primary float-right">
+            {{ __('Permissions') }}
+            <a href="{{ route('admin.permission.create') }}" class="btn btn-primary float-right">
                 <i class="fa fa-plus"></i>
-                {{ __('Create User') }}
+                {{ __('Create Permission') }}
             </a>
         </h2>
     </x-slot>
@@ -15,27 +15,20 @@
                 <thead>
                     <tr>
                         <th>{{ __('Name') }}</th>
-                        <th>{{ __('Email') }}</th>
-                        <th>{{ __('Roles') }}</th>
                         <th style="width: 200px">{{ __('Actions') }}</th>
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach ($users as $user)
+                    @foreach ($permissions as $permission)
                         <tr>
-                            <td>{{ $user->name }}</td>
-                            <td>{{ $user->email }}</td>
-                            <td>
-                                @foreach ($user->roles as $role)
-                                    <span class="badge badge-primary">{{ $role->name }}</span>
-                                @endforeach
-                            </td>
+                            <td>{{ $permission->name }}</td>
                             <td class="text-right text-nowrap">
-                                <a href="{{ route('user.edit', $user) }}" class="btn btn-sm btn-primary">
+                                <a href="{{ route('admin.permission.edit', $permission) }}"
+                                    class="btn btn-sm btn-primary">
                                     <i class="fas fa-edit"></i>
                                     <span class="d-none d-sm-inline">{{ __('Edit') }}</span>
                                 </a>
-                                <form action="{{ route('user.destroy', $user) }}" method="POST"
+                                <form action="{{ route('admin.permission.destroy', $permission) }}" method="POST"
                                     class="d-inline-block" onsubmit="return confirm('{{ __('Are you sure?') }}');">
                                     @csrf
                                     @method('DELETE')
@@ -51,7 +44,7 @@
             </table>
         </div>
         <div class="card-footer">
-            {{ $users->links() }}
+            {{ $permissions->links() }}
         </div>
     </div>
 </x-app-layout>

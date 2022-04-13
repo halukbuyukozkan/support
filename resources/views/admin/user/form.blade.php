@@ -7,7 +7,7 @@
     </x-slot>
 
     <form method="post" enctype="multipart/form-data"
-        action="{{ $user->exists ? route('user.update', $user) : route('user.store') }}">
+        action="{{ $user->exists ? route('admin.user.update', $user) : route('admin.user.store') }}">
         @csrf
         @if ($user->exists)
             @method('PUT')

@@ -7,7 +7,7 @@
     </x-slot>
 
     <form method="post" enctype="multipart/form-data"
-        action="{{ $permission->exists ? route('permission.update', $permission) : route('permission.store') }}">
+        action="{{ $permission->exists ? route('admin.permission.update', $permission) : route('admin.permission.store') }}">
         @csrf
         @if ($permission->exists)
             @method('PUT')

@@ -1,10 +1,10 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\RoleController;
-use App\Http\Controllers\UserController;
 use App\Http\Controllers\AccountController;
-use App\Http\Controllers\PermissionController;
+use App\Http\Controllers\Admin\RoleController;
+use App\Http\Controllers\Admin\UserController;
+use App\Http\Controllers\Admin\PermissionController;
 
 /*
 |--------------------------------------------------------------------------
@@ -21,20 +21,22 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth'])->name('dashboard');
-
 Route::middleware(['auth'])->group(function () {
-    Route::resource('user', UserController::class);
-    Route::resource('role', RoleController::class);
-    Route::resource('permission', PermissionController::class);
-});
+    Route::get('/dashboard', function () {
+        return view('dashboard');
+    })->name('dashboard');
 
-Route::middleware(['auth'])->prefix('account')->name('account.')->group(function () {
-    Route::get('/', [AccountController::class, 'settings'])->name('settings');
-    Route::get('/security', [AccountController::class, 'security'])->name('security');
-    Route::post('/security/changepassword', [AccountController::class, 'changePassword'])->name('security.changepassword');
+    Route::prefix('admin')->name('admin.')->group(function () {
+        Route::resource('user', UserController::class);
+        Route::resource('role', RoleController::class);
+        Route::resource('permission', PermissionController::class);
+    });
+
+    Route::prefix('account')->name('account.')->group(function () {
+        Route::get('/', [AccountController::class, 'settings'])->name('settings');
+        Route::get('/security', [AccountController::class, 'security'])->name('security');
+        Route::post('/security/changepassword', [AccountController::class, 'changePassword'])->name('security.changepassword');
+    });
 });
 
 require __DIR__ . '/auth.php';

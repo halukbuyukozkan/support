@@ -1,10 +1,10 @@
 <x-app-layout>
     <x-slot name="header">
         <h2>
-            {{ __('Permissions') }}
-            <a href="{{ route('permission.create') }}" class="btn btn-primary float-right">
+            {{ __('Roles') }}
+            <a href="{{ route('admin.role.create') }}" class="btn btn-primary float-right">
                 <i class="fa fa-plus"></i>
-                {{ __('Create Permission') }}
+                {{ __('Create Role') }}
             </a>
         </h2>
     </x-slot>
@@ -19,15 +19,15 @@
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach ($permissions as $permission)
+                    @foreach ($roles as $role)
                         <tr>
-                            <td>{{ $permission->name }}</td>
+                            <td>{{ $role->name }}</td>
                             <td class="text-right text-nowrap">
-                                <a href="{{ route('permission.edit', $permission) }}" class="btn btn-sm btn-primary">
+                                <a href="{{ route('admin.role.edit', $role) }}" class="btn btn-sm btn-primary">
                                     <i class="fas fa-edit"></i>
                                     <span class="d-none d-sm-inline">{{ __('Edit') }}</span>
                                 </a>
-                                <form action="{{ route('permission.destroy', $permission) }}" method="POST"
+                                <form action="{{ route('admin.role.destroy', $role) }}" method="POST"
                                     class="d-inline-block" onsubmit="return confirm('{{ __('Are you sure?') }}');">
                                     @csrf
                                     @method('DELETE')
@@ -43,7 +43,7 @@
             </table>
         </div>
         <div class="card-footer">
-            {{ $permissions->links() }}
+            {{ $roles->links() }}
         </div>
     </div>
 </x-app-layout>
