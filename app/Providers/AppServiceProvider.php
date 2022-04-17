@@ -3,6 +3,7 @@
 namespace App\Providers;
 
 use Illuminate\Support\Facades\App;
+use Illuminate\Support\Facades\URL;
 use Illuminate\Pagination\Paginator;
 use Illuminate\Support\ServiceProvider;
 use NascentAfrica\Jetstrap\JetstrapFacade;
@@ -29,6 +30,9 @@ class AppServiceProvider extends ServiceProvider
         Paginator::useBootstrap();
         if (App::environment('local')) {
             JetstrapFacade::useAdminLte3();
+        }
+        if (config('app.force_https')) {
+            URL::forceScheme('https');
         }
     }
 }
