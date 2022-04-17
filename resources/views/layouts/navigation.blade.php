@@ -49,9 +49,11 @@
                 {{ __('Log in') }}
             </x-nav-link>
 
-            <x-nav-link href="{{ route('register') }}" :active="request()->routeIs('register')" icon="fas fa-user-plus">
-                {{ __('Register') }}
-            </x-nav-link>
+            @if (Route::has('register'))
+                <x-nav-link href="{{ route('register') }}" :active="request()->routeIs('register')" icon="fas fa-user-plus">
+                    {{ __('Register') }}
+                </x-nav-link>
+            @endif
         @endauth
     </ul>
 </nav>
