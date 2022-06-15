@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Spatie\Permission\Models\Permission;
 use Spatie\Permission\Models\Role;
@@ -53,7 +54,7 @@ class RoleController extends Controller
         $role = Role::create($data);
         $role->syncPermissions($data['permissions'] ?? []);
 
-        return redirect()->route('admin.role.index')->with('success', 'Role created successfully');
+        return redirect()->route('admin.role.index')->with('success', __('Role created successfully'));
     }
 
     /**
@@ -98,7 +99,7 @@ class RoleController extends Controller
         $role->save();
         $role->syncPermissions($data['permissions'] ?? []);
 
-        return redirect()->route('admin.role.index')->with('success', 'Role updated successfully');
+        return redirect()->route('admin.role.index')->with('success', __('Role updated successfully'));
     }
 
     /**
@@ -111,6 +112,6 @@ class RoleController extends Controller
     {
         $role->delete();
 
-        return redirect()->route('admin.role.index')->with('success', 'Role deleted successfully');
+        return redirect()->route('admin.role.index')->with('success', __('Role deleted successfully'));
     }
 }
