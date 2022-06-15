@@ -36,5 +36,14 @@
     "Email Password Reset Link": "Parola Sıfırlama Bağlantısını E-posta ile Gönder",
     "Forgot your password? No problem. Just let us know your email address and we will email you a password reset link that will allow you to choose a new one.": "Parolanızı mı unuttunuz? Hiç bir sorun yok. Sadece e-posta adresinizi bize gönderin ve yeni bir parola seçmenizi sağlayacak bağlantıyı e-posta ile göndereceğiz.",
     "You're logged in!": "Giriş yaptınız!",
+    "User created successfully": "Kullanıcı başarıyla oluşturuldu",
+    "User updated successfully": "Kullanıcı başarıyla güncellendi",
+    "User deleted successfully": "Kullanıcı başarıyla silindi",
+    "Role updated successfully": "Rol başarıyla güncellendi",
+    "Role created successfully": "Rol başarıyla oluşturuldu",
+    "Role deleted successfully": "Rol başarıyla silindi",
+    "Permission created successfully": "İzin başarıyla oluşturuldu",
+    "Permission updated successfully": "İzin başarıyla güncellendi",
+    "Permission deleted successfully": "İzin başarıyla silindi",
     "x": "x"
 }
