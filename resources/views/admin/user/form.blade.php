@@ -1,7 +1,7 @@
 @php($title = $user->exists ? __('Edit :user User', ['user' => $user->name]) : __('Create User'))
 <x-app-layout>
     <x-slot name="header">
-        <h2>
+        <h2 class="h4 font-weight-bold">
             {{ $title }}
         </h2>
     </x-slot>
@@ -16,8 +16,8 @@
             <div class="card-body">
                 <div class="form-group">
                     <label for="name">{{ __('Name') }}</label>
-                    <input type="text" class="form-control @error('name') is-invalid @enderror" id="name" name="name"
-                        value="{{ old('name', $user->name) }}" required>
+                    <input type="text" class="form-control @error('name') is-invalid @enderror" id="name"
+                        name="name" value="{{ old('name', $user->name) }}" required>
                     @error('name')
                         <span class="invalid-feedback" user="alert">
                             <strong>{{ $message }}</strong>
@@ -26,8 +26,8 @@
                 </div>
                 <div class="form-group">
                     <label for="email">{{ __('Email') }}</label>
-                    <input type="email" class="form-control @error('email') is-invalid @enderror" id="email" name="email"
-                        value="{{ old('email', $user->email) }}" required>
+                    <input type="email" class="form-control @error('email') is-invalid @enderror" id="email"
+                        name="email" value="{{ old('email', $user->email) }}" required>
                     @error('email')
                         <span class="invalid-feedback" user="alert">
                             <strong>{{ $message }}</strong>

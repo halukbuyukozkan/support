@@ -1,7 +1,7 @@
 @php($title = $role->exists ? __('Edit :role Role', ['role' => $role->name]) : __('Create Role'))
 <x-app-layout>
     <x-slot name="header">
-        <h2>
+        <h2 class="h4 font-weight-bold">
             {{ $title }}
         </h2>
     </x-slot>
@@ -16,8 +16,8 @@
             <div class="card-body">
                 <div class="form-group">
                     <label for="name">{{ __('Name') }}</label>
-                    <input type="text" class="form-control @error('name') is-invalid @enderror" id="name" name="name"
-                        value="{{ old('name', $role->name) }}" required>
+                    <input type="text" class="form-control @error('name') is-invalid @enderror" id="name"
+                        name="name" value="{{ old('name', $role->name) }}" required>
                     @error('name')
                         <span class="invalid-feedback" role="alert">
                             <strong>{{ $message }}</strong>
