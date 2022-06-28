@@ -1,8 +1,8 @@
 <x-app-layout>
     <x-slot name="header">
-        <h2>
+        <h2 class="h4 font-weight-bold">
             {{ __('Roles') }}
-            <a href="{{ route('admin.role.create') }}" class="btn btn-primary float-right">
+            <a href="{{ route('admin.role.create') }}" class="btn btn-sm btn-primary float-right">
                 <i class="fa fa-plus"></i>
                 {{ __('Create Role') }}
             </a>
