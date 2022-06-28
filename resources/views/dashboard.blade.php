@@ -7,7 +7,7 @@
 
     <div class="card">
         <div class="card-body">
-            {{ __('You\'re logged in!') }}
+            {{ __('You\'rea logged in!') }}
         </div>
     </div>
 </x-app-layout>
