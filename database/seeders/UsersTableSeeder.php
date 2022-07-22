@@ -19,16 +19,16 @@ class UsersTableSeeder extends Seeder
         \DB::table('users')->delete();
         
         \DB::table('users')->insert(array (
-            
+            0 => 
             array (
-                'id' => 1,
-                'name' => 'Tunahan Caliskan',
-                'email' => 'mail@tunahancaliskan.com',
+                'created_at' => '2022-06-15 18:22:02',
+                'email' => 'fatihtuzlu07@gmail.com',
                 'email_verified_at' => NULL,
-                'password' => '$2y$10$NRwoLSchLPObIh36cRpPvuxvcMfVGBHTxfzQqiGoIeb3KpxUfyE/m',
-                'remember_token' => 'MPHXhzXYwDGFFhYEPwteZFaYCehN0bu0dVjBrFqBtGP1yqxvTyTLFrVOrFhZ',
-                'created_at' => '2021-12-13 16:45:59',
-                'updated_at' => '2021-12-13 17:11:26',
+                'id' => 1,
+                'name' => 'Fatih ONUR',
+                'password' => '$2y$10$PwurQFVuksECc2T5tYmDROHrik5FZ2qnBpabX6/2EuX.G6Yo7NFY2',
+                'remember_token' => NULL,
+                'updated_at' => '2022-06-15 18:28:39',
             ),
         ));
         
