@@ -21,14 +21,14 @@ class UsersTableSeeder extends Seeder
         \DB::table('users')->insert(array (
             0 => 
             array (
-                'created_at' => '2022-06-15 18:22:02',
-                'email' => 'fatihtuzlu07@gmail.com',
-                'email_verified_at' => NULL,
                 'id' => 1,
-                'name' => 'Fatih ONUR',
-                'password' => '$2y$10$PwurQFVuksECc2T5tYmDROHrik5FZ2qnBpabX6/2EuX.G6Yo7NFY2',
+                'name' => 'Haluk',
+                'email' => 'halukbuyukozkan@gmail.com',
+                'email_verified_at' => NULL,
+                'password' => '$2y$10$kYoYjuwEcuyj3VUTXtCLHuHxoaomVcFztI3d.QN4bNfMjZ90cnpsu',
                 'remember_token' => NULL,
-                'updated_at' => '2022-06-15 18:28:39',
+                'created_at' => '2022-07-28 17:18:57',
+                'updated_at' => '2022-07-28 17:18:57',
             ),
         ));
         
