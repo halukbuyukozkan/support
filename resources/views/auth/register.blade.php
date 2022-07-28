@@ -41,6 +41,17 @@
                     <x-input id="password_confirmation" type="password" name="password_confirmation" required />
                 </div>
 
+                <div class="mb-3">
+                    <x-label for="platform" :value="__('Platform')" />
+
+
+                    <select class="form-select" name="platform_id" aria-label="Default select example">
+                        @foreach ($platforms as $platform)
+                            <option value="{{ $platform->id }}">{{ $platform->name }}</option>
+                        @endforeach
+                    </select>
+                </div>
+
                 <div class="mb-0">
                     <div class="d-flex justify-content-end align-items-baseline">
                         <a class="text-muted mr-3 text-decoration-none" href="{{ route('login') }}">

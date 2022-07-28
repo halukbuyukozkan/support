@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
+use App\Models\Platform;
 use App\Models\User;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Auth\Events\Registered;
@@ -18,9 +19,10 @@ class RegisteredUserController extends Controller
      *
      * @return \Illuminate\View\View
      */
-    public function create()
+    public function create(Platform $platform)
     {
-        return view('auth.register');
+        $platforms = Platform::all();
+        return view('auth.register', compact('platforms'));
     }
 
     /**
@@ -34,12 +36,14 @@ class RegisteredUserController extends Controller
     public function store(Request $request)
     {
         $request->validate([
+            'platform_id' => ['required', 'integer'],
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'password' => ['required', 'confirmed', Rules\Password::defaults()],
         ]);
 
         $user = User::create([
+            'platform_id' => $request->platform_id,
             'name' => $request->name,
             'email' => $request->email,
             'password' => Hash::make($request->password),

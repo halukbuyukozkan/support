@@ -22,13 +22,16 @@ class UsersTableSeeder extends Seeder
             0 => 
             array (
                 'id' => 1,
+                'platform_id' => 1,
+                'platform_ref' => NULL,
                 'name' => 'Haluk',
                 'email' => 'halukbuyukozkan@gmail.com',
                 'email_verified_at' => NULL,
-                'password' => '$2y$10$kYoYjuwEcuyj3VUTXtCLHuHxoaomVcFztI3d.QN4bNfMjZ90cnpsu',
+                'phone' => NULL,
+                'password' => '$2y$10$djFMn3hZHpOdcIjaaAe55.iY5E0cnQsiA6pErzetut5Xig0PFzCYy',
                 'remember_token' => NULL,
-                'created_at' => '2022-07-28 17:18:57',
-                'updated_at' => '2022-07-28 17:18:57',
+                'created_at' => '2022-07-28 18:45:37',
+                'updated_at' => '2022-07-28 18:45:37',
             ),
         ));
         

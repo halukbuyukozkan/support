@@ -17,7 +17,7 @@ return new class extends Migration
             $table->id();
 
             $table->foreignId('platform_id')->constrained();
-            $table->foreignId('platform_ref')->constrained()->nullable();
+            $table->string('platform_ref')->constrained()->nullable();
             $table->string('name');
             $table->string('email')->unique()->nullable();
             $table->timestamp('email_verified_at')->nullable();

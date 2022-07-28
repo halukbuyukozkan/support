@@ -17,7 +17,7 @@ return new class extends Migration
             $table->id();
 
             $table->string('name');
-            $table->image('logo');
+            $table->string('image');
             $table->string('domain')->nullable();
             $table->string('api_token')->nullable();
 
