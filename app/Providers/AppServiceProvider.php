@@ -27,6 +27,8 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
+        config(['currenturl' => request()->getHost()]);
+
         Paginator::useBootstrap();
         if (App::environment('local')) {
             JetstrapFacade::useAdminLte3();

@@ -36,14 +36,18 @@ class RegisteredUserController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'platform_id' => ['required', 'integer'],
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'password' => ['required', 'confirmed', Rules\Password::defaults()],
         ]);
 
+        $platform = Platform::create([
+            'name' => config('currenturl'),
+            'image' => "test",
+        ]);
+
         $user = User::create([
-            'platform_id' => $request->platform_id,
+            'platform_id' => $platform->id,
             'name' => $request->name,
             'email' => $request->email,
             'password' => Hash::make($request->password),

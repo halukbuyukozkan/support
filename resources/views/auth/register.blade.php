@@ -10,6 +10,10 @@
             <!-- Validation Errors -->
             <x-auth-validation-errors class="mb-4" :errors="$errors" />
 
+            <div>
+                <span>{{ config('currenturl'); }}</span>
+            </div>
+
             <form method="POST" action="{{ route('register') }}">
                 @csrf
 
@@ -39,17 +43,6 @@
                     <x-label for="password_confirmation" :value="__('Confirm Password')" />
 
                     <x-input id="password_confirmation" type="password" name="password_confirmation" required />
-                </div>
-
-                <div class="mb-3">
-                    <x-label for="platform" :value="__('Platform')" />
-
-
-                    <select class="form-select" name="platform_id" aria-label="Default select example">
-                        @foreach ($platforms as $platform)
-                            <option value="{{ $platform->id }}">{{ $platform->name }}</option>
-                        @endforeach
-                    </select>
                 </div>
 
                 <div class="mb-0">
