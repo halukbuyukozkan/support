@@ -17,5 +17,10 @@
                 {{ __('Permissions') }}
             </x-side-link>
         @endif
+        @if (auth()->user()->hasPermissionTo('management.platforms'))
+            <x-side-link href="{{ route('admin.platform.index') }}" icon="fas fa-users-cog" :active="request()->routeIs('admin.platform.*')">
+                {{ __('Platforms') }}
+            </x-side-link>
+        @endif
     </x-side-accordion>
 @endif
