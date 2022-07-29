@@ -23,7 +23,7 @@
                     @foreach ($platforms as $platform)
                         <tr>
                             <td>{{ $platform->name }}</td>
-                            <td>{{ $platform->image }}</td>
+                            <td><image src="{{ asset('storage/platforms/' .$platform->logo) }}" style="width: 100px"></td>
                             <td class="text-right text-nowrap">
                                 <a href="{{ route('admin.platform.edit', $platform) }}"
                                     class="btn btn-sm btn-primary">

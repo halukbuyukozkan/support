@@ -14,23 +14,21 @@ class PlatformsTableSeeder extends Seeder
      */
     public function run()
     {
-        
+
 
         \DB::table('platforms')->delete();
-        
-        \DB::table('platforms')->insert(array (
-            0 => 
-            array (
+
+        \DB::table('platforms')->insert(array(
+            0 =>
+            array(
                 'id' => 1,
                 'name' => 'test',
-                'image' => 'test',
+                'logo' => 'test',
                 'domain' => 'test',
                 'api_token' => NULL,
                 'created_at' => NULL,
                 'updated_at' => NULL,
             ),
         ));
-        
-        
     }
 }

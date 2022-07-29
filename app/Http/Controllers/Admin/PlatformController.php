@@ -1,9 +1,11 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
 
 use App\Models\Platform;
+use Illuminate\Support\Str;
 use Illuminate\Http\Request;
+use App\Http\Requests\PlatformRequest;
 
 class PlatformController extends Controller
 {
@@ -23,9 +25,11 @@ class PlatformController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Request $request)
     {
-        //
+        $platform = new Platform($request->old());
+
+        return view('admin.platform.form', compact('platform'));
     }
 
     /**
@@ -34,9 +38,19 @@ class PlatformController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(PlatformRequest $request, Platform $platform)
     {
-        //
+        $platform = $request->validated();
+        if ($request->hasFile('logo')) {
+            $destination = 'public/platforms';
+            $image = $request->file('logo');
+            $imageName = Str::random(32) . '.' . $image->getClientOriginalExtension();
+            $path = $request->file('logo')->storeAs($destination, $imageName);
+            $platform['logo'] = $imageName;
+        }
+
+        Platform::create($platform);
+        return redirect()->route('admin.platform.index')->with('success', __('Platform created successfully'));
     }
 
     /**
