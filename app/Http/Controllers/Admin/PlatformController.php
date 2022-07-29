@@ -6,6 +6,7 @@ use App\Models\Platform;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use App\Http\Requests\PlatformRequest;
+use App\Http\Requests\PlatformUpdateRequest;
 
 class PlatformController extends Controller
 {
@@ -70,9 +71,10 @@ class PlatformController extends Controller
      * @param  \App\Models\Platform  $platform
      * @return \Illuminate\Http\Response
      */
-    public function edit(Platform $platform)
+    public function edit(Request $request, Platform $platform)
     {
-        //
+        $platform->fill($request->old());
+        return view('admin.platform.form', compact('platform'));
     }
 
     /**
@@ -82,9 +84,18 @@ class PlatformController extends Controller
      * @param  \App\Models\Platform  $platform
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Platform $platform)
+    public function update(PlatformUpdateRequest $request, Platform $platform)
     {
-        //
+        $platform->fill($request->validated());
+        if ($request->hasFile('logo')) {
+            $destination = 'public/platforms';
+            $image = $request->file('logo');
+            $imageName = Str::random(32) . '.' . $image->getClientOriginalExtension();
+            $path = $request->file('logo')->storeAs($destination, $imageName);
+            $platform['logo'] = $imageName;
+        }
+        $platform->save();
+        return redirect()->route('admin.platform.index')->with('success', __('Platform updated successfully'));
     }
 
     /**
