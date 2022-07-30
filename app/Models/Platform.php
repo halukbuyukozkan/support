@@ -16,4 +16,9 @@ class Platform extends Model
     {
         return $this->hasMany(User::class);
     }
+
+    public function departments(): HasMany
+    {
+        return $this->hasMany(Department::class);
+    }
 }

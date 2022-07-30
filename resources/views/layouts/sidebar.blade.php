@@ -16,11 +16,16 @@
             <x-side-link href="{{ route('admin.permission.index') }}" icon="fas fa-list" :active="request()->routeIs('admin.permission.*')">
                 {{ __('Permissions') }}
             </x-side-link>
-            @if (auth()->user()->hasPermissionTo('management.platforms'))
-            <x-side-link href="{{ route('admin.platform.index') }}" icon="fab fa-buffer" :active="request()->routeIs('admin.platform.*')">
-                {{ __('Platforms') }}
-            </x-side-link>
-            @endif
+        @endif
+        @if (auth()->user()->hasPermissionTo('management.platforms'))
+            <x-side-accordion :title="__('Platforms')" icon="fab fa-buffer" :active="request()->routeIs('admin.platform.*')">
+                <x-side-link href="{{ route('admin.platform.index') }}" icon="fab fa-buffer" :active="request()->routeIs('admin.platform.*')">
+                    {{ __('Platforms') }}
+                </x-side-link>
+                <x-side-link href="{{ route('admin.department.index') }}" icon="fas fa-building" :active="request()->routeIs('admin.department.*')">
+                    {{ __('Departments') }}
+                </x-side-link>
+            </x-side-accordion>
         @endif
     </x-side-accordion>
 @endif
