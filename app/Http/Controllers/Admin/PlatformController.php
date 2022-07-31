@@ -18,6 +18,7 @@ class PlatformController extends Controller
     public function index()
     {
         $platforms = Platform::paginate();
+
         return view('admin.platform.index', compact('platforms'));
     }
 
@@ -41,16 +42,13 @@ class PlatformController extends Controller
      */
     public function store(PlatformRequest $request, Platform $platform)
     {
-        $platform = $request->validated();
+        $validated = $request->validated();
         if ($request->hasFile('logo')) {
-            $destination = 'public/platforms';
-            $image = $request->file('logo');
-            $imageName = Str::random(32) . '.' . $image->getClientOriginalExtension();
-            $path = $request->file('logo')->storeAs($destination, $imageName);
-            $platform['logo'] = $imageName;
+            $validated['logo'] = $validated['logo']->storeAs('', Str::random(16) . '.' . $validated['logo']->extension(), 'platforms');
         }
+        $platform = new Platform($validated);
+        $platform->save();
 
-        Platform::create($platform);
         return redirect()->route('admin.platform.index')->with('success', __('Platform created successfully'));
     }
 
@@ -87,12 +85,9 @@ class PlatformController extends Controller
     public function update(PlatformUpdateRequest $request, Platform $platform)
     {
         $platform->fill($request->validated());
+        $validated = $request->validated();
         if ($request->hasFile('logo')) {
-            $destination = 'public/platforms';
-            $image = $request->file('logo');
-            $imageName = Str::random(32) . '.' . $image->getClientOriginalExtension();
-            $path = $request->file('logo')->storeAs($destination, $imageName);
-            $platform['logo'] = $imageName;
+            $platform['logo'] = $validated['logo']->storeAs('', Str::random(16) . '.' . $validated['logo']->getClientOriginalExtension(), 'platforms');
         }
         $platform->save();
         return redirect()->route('admin.platform.index')->with('success', __('Platform updated successfully'));
