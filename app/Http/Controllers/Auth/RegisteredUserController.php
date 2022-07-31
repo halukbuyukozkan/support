@@ -42,7 +42,6 @@ class RegisteredUserController extends Controller
 
         $platform = Platform::create([
             'name' => config('currenturl'),
-            'image' => "test",
         ]);
 
         $user = User::create([
