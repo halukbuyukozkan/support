@@ -30,8 +30,7 @@ class DepartmentController extends Controller
     public function create(Request $request)
     {
         $department = new Department($request->old());
-        $platforms = Platform::all();
-        return view('admin.department.form', compact('department', 'platforms'));
+        return view('admin.department.form', compact('department'));
     }
 
     /**
@@ -69,11 +68,10 @@ class DepartmentController extends Controller
      * @param  \App\Models\Department  $department
      * @return \Illuminate\Http\Response
      */
-    public function edit(Request $request, Platform $platform, Department $department)
+    public function edit(Request $request, Department $department)
     {
         $department->fill($request->old());
-        $platforms = Platform::all();
-        return view('admin.department.form', compact('department', 'platforms'));
+        return view('admin.department.form', compact('department'));
     }
 
     /**
