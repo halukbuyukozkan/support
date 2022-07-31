@@ -15,6 +15,7 @@
                 <thead>
                     <tr>
                         <th>{{ __('Name') }}</th>
+                        <th>{{ __('Platform') }}</th>
                         <th style="width: 200px">{{ __('Actions') }}</th>
                     </tr>
                 </thead>
@@ -22,6 +23,7 @@
                     @foreach ($departments as $department)
                         <tr>
                             <td>{{ $department->name }}</td>
+                            <td>{{ $department->platform->name }}</td>
                             <td class="text-right text-nowrap">
                                 <a href="{{ route('admin.department.edit', $department) }}"
                                     class="btn btn-sm btn-primary">

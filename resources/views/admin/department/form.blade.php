@@ -25,16 +25,6 @@
                     @enderror
                 </div>
             </div>
-            <div class="card-body">
-                <div class="form-group">
-                    <label for="platform">{{ __('Platform') }}</label>
-                    <select class="form-select" id="platform" name="platform_id" aria-label="Default select example">
-                        @foreach ($platforms as $platform)
-                            <option value="{{ $platform->id }}">{{ $platform->name }}</option>
-                        @endforeach
-                    </select>
-                </div>
-            </div>
             <div class="card-footer">
                 <button type="submit" class="btn btn-primary">
                     <i class="fas fa-save"></i>

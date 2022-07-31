@@ -2,10 +2,11 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Http\Requests\DepartmentRequest;
-use App\Models\Department;
 use App\Models\Platform;
+use App\Models\Department;
+use Illuminate\Support\Arr;
 use Illuminate\Http\Request;
+use App\Http\Requests\DepartmentRequest;
 
 class DepartmentController extends Controller
 {
@@ -17,6 +18,7 @@ class DepartmentController extends Controller
     public function index()
     {
         $departments = Department::paginate();
+
         return view('admin.department.index', compact('departments'));
     }
 
@@ -41,6 +43,10 @@ class DepartmentController extends Controller
     public function store(DepartmentRequest $request)
     {
         $department = $request->validated();
+
+        $platform = Platform::where('name', config('currenturl'))->get()->first();
+        $department = Arr::add($department, "platform_id", $platform->id);
+
         Department::create($department);
 
         return redirect()->route('admin.department.index')->with('success', __('Department created successfully'));
