@@ -40,7 +40,7 @@ class PlatformController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(PlatformRequest $request, Platform $platform)
+    public function store(PlatformRequest $request)
     {
         $validated = $request->validated();
         if ($request->hasFile('logo')) {
