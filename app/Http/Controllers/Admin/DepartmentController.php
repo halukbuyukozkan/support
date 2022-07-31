@@ -63,9 +63,11 @@ class DepartmentController extends Controller
      * @param  \App\Models\Department  $department
      * @return \Illuminate\Http\Response
      */
-    public function edit(Department $department)
+    public function edit(Request $request, Platform $platform, Department $department)
     {
-        //
+        $department->fill($request->old());
+        $platforms = Platform::all();
+        return view('admin.department.form', compact('department', 'platforms'));
     }
 
     /**
@@ -75,9 +77,12 @@ class DepartmentController extends Controller
      * @param  \App\Models\Department  $department
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Department $department)
+    public function update(DepartmentRequest $request, Department $department)
     {
-        //
+        $department->fill($request->validated());
+        $department->save();
+
+        return redirect()->route('admin.department.index')->with('success', 'Department updated successfully');
     }
 
     /**
@@ -88,6 +93,8 @@ class DepartmentController extends Controller
      */
     public function destroy(Department $department)
     {
-        //
+        $department->delete();
+
+        return redirect()->route('admin.department.index')->with('success', 'Department deleted successfully');
     }
 }
