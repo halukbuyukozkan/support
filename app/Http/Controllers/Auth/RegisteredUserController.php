@@ -21,8 +21,7 @@ class RegisteredUserController extends Controller
      */
     public function create(Platform $platform)
     {
-        $platforms = Platform::all();
-        return view('auth.register', compact('platforms'));
+        return view('auth.register');
     }
 
     /**
