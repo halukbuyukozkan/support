@@ -44,7 +44,7 @@ class DepartmentController extends Controller
         $department = $request->validated();
 
         $platform = Platform::where('name', config('currenturl'))->get()->first();
-        $department = Arr::add($department, "platform_id", $platform->id);
+        $department['platform_id'] = $platform->id;
 
         Department::create($department);
 
