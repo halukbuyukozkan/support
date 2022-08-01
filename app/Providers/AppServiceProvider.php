@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+use App\Services\FindHostService;
 use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\URL;
 use Illuminate\Pagination\Paginator;
@@ -17,7 +18,9 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        //
+        $this->app->bind('HostService', function () {
+            return new FindHostService(config('currenturl'));
+        });
     }
 
     /**
