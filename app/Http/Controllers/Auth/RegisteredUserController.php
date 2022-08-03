@@ -11,7 +11,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Auth\Events\Registered;
 use App\Providers\RouteServiceProvider;
-use App\Services\FindHostServiceFacade;
+use App\Services\PlatformFacade;
 
 class RegisteredUserController extends Controller
 {
@@ -41,7 +41,7 @@ class RegisteredUserController extends Controller
             'password' => ['required', 'confirmed', Rules\Password::defaults()],
         ]);
 
-        $platform = FindHostServiceFacade::hostCheck(config('currenturl'));
+        $platform = PlatformFacade::model();
 
         $user = User::create([
             'platform_id' => $platform->id,

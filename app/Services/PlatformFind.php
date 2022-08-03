@@ -4,18 +4,20 @@ namespace App\Services;
 
 use App\Models\Platform;
 
-class FindHostService
+class PlatformFind
 {
     protected $host;
 
-    public function __construct(string $host)
+    public function __construct()
     {
+        $host = config('currenturl');
         $this->host = $host;
     }
 
 
-    public function hostCheck($host)
+    public function model()
     {
+        $host = config('currenturl');
         if (Platform::all()->contains('name', $host)) {
             $platform = Platform::where('name', $host)->get()->first();
             return $platform;
