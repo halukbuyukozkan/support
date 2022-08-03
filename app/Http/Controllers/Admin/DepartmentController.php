@@ -6,6 +6,7 @@ use App\Models\Platform;
 use App\Models\Department;
 use Illuminate\Support\Arr;
 use Illuminate\Http\Request;
+use App\Services\PlatformFacade;
 use App\Http\Requests\DepartmentRequest;
 
 class DepartmentController extends Controller
@@ -43,7 +44,8 @@ class DepartmentController extends Controller
     {
         $department = $request->validated();
 
-        $platform = Platform::where('name', config('currenturl'))->get()->first();
+        $platform = PlatformFacade::model();
+
         $department['platform_id'] = $platform->id;
 
         Department::create($department);
