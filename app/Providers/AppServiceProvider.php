@@ -30,7 +30,7 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        config(['currenturl' => request()->getHost()]);
+        config(['app.domain' => request()->getHost()]);
 
         Paginator::useBootstrap();
         if (App::environment('local')) {

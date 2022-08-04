@@ -11,7 +11,7 @@
             <x-auth-validation-errors class="mb-4" :errors="$errors" />
 
             <div>
-                <span>{{ config('currenturl'); }}</span>
+                <span>{{ config('app.domain'); }}</span>
             </div>
 
             <form method="POST" action="{{ route('register') }}">

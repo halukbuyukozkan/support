@@ -2,6 +2,7 @@
 
 namespace App\Services;
 
+use App\Exceptions\PlatformNotFound;
 use App\Models\Platform;
 
 class PlatformFind
@@ -10,22 +11,18 @@ class PlatformFind
 
     public function __construct()
     {
-        $host = config('currenturl');
+        $host = config('app.domain');
         $this->host = $host;
     }
 
 
     public function model()
     {
-        $host = config('currenturl');
-        if (Platform::all()->contains('name', $host)) {
-            $platform = Platform::where('name', $host)->get()->first();
+        $host = config('app.domain');
+        if ($platform = Platform::where('domain', $host)->get()->first()) {
             return $platform;
         } else {
-            $platform = Platform::create([
-                'name' => config('currenturl'),
-            ]);
-            return $platform;
+            throw new PlatformNotFound('Platform Not Found');
         }
     }
 }
