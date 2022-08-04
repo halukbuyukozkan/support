@@ -7,8 +7,6 @@ use App\Models\Platform;
 
 class PlatformFind
 {
-    protected $host;
-
     public function model()
     {
         $host = config('app.domain');

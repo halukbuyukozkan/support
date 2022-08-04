@@ -22,4 +22,11 @@ class Platform extends Model
     {
         return $this->hasMany(Department::class);
     }
+
+    public static function boot()
+    {
+        parent::boot();
+
+        Platform::observe(PlatformObserver::class);
+    }
 }

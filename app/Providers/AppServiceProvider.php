@@ -32,7 +32,6 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        Platform::observe(PlatformObserver::class);
         config(['app.domain' => request()->getHost()]);
 
         Paginator::useBootstrap();
