@@ -84,10 +84,11 @@ class PlatformController extends Controller
      */
     public function update(PlatformUpdateRequest $request, Platform $platform)
     {
-        $platform->fill($request->validated());
         $validated = $request->validated();
+        $platform->fill($validated);
+
         if ($request->hasFile('logo')) {
-            $platform['logo'] = $validated['logo']->storeAs('', Str::random(16) . '.' . $validated['logo']->getClientOriginalExtension(), 'platforms');
+            $platform->logo = $validated->logo->storeAs('', Str::random(16) . '.' . $validated->logo->getClientOriginalExtension(), 'platforms');
         }
         $platform->save();
         return redirect()->route('admin.platform.index')->with('success', __('Platform updated successfully'));

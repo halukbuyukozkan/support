@@ -42,13 +42,13 @@ class DepartmentController extends Controller
      */
     public function store(DepartmentRequest $request)
     {
-        $department = $request->validated();
+        $validated = $request->validated();
+        $department = new Department($validated);
 
         $platform = PlatformFacade::model();
 
-        $department['platform_id'] = $platform->id;
-
-        Department::create($department);
+        $department->platform()->associate($platform->id);
+        $department->save();
 
         return redirect()->route('admin.department.index')->with('success', __('Department created successfully'));
     }
