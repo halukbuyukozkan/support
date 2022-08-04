@@ -9,17 +9,10 @@ class PlatformFind
 {
     protected $host;
 
-    public function __construct()
-    {
-        $host = config('app.domain');
-        $this->host = $host;
-    }
-
-
     public function model()
     {
         $host = config('app.domain');
-        if ($platform = Platform::where('domain', $host)->get()->first()) {
+        if ($platform = Platform::where('domain', $host)->first()) {
             return $platform;
         } else {
             throw new PlatformNotFound('Platform Not Found');

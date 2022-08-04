@@ -18,8 +18,8 @@ return new class extends Migration
 
             $table->string('name');
             $table->string('logo')->nullable();
-            $table->string('domain')->nullable();
-            $table->string('api_token')->nullable();
+            $table->string('domain');
+            $table->string('api_token');
 
             $table->timestamps();
         });
