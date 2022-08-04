@@ -2,6 +2,9 @@
 
 namespace App\Providers;
 
+use App\Models\Platform;
+use App\Services\PlatformFind;
+use App\Observers\PlatformObserver;
 use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\URL;
 use Illuminate\Pagination\Paginator;
@@ -17,7 +20,9 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        //
+        $this->app->bind('PlatformService', function () {
+            return new PlatformFind();
+        });
     }
 
     /**
@@ -27,6 +32,8 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
+        config(['app.domain' => request()->getHost()]);
+
         Paginator::useBootstrap();
         if (App::environment('local')) {
             JetstrapFacade::useAdminLte3();

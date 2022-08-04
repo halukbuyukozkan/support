@@ -5,6 +5,8 @@ use App\Http\Controllers\AccountController;
 use App\Http\Controllers\Admin\RoleController;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Admin\PermissionController;
+use App\Http\Controllers\Admin\PlatformController;
+use App\Http\Controllers\Admin\DepartmentController;
 
 /*
 |--------------------------------------------------------------------------
@@ -30,6 +32,8 @@ Route::middleware(['auth'])->group(function () {
         Route::resource('user', UserController::class);
         Route::resource('role', RoleController::class);
         Route::resource('permission', PermissionController::class);
+        Route::resource('platform', PlatformController::class);
+        Route::resource('department', DepartmentController::class);
     });
 
     Route::prefix('account')->name('account.')->group(function () {
