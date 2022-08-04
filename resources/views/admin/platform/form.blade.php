@@ -45,17 +45,6 @@
                         </span>
                     @enderror
                 </div>
-                <div class="form-group">
-                    <label for="api_token">{{ __('Api Token') }}</label>
-                    <input type="text" class="form-control @error('api_token') is-invalid @enderror" id="api_token"
-                        name="api_token" value="{{ old('api_token', $platform->api_token) }}" required>
-                    @error('api_token')
-                        <span class="invalid-feedback" permission="alert">
-                            <strong>{{ $message }}</strong>
-                        </span>
-                    @enderror
-                </div>
-
             </div>
             <div class="card-footer">
                 <button type="submit" class="btn btn-primary">

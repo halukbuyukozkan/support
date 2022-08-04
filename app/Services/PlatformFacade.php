@@ -13,6 +13,6 @@ class PlatformFacade extends Facade
 {
     protected static function getFacadeAccessor()
     {
-        return 'HostService';
+        return 'PlatformService';
     }
 }
