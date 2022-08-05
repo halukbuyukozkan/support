@@ -24,6 +24,8 @@
                 </x-side-link>
                 <x-side-link href="{{ route('admin.department.index') }}" icon="fas fa-building" :active="request()->routeIs('admin.department.*')">
                     {{ __('Departments') }}
+                </x-side-link><x-side-link href="{{ route('admin.service.index') }}" icon="fas fa-folder-open" :active="request()->routeIs('admin.service.*')">
+                    {{ __('Services') }}
                 </x-side-link>
             </x-side-accordion>
         @endif
