@@ -65,9 +65,11 @@ class ServiceController extends Controller
      * @param  \App\Models\Service  $service
      * @return \Illuminate\Http\Response
      */
-    public function edit(Service $service)
+    public function edit(Request $request, Service $service)
     {
-        //
+        $service->fill($request->old());
+        $platforms = Platform::all();
+        return view('admin.service.form', compact('service', 'platforms'));
     }
 
     /**
@@ -77,9 +79,13 @@ class ServiceController extends Controller
      * @param  \App\Models\Service  $service
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Service $service)
+    public function update(ServiceRequest $request, Service $service)
     {
-        //
+        $validated = $request->validated();
+        $service->fill($validated);
+        $service->save();
+
+        return redirect()->route('admin.service.index')->with('success', __('Service updated successfully'));
     }
 
     /**
@@ -90,6 +96,8 @@ class ServiceController extends Controller
      */
     public function destroy(Service $service)
     {
-        //
+        $service->delete();
+
+        return redirect()->route('admin.service.index')->with('success', 'Service deleted successfully');
     }
 }
