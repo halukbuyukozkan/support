@@ -28,6 +28,11 @@ class Platform extends Model
         return $this->hasMany(Service::class);
     }
 
+    public function tickets(): HasMany
+    {
+        return $this->hasMany(Ticket::class);
+    }
+
     public static function boot()
     {
         parent::boot();
