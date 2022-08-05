@@ -23,6 +23,11 @@ class Platform extends Model
         return $this->hasMany(Department::class);
     }
 
+    public function services(): HasMany
+    {
+        return $this->hasMany(Service::class);
+    }
+
     public static function boot()
     {
         parent::boot();
