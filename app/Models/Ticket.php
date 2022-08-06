@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Observers\TicketObserver;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -10,7 +11,7 @@ class Ticket extends Model
 {
     use HasFactory;
 
-    protected $platform = ['platform_id', 'department_id', 'user_id', 'service_id', 'title', 'note', 'created_by'];
+    protected $fillable = ['title', 'platform_id', 'department_id', 'user_id', 'service_id', 'note', 'created_by'];
 
     public function platform(): BelongsTo
     {
@@ -30,5 +31,11 @@ class Ticket extends Model
     public function service(): BelongsTo
     {
         return $this->belongsTo(Service::class);
+    }
+
+    public static function boot()
+    {
+        parent::boot();
+        Ticket::observe(TicketObserver::class);
     }
 }

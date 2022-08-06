@@ -8,6 +8,7 @@ use App\Http\Controllers\Admin\PermissionController;
 use App\Http\Controllers\Admin\PlatformController;
 use App\Http\Controllers\Admin\DepartmentController;
 use App\Http\Controllers\ServiceController;
+use App\Http\Controllers\TicketController;
 
 /*
 |--------------------------------------------------------------------------
@@ -36,6 +37,7 @@ Route::middleware(['auth'])->group(function () {
         Route::resource('platform', PlatformController::class);
         Route::resource('department', DepartmentController::class);
         Route::resource('service', ServiceController::class);
+        Route::resource('ticket', TicketController::class);
     });
 
     Route::prefix('account')->name('account.')->group(function () {
