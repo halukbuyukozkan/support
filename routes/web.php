@@ -1,14 +1,16 @@
 <?php
 
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\TicketController;
 use App\Http\Controllers\AccountController;
+use App\Http\Controllers\ServiceController;
 use App\Http\Controllers\Admin\RoleController;
 use App\Http\Controllers\Admin\UserController;
-use App\Http\Controllers\Admin\PermissionController;
+use App\Http\Controllers\TicketMessageController;
 use App\Http\Controllers\Admin\PlatformController;
 use App\Http\Controllers\Admin\DepartmentController;
-use App\Http\Controllers\ServiceController;
-use App\Http\Controllers\TicketController;
+use App\Http\Controllers\Admin\PermissionController;
 
 /*
 |--------------------------------------------------------------------------
@@ -21,13 +23,13 @@ use App\Http\Controllers\TicketController;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
-
 Route::middleware(['auth'])->group(function () {
-    Route::get('/dashboard', function () {
-        return view('dashboard');
+    Route::get('/', function () {
+        if (Auth::user()->hasRole('Admin')) {
+            return view('dashboard');
+        } else {
+            return view('user.ticketlist');
+        }
     })->name('dashboard');
 
     Route::prefix('admin')->name('admin.')->group(function () {
@@ -38,6 +40,7 @@ Route::middleware(['auth'])->group(function () {
         Route::resource('department', DepartmentController::class);
         Route::resource('service', ServiceController::class);
         Route::resource('ticket', TicketController::class);
+        Route::resource('ticket.message', TicketMessageController::class);
     });
 
     Route::prefix('account')->name('account.')->group(function () {

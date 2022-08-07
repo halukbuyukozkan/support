@@ -1,10 +1,10 @@
 <x-app-layout>
     <x-slot name="header">
         <h2 class="h4 font-weight-bold">
-            {{ __('Tickets') }}
-            <a href="{{ route('admin.ticket.create') }}" class="btn btn-sm btn-primary float-right">
+            {{ __('Ticket Messages') }}
+            <a href="{{ route('admin.ticketmessage.create') }}" class="btn btn-sm btn-primary float-right">
                 <i class="fa fa-plus"></i>
-                {{ __('Create Ticket') }}
+                {{ __('Create Ticket Message') }}
             </a>
         </h2>
     </x-slot>
@@ -14,29 +14,25 @@
             <table class="table table-hover">
                 <thead>
                     <tr>
-                        <th>{{ __('Title') }}</th>
-                        <th>{{ __('Platform') }}</th>
-                        <th>{{ __('Department') }}</th>
+                        <th>{{ __('Ticket') }}</th>
                         <th>{{ __('User') }}</th>
-                        <th>{{ __('Service') }}</th>
+                        <th>{{ __('Type') }}</th>
+                        <th>{{ __('Message') }}</th>
                         <th style="width: 200px">{{ __('Actions') }}</th>
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach ($tickets as $ticket)
+                    @foreach ($ticketMessages as $message)
                         <tr>
-                            <td> <a href="{{ route('admin.ticket.show',$ticket) }}">{{ $ticket->title }}</a></td>
-                            <td>{{ $ticket->platform->name }}</td>
-                            <td>{{ $ticket->department->name }}</td>
-                            <td>{{ $ticket->user->name }}</td>
-                            <td>{{ $ticket->service->name }}</td>
+                            <td>{{ $message->message }}</td>
+
                             <td class="text-right text-nowrap">
-                                <a href="{{ route('admin.ticket.edit', $ticket) }}"
+                                <a href="{{ route('admin.ticketmessage.edit', $message) }}"
                                     class="btn btn-sm btn-primary">
                                     <i class="fas fa-edit"></i>
                                     <span class="d-none d-sm-inline">{{ __('Edit') }}</span>
                                 </a>
-                                <form action="{{ route('admin.ticket.destroy', $ticket) }}" method="POST"
+                                <form action="{{ route('admin.ticketmessage.destroy', $message) }}" method="POST"
                                     class="d-inline-block" onsubmit="return confirm('{{ __('Are you sure?') }}');">
                                     @csrf
                                     @method('DELETE')
@@ -52,7 +48,7 @@
             </table>
         </div>
         <div class="card-footer">
-            {{ $tickets->links() }}
+            {{ $ticketMessages->links() }}
         </div>
     </div>
 </x-app-layout>

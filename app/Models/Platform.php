@@ -33,11 +33,6 @@ class Platform extends Model
         return $this->hasMany(Ticket::class);
     }
 
-    public function ticketmessages(): HasMany
-    {
-        return $this->hasMany(TicketMessage::class);
-    }
-
     public static function boot()
     {
         parent::boot();

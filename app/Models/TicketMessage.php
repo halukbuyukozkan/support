@@ -12,9 +12,9 @@ class TicketMessage extends Model
 
     protected $fillable = ['ticket_id', 'user_id', 'type', 'message'];
 
-    public function platform(): BelongsTo
+    public function ticket(): BelongsTo
     {
-        return $this->belongsTo(Platform::class);
+        return $this->belongsTo(Ticket::class);
     }
 
     public function user(): BelongsTo
