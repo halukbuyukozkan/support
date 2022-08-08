@@ -6,6 +6,7 @@ use App\Models\User;
 use App\Models\Ticket;
 use Illuminate\Http\Request;
 use App\Models\TicketMessage;
+use Illuminate\Support\Facades\Auth;
 use App\Http\Requests\TicketMessageRequest;
 
 class TicketMessageController extends Controller
@@ -15,11 +16,13 @@ class TicketMessageController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index($ticket)
     {
-        $ticketMessages = TicketMessage::paginate();
+        $messages = TicketMessage::paginate()->filter(function ($value, $key) use ($ticket) {
+            return $value->ticket_id == $ticket;
+        });
 
-        return view('admin.ticketmessage.index', compact('ticketMessages'));
+        return view('admin.ticket.show', compact('messages', 'ticket'));
     }
 
     /**
@@ -41,13 +44,16 @@ class TicketMessageController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(TicketMessageRequest $request)
+    public function store(TicketMessageRequest $request, $ticket)
     {
         $validated = $request->validated();
+        $validated['ticket_id'] = $ticket;
+        $validated['user_id'] = Auth::user()->id;
+        $validated['created_by'] = Auth::user()->name;
         $ticketMessage = new TicketMessage($validated);
         $ticketMessage->save();
 
-        return redirect()->route('admin.ticketmessage.index')->with('success', __('Ticket Message Created Successfully'));
+        return redirect()->route('admin.ticket.message.index', $ticket)->with('success', __('Ticket Message Created Successfully'));
     }
 
     /**

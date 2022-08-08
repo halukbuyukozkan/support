@@ -8,90 +8,42 @@
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-10">
-            @if(session('status'))
-                <div class="alert alert-success" role="alert">
-                    {{ session('status') }}
-                </div>
-            @endif
+            @foreach ($messages as $message)
             <div class="card">
-                <div class="card-header">Ticket {{ $ticket->title }}</div>
-
+                <div class="card-header">{{ $message->created_by }}</div>
                 <div class="card-body">
-                    <table class="table table-bordered table-striped">
-                        <tbody>
-                            <tr>
-                                <th>
-                                    {{ __('Title') }}
-                                </th>
-                                <td>
-                                    {{ $ticket->title }}
-                                </td>
-                            </tr>
-                            <tr>
-                                <th>
-                                    {{ __('Platform') }}
-                                </th>
-                                <td>
-                                    {!! $ticket->platform->name !!}
-                                </td>
-                            </tr>
-                            <tr>
-                                <th>
-                                    {{ __('Department') }}
-                                </th>
-                                <td>
-                                    {{ $ticket->department->name }}
-                                </td>
-                            </tr>
-                            <tr>
-                                <th>
-                                    {{ __('User') }}
-                                </th>
-                                <td>
-                                    {{ $ticket->user->name }}
-                                </td>
-                            </tr>
-                            <tr>
-                                <th>
-                                    {{ __('Service') }}
-                                </th>
-                                <td>
-                                    {{ $ticket->service->name }}
-                                </td>
-                            </tr>
-                            <tr>
-                                <th>
-                                    {{ __('Note') }}
-                                </th>
-                                <td>
-                                    {{ $ticket->note }}
-                                </td>
-                            </tr>
-                            <tr>
-                                <th>
-                                    {{ __('Created By') }}
-                                </th>
-                                <td>
-                                    {{ $ticket->created_by }}
-                                </td>
-                            </tr>
-                        </tbody>
-                    </table>
-                    <form action="" method="POST">
-                        @csrf
-                        <div class="form-group">
-                            <label for="comment_text">Leave a comment</label>
-                            <textarea class="form-control @error('comment_text') is-invalid @enderror" id="comment_text" name="comment_text" rows="3" required></textarea>
-                            @error('comment_text')
-                                <span class="invalid-feedback" role="alert">
-                                    <strong>{{ $message }}</strong>
-                                </span>
-                            @enderror
-                        </div>
-                        <button type="submit" class="btn btn-primary">@lang('global.submit')</button>
-                    </form>
+                    <div>
+                        {{ $message->message }}
+                    </div>
                 </div>
             </div>
+            @endforeach
+        </div>
+        <div class="col-md-10">
+            <form method="post" enctype="multipart/form-data"
+            action="{{ route('admin.ticket.message.store',$ticket) }}">
+            @csrf
+            <div class="card">
+                <div class="card-body">
+                    <div class="form-group">
+                        <label for="message">{{ __('Message') }}</label>
+                        <input type="text" class="form-control @error('message') is-invalid @enderror" id="message"
+                            name="message" required>
+                        @error('message')
+                            <span class="invalid-feedback" user="alert">
+                                <strong>{{ $message }}</strong>
+                            </span>
+                        @enderror
+                    </div>
+                </div>
+                <div class="card-footer">
+                    <button type="submit" class="btn btn-primary">
+                        <i class="fas fa-save"></i>
+                        {{ __('Save') }}
+                    </button>
+                </div>
+            </div>
+            </form>
         </div>
     </div>
 </div>

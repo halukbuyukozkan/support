@@ -27,10 +27,6 @@ class UserTicketMessageController extends Controller
      */
     public function create(Request $request)
     {
-        $ticketMessage = new TicketMessage($request->old());
-
-
-        return view('', compact('ticketMessage', 'users'));
     }
 
     /**

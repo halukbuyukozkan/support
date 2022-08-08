@@ -22,6 +22,7 @@ class UserTicketController extends Controller
         $tickets = Ticket::paginate()->filter(function ($value, $key) {
             return $value->created_by == Auth::user()->name;
         });
+
         return view('user.ticketlist', compact('tickets'));
     }
 

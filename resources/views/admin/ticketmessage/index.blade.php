@@ -2,7 +2,7 @@
     <x-slot name="header">
         <h2 class="h4 font-weight-bold">
             {{ __('Ticket Messages') }}
-            <a href="{{ route('admin.ticketmessage.create') }}" class="btn btn-sm btn-primary float-right">
+            <a href="{{ route('admin.ticket.message.create',$ticket) }}" class="btn btn-sm btn-primary float-right">
                 <i class="fa fa-plus"></i>
                 {{ __('Create Ticket Message') }}
             </a>
