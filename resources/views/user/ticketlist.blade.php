@@ -20,6 +20,7 @@
         }
     </style>
 </head>
+
 <body>
     <div class="container-fluid fixed-top p-4">
         <div class="col-12">
@@ -52,37 +53,22 @@
     <div class="container-fluid my-5 pt-5 px-5">
         <div class="row justify-content-center">
             <div class="col-md-10">
-                @if(session('status'))
-                    <div class="alert alert-success" role="alert">
-                        {{ session('status') }}
-                    </div>
-                @endif
+                <h2 class="h4 font-weight-bold">
+                    {{ __('Tickets') }}
+                    <a href="{{ route('user.ticket.create') }}" class="btn btn-sm btn-primary float-right">
+                        <i class="fa fa-plus"></i>
+                        {{ __('Create Ticket') }}
+                    </a>
+                </h2>
+            </div>
+            <div class="col-md-10">
+                @foreach ($tickets as $ticket)
                 <div class="card">
-                    <div class="card-header">Ticket</div>
-
+                    <div class="card-header">{{ $ticket->title }}</div>
                     <div class="card-body">
-                        <ul class="list-group">
-                            <li class="list-group-item">An item</li>
-                            <li class="list-group-item">A second item</li>
-                            <li class="list-group-item">A third item</li>
-                            <li class="list-group-item">A fourth item</li>
-                            <li class="list-group-item">And a fifth one</li>
-                        </ul>
-                        <form action="" method="POST">
-                            @csrf
-                            <div class="form-group">
-                                <label for="comment_text">Leave a comment</label>
-                                <textarea class="form-control @error('comment_text') is-invalid @enderror" id="comment_text" name="comment_text" rows="3" required></textarea>
-                                @error('comment_text')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
-                            </div>
-                            <button type="submit" class="btn btn-primary">@lang('global.submit')</button>
-                        </form>
                     </div>
                 </div>
+                @endforeach
             </div>
         </div>
     </div>

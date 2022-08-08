@@ -11,6 +11,7 @@ use App\Http\Controllers\TicketMessageController;
 use App\Http\Controllers\Admin\PlatformController;
 use App\Http\Controllers\Admin\DepartmentController;
 use App\Http\Controllers\Admin\PermissionController;
+use App\Http\Controllers\UserTicketController;
 
 /*
 |--------------------------------------------------------------------------
@@ -28,9 +29,13 @@ Route::middleware(['auth'])->group(function () {
         if (Auth::user()->hasRole('Admin')) {
             return view('dashboard');
         } else {
-            return view('user.ticketlist');
+            return redirect()->route('user.ticket.index');
         }
     })->name('dashboard');
+
+    Route::prefix('user')->name('user.')->group(function () {
+        Route::resource('ticket', UserTicketController::class);
+    });
 
     Route::prefix('admin')->name('admin.')->group(function () {
         Route::resource('user', UserController::class);

@@ -3,10 +3,12 @@
 namespace App\Models;
 
 use App\Observers\TicketObserver;
+use App\Observers\UserTicketObserver;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Support\Facades\Auth;
 
 class Ticket extends Model
 {
@@ -42,6 +44,10 @@ class Ticket extends Model
     public static function boot()
     {
         parent::boot();
-        Ticket::observe(TicketObserver::class);
+        if (Auth::user()->hasRole('Admin')) {
+            Ticket::observe(TicketObserver::class);
+        } else {
+            Ticket::observe(UserTicketObserver::class);
+        }
     }
 }
