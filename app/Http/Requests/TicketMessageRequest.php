@@ -24,8 +24,6 @@ class TicketMessageRequest extends FormRequest
     public function rules()
     {
         return [
-            'ticket_id' => 'required',
-            'user_id' => 'required',
             'message' => 'required'
         ];
     }

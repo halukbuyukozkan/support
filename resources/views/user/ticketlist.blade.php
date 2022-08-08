@@ -55,7 +55,7 @@
             <div class="col-md-10">
                 <h2 class="h4 font-weight-bold">
                     {{ __('Tickets') }}
-                    <a href="{{ route('user.ticket.index') }}" class="btn btn-sm btn-primary float-right">
+                    <a href="{{ route('user.ticket.create') }}" class="btn btn-sm btn-primary float-right">
                         <i class="fa fa-plus"></i>
                         {{ __('Create Ticket') }}
                     </a>

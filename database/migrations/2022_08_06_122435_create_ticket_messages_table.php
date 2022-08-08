@@ -20,6 +20,7 @@ return new class extends Migration
             $table->foreignId('user_id');
             $table->enum('type', ['Customer', 'Client', 'Bot', 'Custom']);
             $table->text('message');
+            $table->string('created_by');
 
             $table->timestamps();
         });

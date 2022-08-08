@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\TicketMessage;
 use Illuminate\Http\Request;
+use App\Models\TicketMessage;
+use Illuminate\Support\Facades\Auth;
+use App\Http\Requests\TicketMessageRequest;
 
 class UserTicketMessageController extends Controller
 {
@@ -12,10 +14,10 @@ class UserTicketMessageController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index($ticket)
     {
         $messages = TicketMessage::paginate();
-        return view('user.index', compact('messages'));
+        return view('user.index', compact('messages', 'ticket'));
     }
 
     /**
@@ -23,9 +25,12 @@ class UserTicketMessageController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Request $request)
     {
-        //
+        $ticketMessage = new TicketMessage($request->old());
+
+
+        return view('', compact('ticketMessage', 'users'));
     }
 
     /**
@@ -34,9 +39,17 @@ class UserTicketMessageController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(TicketMessageRequest $request, $ticket)
     {
-        //
+        $validated = $request->validated();
+        $validated['ticket_id'] = $ticket;
+        $validated['user_id'] = Auth::user()->id;
+        $validated['created_by'] = Auth::user()->name;
+
+        $ticketMessage = new TicketMessage($validated);
+        $ticketMessage->save();
+
+        return redirect()->route('user.ticket.message.index', $ticket)->with('success', __('Ticket Message Created Successfully'));
     }
 
     /**
