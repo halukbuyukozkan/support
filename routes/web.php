@@ -7,11 +7,12 @@ use App\Http\Controllers\AccountController;
 use App\Http\Controllers\ServiceController;
 use App\Http\Controllers\Admin\RoleController;
 use App\Http\Controllers\Admin\UserController;
+use App\Http\Controllers\UserTicketController;
 use App\Http\Controllers\TicketMessageController;
 use App\Http\Controllers\Admin\PlatformController;
 use App\Http\Controllers\Admin\DepartmentController;
 use App\Http\Controllers\Admin\PermissionController;
-use App\Http\Controllers\UserTicketController;
+use App\Http\Controllers\UserTicketMessageController;
 
 /*
 |--------------------------------------------------------------------------
@@ -35,6 +36,9 @@ Route::middleware(['auth'])->group(function () {
 
     Route::prefix('user')->name('user.')->group(function () {
         Route::resource('ticket', UserTicketController::class);
+        Route::scopeBindings()->group(function () {
+            Route::resource('ticket.message', UserTicketMessageController::class);
+        });
     });
 
     Route::prefix('admin')->name('admin.')->group(function () {

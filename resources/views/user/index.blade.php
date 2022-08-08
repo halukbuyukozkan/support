@@ -53,25 +53,14 @@
     <div class="container-fluid my-5 pt-5 px-5">
         <div class="row justify-content-center">
             <div class="col-md-10">
-                <h2 class="h4 font-weight-bold">
-                    {{ __('Tickets') }}
-                    <a href="{{ route('user.ticket.index') }}" class="btn btn-sm btn-primary float-right">
-                        <i class="fa fa-plus"></i>
-                        {{ __('Create Ticket') }}
-                    </a>
-                </h2>
-            </div>
-            <div class="col-md-10">
-                @foreach ($tickets as $ticket)
+                @foreach ($messages as $message)
                 <div class="card">
-                    <a href="{{ route('user.ticket.message.index',$ticket) }}">
-                    <div class="card-header">{{ $ticket->title }}</div>
+                    <div class="card-header">{{ $message->created_by }}</div>
                     <div class="card-body">
                         <div>
-                            {{ $ticket->note }}
+                            {{ $message->message }}
                         </div>
                     </div>
-                    </a>
                 </div>
                 @endforeach
             </div>
