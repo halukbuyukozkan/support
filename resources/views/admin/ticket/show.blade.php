@@ -10,7 +10,19 @@
         <div class="col-md-10">
             @foreach ($ticket->ticketmessages as $message)
             <div class="card">
-                <div class="card-header">{{ $message->created_by }}</div>
+                <div class="card-header">{{ $message->created_by }}
+                    @if($message->user_id == Auth::user()->id)
+                        <form action="{{ route('admin.ticket.message.destroy',['ticket' => $ticket,'message'=> $message]) }}" method="POST"
+                        class="d-inline-block" onsubmit="return confirm('{{ __('Are you sure?') }}');">
+                        @csrf
+                        @method('DELETE')
+                        <button type="submit" class="btn btn-sm btn-danger">
+                            <i class="fas fa-trash"></i>
+                            <span class="d-none d-sm-inline">{{ __('Delete') }}</span>
+                        </button>
+                        </form>
+                    @endif
+                </div>
                 <div class="card-body">
                     <div>
                         {{ $message->message }}

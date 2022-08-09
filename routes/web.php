@@ -30,13 +30,14 @@ Route::middleware(['auth'])->group(function () {
         if (Auth::user()->hasRole('Admin')) {
             return view('dashboard');
         } else {
-            return redirect()->route('user.ticket.index');
+            $user = Auth::user();
+            return redirect()->route('user.ticket.index', $user);
         }
     })->name('dashboard');
 
     Route::prefix('user')->name('user.')->group(function () {
-        Route::resource('ticket', UserTicketController::class);
         Route::scopeBindings()->group(function () {
+            Route::resource('ticket', UserTicketController::class);
             Route::resource('ticket.message', UserTicketMessageController::class);
         });
     });

@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\TicketMessage;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Requests\TicketMessageRequest;
+use App\Models\Ticket;
 
 class UserTicketMessageController extends Controller
 {
@@ -16,8 +17,7 @@ class UserTicketMessageController extends Controller
      */
     public function index()
     {
-        $messages = TicketMessage::paginate();
-        return view('user.index', compact('messages', 'ticket'));
+        //
     }
 
     /**
@@ -27,6 +27,7 @@ class UserTicketMessageController extends Controller
      */
     public function create(Request $request)
     {
+        //
     }
 
     /**

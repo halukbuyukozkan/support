@@ -7,6 +7,7 @@ use App\Models\Ticket;
 use App\Models\Service;
 use App\Models\Platform;
 use App\Models\Department;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -23,7 +24,7 @@ class UserTicketController extends Controller
             return $value->created_by == Auth::user()->name;
         });
 
-        return view('user.ticketlist', compact('tickets'));
+        return view('user.ticket.index', compact('tickets'));
     }
 
     /**
@@ -64,7 +65,7 @@ class UserTicketController extends Controller
      */
     public function show(Ticket $ticket)
     {
-        //
+        return view('user.index', compact('ticket'));
     }
 
     /**

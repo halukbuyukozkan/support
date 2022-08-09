@@ -86,12 +86,12 @@ class TicketMessageController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\TicketMessage  $ticketMessage
+     * @param  \App\Models\TicketMessage  $message
      * @return \Illuminate\Http\Response
      */
-    public function destroy(TicketMessage $ticketMessage)
+    public function destroy(Ticket $ticket, TicketMessage $message)
     {
-        $ticketMessage->delete();
-        return redirect()->route('admin.ticketmessage.index')->with('success', __('Ticket Message deleted successfully'));
+        $message->delete();
+        return redirect()->route('admin.ticket.show', $ticket)->with('success', __('Ticket Message deleted successfully'));
     }
 }
