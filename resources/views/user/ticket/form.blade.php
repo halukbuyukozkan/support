@@ -68,7 +68,7 @@
             </div>
             <div class="col-md-10">
                 <form method="post" enctype="multipart/form-data"
-                action="{{ $ticket->exists ? route('user.ticket.update', $ticket) : route('user.ticket.store') }}">
+                action="{{ $ticket->exists ? route('user.ticket.update', ['ticket' => $ticket,'message' => $message]) : route('user.ticket.store') }}">
                 @csrf
                 @if ($ticket->exists)
                     @method('PUT')
@@ -111,9 +111,19 @@
                         </div>
                         <div class="form-group">
                             <label for="note">{{ __('Note') }}</label>
-                            <input type="text" class="form-control @error('note') is-invalid @enderror" id="title"
+                            <input type="text" class="form-control @error('note') is-invalid @enderror" id="note"
                                 name="note" value="{{ old('note', $ticket->note) }}" required>
                             @error('note')
+                                <span class="invalid-feedback" user="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                            @enderror
+                        </div>
+                        <div class="form-group">
+                            <label for="message">{{ __('Message') }}</label>
+                            <input type="text" class="form-control @error('message') is-invalid @enderror" id="message"
+                                name="message" required>
+                            @error('message')
                                 <span class="invalid-feedback" user="alert">
                                     <strong>{{ $message }}</strong>
                                 </span>

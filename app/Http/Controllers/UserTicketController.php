@@ -7,7 +7,7 @@ use App\Models\Ticket;
 use App\Models\Service;
 use App\Models\Platform;
 use App\Models\Department;
-use App\Models\User;
+use App\Models\TicketMessage;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -39,7 +39,7 @@ class UserTicketController extends Controller
         $departments = Department::all();
         $services = Service::all();
 
-        return view('user.form', compact('ticket', 'platforms', 'departments', 'services'));
+        return view('user.ticket.form', compact('ticket', 'platforms', 'departments', 'services'));
     }
 
     /**
@@ -48,11 +48,18 @@ class UserTicketController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(UserTicketRequest $request)
+    public function store(UserTicketRequest $request, Ticket $ticket, TicketMessage $ticketmessage)
     {
         $validated = $request->validated();
         $ticket = new Ticket($validated);
         $ticket->save();
+
+        $data['message'] = $validated['message'];
+        $data['ticket_id'] = $ticket->id;
+        $data['user_id'] = Auth::user()->id;
+        $data['created_by'] = Auth::user()->name;
+        $ticketmessage = new TicketMessage($data);
+        $ticketmessage->save();
 
         return redirect()->route('user.ticket.index')->with('success', __('Ticket created successfully'));
     }

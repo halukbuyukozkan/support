@@ -28,6 +28,7 @@ class UserTicketRequest extends FormRequest
             'department_id' => 'required',
             'service_id' => 'nullable',
             'note' => 'nullable',
+            'message' => 'nullable',
         ];
     }
 }

@@ -73,14 +73,7 @@ class TicketController extends Controller
      */
     public function edit(Request $request, Ticket $ticket)
     {
-        $ticket->fill($request->old());
-
-        $platforms = Platform::all();
-        $departments = Department::all();
-        $users = User::all();
-        $services = Service::all();
-
-        return view('admin.ticket.form', compact('ticket', 'platforms', 'departments', 'users', 'services'));
+        //
     }
 
     /**
