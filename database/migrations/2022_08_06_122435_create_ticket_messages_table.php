@@ -16,9 +16,9 @@ return new class extends Migration
         Schema::create('ticket_messages', function (Blueprint $table) {
             $table->id();
 
-            $table->foreignId('ticket_id');
-            $table->foreignId('user_id');
-            $table->enum('type', ['Customer', 'Client', 'Bot', 'Custom']);
+            $table->foreignId('ticket_id')->constrained('tickets');
+            $table->foreignId('user_id')->constrained('users');
+            $table->enum('type', ['CUSTOMER', 'CLİENT', 'BOT', 'CUSTOM']);
             $table->text('message');
             $table->string('created_by');
 

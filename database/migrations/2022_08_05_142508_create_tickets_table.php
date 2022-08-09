@@ -16,10 +16,10 @@ return new class extends Migration
         Schema::create('tickets', function (Blueprint $table) {
             $table->id();
 
-            $table->foreignId('platform_id');
-            $table->foreignId('department_id');
-            $table->foreignId('user_id');
-            $table->foreignId('service_id')->nullable();
+            $table->foreignId('platform_id')->constrained('platforms');
+            $table->foreignId('department_id')->constrained('departments');
+            $table->foreignId('user_id')->constrained('users');
+            $table->foreignId('service_id')->nullable()->constrained('services');
             $table->text('title');
             $table->text('note')->nullable();
             $table->string('created_by');
