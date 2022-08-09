@@ -16,13 +16,9 @@ class TicketMessageController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index($ticket)
+    public function index()
     {
-        $messages = TicketMessage::paginate()->filter(function ($value, $key) use ($ticket) {
-            return $value->ticket_id == $ticket;
-        });
-
-        return view('admin.ticket.show', compact('messages', 'ticket'));
+        //
     }
 
     /**
@@ -32,10 +28,7 @@ class TicketMessageController extends Controller
      */
     public function create(Request $request)
     {
-        $ticketMessage = new TicketMessage($request->old());
-        $tickets = Ticket::all();
-        $users = User::all();
-        return view('admin.ticketmessage.form', compact('ticketMessage', 'tickets', 'users'));
+        //
     }
 
     /**
@@ -44,16 +37,16 @@ class TicketMessageController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(TicketMessageRequest $request, $ticket)
+    public function store(TicketMessageRequest $request, Ticket $ticket)
     {
         $validated = $request->validated();
-        $validated['ticket_id'] = $ticket;
+        $validated['ticket_id'] = $ticket->id;
         $validated['user_id'] = Auth::user()->id;
         $validated['created_by'] = Auth::user()->name;
         $ticketMessage = new TicketMessage($validated);
         $ticketMessage->save();
 
-        return redirect()->route('admin.ticket.message.index', $ticket)->with('success', __('Ticket Message Created Successfully'));
+        return redirect()->route('admin.ticket.show', $ticket)->with('success', __('Ticket Message Created Successfully'));
     }
 
     /**
@@ -75,12 +68,7 @@ class TicketMessageController extends Controller
      */
     public function edit(Request $request, TicketMessage $ticketmessage)
     {
-        $ticketmessage->fill($request->old());
-
-        $tickets = Ticket::all();
-        $users = User::all();
-
-        return view('admin.ticketmessage.form', compact('ticketmessage', 'tickets', 'users'));
+        //
     }
 
     /**

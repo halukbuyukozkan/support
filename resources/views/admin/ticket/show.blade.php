@@ -8,7 +8,7 @@
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-10">
-            @foreach ($messages as $message)
+            @foreach ($ticket->ticketmessages as $message)
             <div class="card">
                 <div class="card-header">{{ $message->created_by }}</div>
                 <div class="card-body">

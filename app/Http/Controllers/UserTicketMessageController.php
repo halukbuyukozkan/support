@@ -14,7 +14,7 @@ class UserTicketMessageController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index($ticket)
+    public function index()
     {
         $messages = TicketMessage::paginate();
         return view('user.index', compact('messages', 'ticket'));

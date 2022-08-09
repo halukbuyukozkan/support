@@ -4,14 +4,16 @@
     <div class="row justify-content-center">
         <div class="col-md-10">
             @foreach ($messages as $message)
-            <div class="card">
-                <div class="card-header">{{ $message->created_by }}</div>
-                <div class="card-body">
-                    <div>
+            <ol class="list-group list-group-numbered">
+                <li class="list-group-item d-flex justify-content-between align-items-start">
+                    <div class="ms-2 me-auto">
+                        <a class="stretched-link" style="color: black" href="{{ route('user.ticket.message.index',$ticket) }}">
+                        <div class="fw-bold"><b>{{ $message->created_by }}</b></div>
                         {{ $message->message }}
+                        </a>
                     </div>
-                </div>
-            </div>
+                </li>
+            </ol>
             @endforeach
         </div>
         <div class="col-md-10">
