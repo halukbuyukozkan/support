@@ -106,6 +106,8 @@ class UserTicketController extends Controller
      */
     public function destroy(Ticket $ticket)
     {
-        //
+        $ticket->delete();
+
+        return redirect()->route('user.ticket.index')->with('success', __('Ticket deleted successfully'));
     }
 }

@@ -16,12 +16,21 @@
                 <ol class="list-group list-group-numbered">
                     <li class="list-group-item d-flex justify-content-between align-items-start">
                         <div class="ms-2 me-auto">
-                            <a class="stretched-link" style="color: black" href="{{ route('user.ticket.show',$ticket) }}">
+                            <a style="color: black" href="{{ route('user.ticket.show',$ticket) }}">
                             <div class="fw-bold"><b>{{ $ticket->title }}</b></div>
                             {{ $ticket->note }}
                             </a>
+                            <span class="badge bg-primary rounded-pill">{{ $ticket->ticketmessages->count() }}</span>
                         </div>
-                        <span class="badge bg-primary rounded-pill">{{ $ticket->ticketmessages->count() }}</span>
+                        <form action="{{ route('user.ticket.destroy', $ticket) }}" method="POST"
+                            class="d-inline-block" onsubmit="return confirm('{{ __('Are you sure?') }}');">
+                            @csrf
+                            @method('DELETE')
+                            <button type="submit" class="btn btn-sm btn-danger">
+                                <i class="fas fa-trash"></i>
+                                <span class="d-none d-sm-inline">{{ __('Delete') }}</span>
+                            </button>
+                        </form>
                     </li>
                 </ol>
                 @endforeach
