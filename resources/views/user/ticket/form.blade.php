@@ -102,6 +102,7 @@
                                 <div class="form-group">
                                     <label for="service_id">{{ __('Service') }}</label>
                                     <select name="service_id" class="form-control" aria-label="Default select example">
+                                            <option value="">{{ __('Service') }}</option>
                                         @foreach ($services as $service)
                                             <option value="{{ $service->id }}">{{ $service->name }}</option>
                                         @endforeach
