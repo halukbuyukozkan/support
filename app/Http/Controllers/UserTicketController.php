@@ -65,7 +65,7 @@ class UserTicketController extends Controller
      */
     public function show(Ticket $ticket)
     {
-        return view('user.index', compact('ticket'));
+        return view('user.message.index', compact('ticket'));
     }
 
     /**
