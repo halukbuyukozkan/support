@@ -54,16 +54,15 @@ class UserTicketController extends Controller
         $validated = $request->validated();
         $validated['platform_id'] = PlatformFacade::model()->id;
         $validated['user_id'] = Auth::user()->id;
-
         $ticket = new Ticket($validated);
         $ticket->save();
 
-        $data['message'] = $validated['message'];
-        $data['ticket_id'] = $ticket->id;
-        $data['user_id'] = Auth::user()->id;
-        $data['created_by'] = Auth::user()->id;
-        $ticketmessage = new TicketMessage($data);
-        $ticketmessage->save();
+        $ticket->ticketmessages()->create([
+            'message' => $validated['message'],
+            'ticket_id' => $ticket->id,
+            'user_id' => Auth::user()->id,
+            'created_by' => Auth::user()->id,
+        ]);
 
         return redirect()->route('user.ticket.index')->with('success', __('Ticket created successfully'));
     }
