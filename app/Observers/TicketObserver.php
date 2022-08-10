@@ -9,6 +9,6 @@ class TicketObserver
 {
     public function creating(Ticket $ticket)
     {
-        $ticket->created_by = Auth::user()->name;
+        $ticket->created_by = Auth::user()->id;
     }
 }

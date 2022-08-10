@@ -22,7 +22,7 @@ return new class extends Migration
             $table->foreignId('service_id')->nullable()->constrained('services');
             $table->text('title');
             $table->text('note')->nullable();
-            $table->string('created_by');
+            $table->foreignId('created_by')->constrained('users');
 
             $table->timestamps();
         });

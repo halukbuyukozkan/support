@@ -29,9 +29,7 @@
                             <td>{{ $ticket->platform->name }}</td>
                             <td>{{ $ticket->department->name }}</td>
                             <td>{{ $ticket->user->name }}</td>
-                            @if ($ticket->service)
-                            <td>{{ $ticket->service->name }}</td>
-                            @endif
+                            <td>@if ($ticket->service){{ $ticket->service->name }}@endif</td>
                             <td class="text-right text-nowrap">
                                 <a href="{{ route('admin.ticket.show', $ticket) }}"
                                     class="btn btn-sm btn-primary">

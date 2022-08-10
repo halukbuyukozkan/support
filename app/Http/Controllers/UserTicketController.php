@@ -57,7 +57,7 @@ class UserTicketController extends Controller
         $data['message'] = $validated['message'];
         $data['ticket_id'] = $ticket->id;
         $data['user_id'] = Auth::user()->id;
-        $data['created_by'] = Auth::user()->name;
+        $data['created_by'] = Auth::user()->id;
         $ticketmessage = new TicketMessage($data);
         $ticketmessage->save();
 

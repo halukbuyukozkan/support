@@ -29,7 +29,7 @@ class TicketRequest extends FormRequest
             'department_id' => 'required',
             'user_id' => 'required',
             'service_id' => 'nullable',
-            'note' => 'nullable|text',
+            'note' => 'nullable',
         ];
     }
 }
