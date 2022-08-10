@@ -21,10 +21,7 @@ class UserTicketController extends Controller
      */
     public function index()
     {
-        $tickets = Ticket::paginate()->filter(function ($value, $key) {
-            return $value->created_by == Auth::user()->id;
-        });
-
+        $tickets = Auth::user()->tickets;
         return view('user.ticket.index', compact('tickets'));
     }
 
