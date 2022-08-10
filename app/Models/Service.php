@@ -14,6 +14,12 @@ class Service extends Model
 
     protected $fillable = ['platform_id', 'platform_ref', 'user_id', 'name'];
 
+    public static function boot()
+    {
+        parent::boot();
+        Service::observe(ServiceObserver::class);
+    }
+
     public function platform(): BelongsTo
     {
         return $this->belongsTo(Platform::class);

@@ -14,25 +14,17 @@
         @endif
         <div class="card">
             <div class="card-body">
-                <div class="form-group">
-                    <label for="name">{{ __('Name') }}</label>
-                    <input type="text" class="form-control @error('name') is-invalid @enderror" id="name"
-                        name="name" value="{{ old('name', $service->name) }}" required>
-                    @error('name')
-                        <span class="invalid-feedback" user="alert">
-                            <strong>{{ $message }}</strong>
-                        </span>
-                    @enderror
-                </div>
                 <div class="row">
                     <div class="col-md-6">
                         <div class="form-group">
-                            <label for="platform_id">{{ __('Platform') }}</label>
-                            <select name="platform_id" class="form-control" aria-label="Default select example">
-                                @foreach ($platforms as $platform)
-                                    <option value="{{ $platform->id }}">{{ $platform->name }}</option>
-                                @endforeach
-                            </select>
+                            <label for="name">{{ __('Name') }}</label>
+                            <input type="text" class="form-control @error('name') is-invalid @enderror" id="name"
+                                name="name" value="{{ old('name', $service->name) }}" required>
+                            @error('name')
+                                <span class="invalid-feedback" user="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                            @enderror
                         </div>
                     </div>
                     <div class="col-md-6">
