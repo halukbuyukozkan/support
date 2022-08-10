@@ -50,17 +50,7 @@
                     </div>
                 </div>
                 <div class="row">
-                    <div class="col-md-4">
-                        <div class="form-group">
-                            <label for="platform_id">{{ __('Platform') }}</label>
-                            <select name="platform_id" class="form-control" aria-label="Default select example">
-                                @foreach ($platforms as $platform)
-                                    <option value="{{ $platform->id }}">{{ $platform->name }}</option>
-                                @endforeach
-                            </select>
-                        </div>
-                    </div>
-                    <div class="col-md-4">
+                    <div class="col-md-6">
                         <div class="form-group">
                             <label for="note">{{ __('Note') }}</label>
                             <input type="text" class="form-control @error('note') is-invalid @enderror" id="note"
@@ -72,7 +62,7 @@
                             @enderror
                         </div>
                     </div>
-                    <div class="col-md-4">
+                    <div class="col-md-6">
                         <div class="form-group">
                             <label for="user_id">{{ __('User') }}</label>
                             <select name="user_id" class="form-control" aria-label="Default select example">

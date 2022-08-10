@@ -25,7 +25,6 @@ class TicketRequest extends FormRequest
     {
         return [
             'title' => 'required|string|max:255',
-            'platform_id' => 'required',
             'department_id' => 'required',
             'user_id' => 'required',
             'service_id' => 'nullable',
