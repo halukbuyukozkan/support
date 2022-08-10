@@ -24,13 +24,27 @@
                         </span>
                     @enderror
                 </div>
-                <div class="form-group">
-                    <label for="platform">{{ __('Platform') }}</label>
-                    <select name="platform_id" class="form-select" aria-label="Default select example">
-                        @foreach ($platforms as $platform)
-                            <option value="{{ $platform->id }}">{{ $platform->name }}</option>
-                        @endforeach
-                    </select>
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="platform_id">{{ __('Platform') }}</label>
+                            <select name="platform_id" class="form-control" aria-label="Default select example">
+                                @foreach ($platforms as $platform)
+                                    <option value="{{ $platform->id }}">{{ $platform->name }}</option>
+                                @endforeach
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="user_id">{{ __('User') }}</label>
+                            <select name="user_id" class="form-control" aria-label="Default select example">
+                                @foreach ($users as $user)
+                                    <option value="{{ $user->id }}">{{ $user->name }}</option>
+                                @endforeach
+                            </select>
+                        </div>
+                    </div>
                 </div>
             </div>
             <div class="card-footer">

@@ -28,10 +28,4 @@ class Service extends Model
     {
         return $this->hasMany(Ticket::class);
     }
-
-    public static function boot()
-    {
-        parent::boot();
-        Service::observe(ServiceObserver::class);
-    }
 }

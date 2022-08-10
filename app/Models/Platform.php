@@ -13,6 +13,12 @@ class Platform extends Model
 
     protected $fillable = ['name', 'logo', 'domain', 'api_token'];
 
+    public static function boot()
+    {
+        parent::boot();
+        Platform::observe(PlatformObserver::class);
+    }
+
     public function users(): HasMany
     {
         return $this->hasMany(User::class);
@@ -31,12 +37,5 @@ class Platform extends Model
     public function tickets(): HasMany
     {
         return $this->hasMany(Ticket::class);
-    }
-
-    public static function boot()
-    {
-        parent::boot();
-
-        Platform::observe(PlatformObserver::class);
     }
 }

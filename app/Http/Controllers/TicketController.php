@@ -2,13 +2,14 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\TicketRequest;
 use App\Models\User;
 use App\Models\Ticket;
+use App\Models\Service;
 use App\Models\Platform;
 use App\Models\Department;
-use App\Models\Service;
 use Illuminate\Http\Request;
+use App\Http\Requests\TicketRequest;
+use Illuminate\Support\Facades\Auth;
 
 class TicketController extends Controller
 {

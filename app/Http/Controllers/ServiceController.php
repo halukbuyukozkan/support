@@ -2,10 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\ServiceRequest;
-use App\Models\Platform;
+use App\Models\User;
 use App\Models\Service;
+use App\Models\Platform;
 use Illuminate\Http\Request;
+use App\Http\Requests\ServiceRequest;
 
 class ServiceController extends Controller
 {
@@ -30,7 +31,9 @@ class ServiceController extends Controller
     {
         $service = new Service($request->old());
         $platforms = Platform::all();
-        return view('admin.service.form', compact('service', 'platforms'));
+        $users = User::all();
+
+        return view('admin.service.form', compact('service', 'platforms', 'users'));
     }
 
     /**
@@ -69,7 +72,8 @@ class ServiceController extends Controller
     {
         $service->fill($request->old());
         $platforms = Platform::all();
-        return view('admin.service.form', compact('service', 'platforms'));
+        $users = User::all();
+        return view('admin.service.form', compact('service', 'platforms', 'users'));
     }
 
     /**

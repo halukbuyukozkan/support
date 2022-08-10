@@ -2,14 +2,15 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\UserTicketRequest;
 use App\Models\Ticket;
 use App\Models\Service;
 use App\Models\Platform;
 use App\Models\Department;
-use App\Models\TicketMessage;
 use Illuminate\Http\Request;
+use App\Models\TicketMessage;
+use App\Services\PlatformFacade;
 use Illuminate\Support\Facades\Auth;
+use App\Http\Requests\UserTicketRequest;
 
 class UserTicketController extends Controller
 {
@@ -21,7 +22,7 @@ class UserTicketController extends Controller
     public function index()
     {
         $tickets = Ticket::paginate()->filter(function ($value, $key) {
-            return $value->created_by == Auth::user()->name;
+            return $value->created_by == Auth::user()->id;
         });
 
         return view('user.ticket.index', compact('tickets'));
@@ -51,6 +52,9 @@ class UserTicketController extends Controller
     public function store(UserTicketRequest $request, Ticket $ticket, TicketMessage $ticketmessage)
     {
         $validated = $request->validated();
+        $validated['platform_id'] = PlatformFacade::model()->id;
+        $validated['user_id'] = Auth::user()->id;
+
         $ticket = new Ticket($validated);
         $ticket->save();
 

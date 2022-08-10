@@ -16,6 +16,12 @@ class Ticket extends Model
 
     protected $fillable = ['title', 'platform_id', 'department_id', 'user_id', 'service_id', 'note', 'created_by'];
 
+    public static function boot()
+    {
+        parent::boot();
+        Ticket::observe(TicketObserver::class);
+    }
+
     public function platform(): BelongsTo
     {
         return $this->belongsTo(Platform::class);
@@ -39,15 +45,5 @@ class Ticket extends Model
     public function ticketmessages(): HasMany
     {
         return $this->hasMany(TicketMessage::class);
-    }
-
-    public static function boot()
-    {
-        parent::boot();
-        if (Auth::user()->hasRole('Admin')) {
-            Ticket::observe(TicketObserver::class);
-        } else {
-            Ticket::observe(UserTicketObserver::class);
-        }
     }
 }

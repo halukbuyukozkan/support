@@ -26,6 +26,7 @@ class ServiceRequest extends FormRequest
         return [
             'name' => 'required|string|max:255',
             'platform_id' => 'required|integer',
+            'user_id' => 'required',
         ];
     }
 }
