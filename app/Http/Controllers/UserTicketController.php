@@ -34,10 +34,8 @@ class UserTicketController extends Controller
     {
         $ticket = new Ticket($request->old());
         $platform = PlatformFacade::model();
-        $departments = $platform->departments;
-        $services = Service::all();
 
-        return view('user.ticket.form', compact('ticket', 'departments', 'services'));
+        return view('user.ticket.form', compact('ticket', 'platform'));
     }
 
     /**
