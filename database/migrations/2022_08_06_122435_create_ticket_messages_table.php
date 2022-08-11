@@ -16,7 +16,7 @@ return new class extends Migration
         Schema::create('ticket_messages', function (Blueprint $table) {
             $table->id();
 
-            $table->foreignId('ticket_id')->constrained('tickets');
+            $table->foreignId('ticket_id')->constrained('tickets')->onDelete('cascade');
             $table->foreignId('user_id')->constrained('users');
             $table->enum('type', ['CUSTOMER', 'CLİENT', 'BOT', 'CUSTOM']);
             $table->text('message');

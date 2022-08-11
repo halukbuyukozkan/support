@@ -33,6 +33,20 @@ class UsersTableSeeder extends Seeder
                 'created_at' => '2022-07-28 18:45:37',
                 'updated_at' => '2022-07-28 18:45:37',
             ),
+            1 => 
+            array (
+                'id' => 2,
+                'platform_id' => 1,
+                'platform_ref' => NULL,
+                'name' => 'user',
+                'email' => 'user@a.com',
+                'email_verified_at' => NULL,
+                'phone' => NULL,
+                'password' => '$2y$10$LPb9IeVWbQ7swoUln.KVpe8Ot/ZuTGjKu/Atc4cGNAt5XXLn.ZYh6',
+                'remember_token' => NULL,
+                'created_at' => '2022-08-09 21:54:33',
+                'updated_at' => '2022-08-09 21:54:33',
+            ),
         ));
         
         

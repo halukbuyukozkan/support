@@ -73,16 +73,6 @@
                         </div>
                     </div>
                 </div>
-                <div class="form-group">
-                    <label for="message">{{ __('Message') }}</label>
-                    <input type="text" class="form-control @error('message') is-invalid @enderror" id="message"
-                        name="message" required>
-                    @error('message')
-                        <span class="invalid-feedback" user="alert">
-                            <strong>{{ $message }}</strong>
-                        </span>
-                    @enderror
-                </div>
             </div>
             <div class="card-footer">
                 <button type="submit" class="btn btn-primary">

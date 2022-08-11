@@ -5,11 +5,9 @@ namespace App\Http\Controllers;
 use App\Models\User;
 use App\Models\Ticket;
 use App\Models\Service;
-use App\Models\Platform;
-use App\Models\Department;
 use Illuminate\Http\Request;
+use App\Services\PlatformFacade;
 use App\Http\Requests\TicketRequest;
-use Illuminate\Support\Facades\Auth;
 
 class TicketController extends Controller
 {
@@ -20,7 +18,9 @@ class TicketController extends Controller
      */
     public function index()
     {
-        $tickets = Ticket::paginate();
+        $platform = PlatformFacade::model();
+        $tickets = $platform->tickets;
+
         return view('admin.ticket.index', compact('tickets'));
     }
 
@@ -32,12 +32,12 @@ class TicketController extends Controller
     public function create(Request $request)
     {
         $ticket = new Ticket($request->old());
-        $platforms = Platform::all();
-        $departments = Department::all();
+        $platform = PlatformFacade::model();
+        $departments = $platform->departments;
         $users = User::all();
         $services = Service::all();
 
-        return view('admin.ticket.form', compact('ticket', 'platforms', 'departments', 'users', 'services'));
+        return view('admin.ticket.form', compact('ticket', 'departments', 'users', 'services'));
     }
 
     /**
