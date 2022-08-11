@@ -46,7 +46,7 @@ class UserTicketController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(UserTicketRequest $request, Ticket $ticket, TicketMessage $ticketmessage)
+    public function store(UserTicketRequest $request, Ticket $ticket)
     {
         $validated = $request->validated();
         $validated['platform_id'] = PlatformFacade::model()->id;
