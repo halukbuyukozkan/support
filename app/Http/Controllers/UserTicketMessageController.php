@@ -36,10 +36,10 @@ class UserTicketMessageController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(TicketMessageRequest $request, $ticket)
+    public function store(TicketMessageRequest $request, Ticket $ticket)
     {
         $validated = $request->validated();
-        $validated['ticket_id'] = $ticket;
+        $validated['ticket_id'] = $ticket->id;
         $validated['user_id'] = Auth::user()->id;
         $validated['created_by'] = Auth::user()->id;
 

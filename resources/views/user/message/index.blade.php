@@ -8,7 +8,7 @@
                 <li class="list-group-item d-flex justify-content-between align-items-start">
                     <div class="ms-2 me-auto">
                         <a class="stretched-link" style="color: black" href="{{ route('user.ticket.message.index',$ticket) }}">
-                        <div class="fw-bold"><b>{{ $message->created_by }}</b></div>
+                        <div class="fw-bold"><b>{{ $message->user->name }}</b></div>
                         {{ $message->message }}
                         </a>
                     </div>
