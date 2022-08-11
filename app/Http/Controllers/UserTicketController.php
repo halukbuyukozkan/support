@@ -33,11 +33,11 @@ class UserTicketController extends Controller
     public function create(Request $request)
     {
         $ticket = new Ticket($request->old());
-        $platforms = Platform::all();
-        $departments = Department::all();
+        $platform = PlatformFacade::model();
+        $departments = $platform->departments;
         $services = Service::all();
 
-        return view('user.ticket.form', compact('ticket', 'platforms', 'departments', 'services'));
+        return view('user.ticket.form', compact('ticket', 'departments', 'services'));
     }
 
     /**

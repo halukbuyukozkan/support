@@ -18,8 +18,7 @@ class ServiceController extends Controller
     public function index()
     {
         $services = Service::paginate();
-        $platforms = Platform::all();
-        return view('admin.service.index', compact('services', 'platforms'));
+        return view('admin.service.index', compact('services'));
     }
 
     /**
@@ -30,10 +29,9 @@ class ServiceController extends Controller
     public function create(Request $request)
     {
         $service = new Service($request->old());
-        $platforms = Platform::all();
         $users = User::all();
 
-        return view('admin.service.form', compact('service', 'platforms', 'users'));
+        return view('admin.service.form', compact('service', 'users'));
     }
 
     /**
@@ -71,9 +69,8 @@ class ServiceController extends Controller
     public function edit(Request $request, Service $service)
     {
         $service->fill($request->old());
-        $platforms = Platform::all();
         $users = User::all();
-        return view('admin.service.form', compact('service', 'platforms', 'users'));
+        return view('admin.service.form', compact('service', 'users'));
     }
 
     /**
