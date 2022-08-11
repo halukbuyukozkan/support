@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use App\Models\Ticket;
-use App\Models\Service;
 use Illuminate\Http\Request;
 use App\Services\PlatformFacade;
 use App\Http\Requests\TicketRequest;
