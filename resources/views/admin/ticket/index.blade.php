@@ -23,7 +23,7 @@
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach ($tickets as $ticket)
+                    @foreach ($platform->tickets as $ticket)
                         <tr>
                             <td>{{ $ticket->title }}</td>
                             <td>{{ $ticket->platform->name }}</td>

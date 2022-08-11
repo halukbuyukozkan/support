@@ -19,9 +19,8 @@ class TicketController extends Controller
     public function index()
     {
         $platform = PlatformFacade::model();
-        $tickets = $platform->tickets;
 
-        return view('admin.ticket.index', compact('tickets'));
+        return view('admin.ticket.index', compact('platform'));
     }
 
     /**
@@ -33,11 +32,9 @@ class TicketController extends Controller
     {
         $ticket = new Ticket($request->old());
         $platform = PlatformFacade::model();
-        $departments = $platform->departments;
         $users = User::all();
-        $services = Service::all();
 
-        return view('admin.ticket.form', compact('ticket', 'departments', 'users', 'services'));
+        return view('admin.ticket.form', compact('ticket', 'platform', 'users'));
     }
 
     /**
