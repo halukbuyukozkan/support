@@ -2,13 +2,13 @@
 
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\TicketController;
+use App\Http\Controllers\Admin\TicketController;
 use App\Http\Controllers\AccountController;
-use App\Http\Controllers\ServiceController;
+use App\Http\Controllers\Admin\ServiceController;
 use App\Http\Controllers\Admin\RoleController;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\UserTicketController;
-use App\Http\Controllers\TicketMessageController;
+use App\Http\Controllers\Admin\TicketMessageController;
 use App\Http\Controllers\Admin\PlatformController;
 use App\Http\Controllers\Admin\DepartmentController;
 use App\Http\Controllers\Admin\PermissionController;

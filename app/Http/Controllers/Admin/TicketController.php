@@ -1,8 +1,7 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
 
-use App\Models\User;
 use App\Models\Ticket;
 use Illuminate\Http\Request;
 use App\Services\PlatformFacade;
@@ -31,9 +30,8 @@ class TicketController extends Controller
     {
         $ticket = new Ticket($request->old());
         $platform = PlatformFacade::model();
-        $users = User::all();
 
-        return view('admin.ticket.form', compact('ticket', 'platform', 'users'));
+        return view('admin.ticket.form', compact('ticket', 'platform'));
     }
 
     /**

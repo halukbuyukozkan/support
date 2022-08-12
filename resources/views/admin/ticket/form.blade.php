@@ -66,7 +66,7 @@
                         <div class="form-group">
                             <label for="user_id">{{ __('User') }}</label>
                             <select name="user_id" class="form-control" aria-label="Default select example">
-                                @foreach ($users as $user)
+                                @foreach ($platform->users as $user)
                                     <option value="{{ $user->id }}">{{ $user->name }}</option>
                                 @endforeach
                             </select>
