@@ -5,13 +5,13 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AccountController;
 use App\Http\Controllers\Admin\RoleController;
 use App\Http\Controllers\Admin\UserController;
-use App\Http\Controllers\UserTicketController;
 use App\Http\Controllers\Admin\TicketController;
 use App\Http\Controllers\Admin\PlatformController;
+use App\Http\Controllers\CustomerTicketController;
 use App\Http\Controllers\Admin\DepartmentController;
 use App\Http\Controllers\Admin\PermissionController;
+use App\Http\Controllers\Admin\UserTicketController;
 use App\Http\Controllers\Admin\UserServiceController;
-use App\Http\Controllers\UserTicketMessageController;
 use App\Http\Controllers\Admin\TicketMessageController;
 
 /*
@@ -31,20 +31,21 @@ Route::middleware(['auth'])->group(function () {
             return view('dashboard');
         } else {
             $user = Auth::user();
-            return redirect()->route('user.ticket.index', $user);
+            return redirect()->route('customer.ticket.index', $user);
         }
     })->name('dashboard');
 
-    Route::prefix('user')->name('user.')->group(function () {
+    Route::prefix('customer')->name('customer.')->group(function () {
         Route::scopeBindings()->group(function () {
-            Route::resource('ticket', UserTicketController::class);
-            Route::resource('ticket.message', UserTicketMessageController::class);
+            Route::resource('ticket', CustomerTicketController::class);
+            Route::resource('ticket.message', CustomerTicketMessageController::class);
         });
     });
 
     Route::prefix('admin')->name('admin.')->group(function () {
         Route::resource('user', UserController::class);
         Route::resource('user.service', UserServiceController::class);
+        Route::resource('user.ticket', UserTicketController::class);
         Route::resource('role', RoleController::class);
         Route::resource('permission', PermissionController::class);
         Route::resource('platform', PlatformController::class);

@@ -68,7 +68,7 @@
             </div>
             <div class="col-md-10">
                 <form method="post" enctype="multipart/form-data"
-                action="{{ $ticket->exists ? route('user.ticket.update', ['ticket' => $ticket,'message' => $message]) : route('user.ticket.store') }}">
+                action="{{ $ticket->exists ? route('customer.ticket.update', ['ticket' => $ticket,'message' => $message]) : route('customer.ticket.store') }}">
                 @csrf
                 @if ($ticket->exists)
                     @method('PUT')

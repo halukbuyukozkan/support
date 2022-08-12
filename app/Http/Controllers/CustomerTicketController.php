@@ -8,7 +8,7 @@ use App\Services\PlatformFacade;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Requests\UserTicketRequest;
 
-class UserTicketController extends Controller
+class CustomerTicketController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -55,7 +55,7 @@ class UserTicketController extends Controller
             'created_by' => Auth::user()->id,
         ]);
 
-        return redirect()->route('user.ticket.index')->with('success', __('Ticket created successfully'));
+        return redirect()->route('customer.ticket.index')->with('success', __('Ticket created successfully'));
     }
 
     /**

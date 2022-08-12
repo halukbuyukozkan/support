@@ -7,7 +7,7 @@
     </x-slot>
 
     <form method="post" enctype="multipart/form-data"
-        action="{{ $ticket->exists ? route('admin.ticket.update', ['ticket' => $ticket,'message' => $message]) : route('admin.ticket.store') }}">
+        action="{{ $ticket->exists ? route('admin.ticket.update') : route('admin.ticket.store') }}">
         @csrf
         @if ($ticket->exists)
             @method('PUT')

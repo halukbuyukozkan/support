@@ -81,7 +81,7 @@ class UserServiceController extends Controller
     public function update(ServiceRequest $request, User $user, Service $service)
     {
         $validated = $request->validated();
-        $validated->user_id = $user->id;
+        $validated['user_id'] = $user->id;
         $service->fill($validated);
         $service->save();
 

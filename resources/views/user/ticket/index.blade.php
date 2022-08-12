@@ -5,7 +5,7 @@
             <div class="col-md-10 py-2">
                 <h2 class="h4 font-weight-bold">
                     {{ __('Tickets') }}
-                    <a href="{{ route('user.ticket.create') }}" class="btn btn-sm btn-primary float-right">
+                    <a href="{{ route('customer.ticket.create') }}" class="btn btn-sm btn-primary float-right">
                         <i class="fa fa-plus"></i>
                         {{ __('Create Ticket') }}
                     </a>
@@ -16,13 +16,13 @@
                 <ol class="list-group list-group-numbered">
                     <li class="list-group-item d-flex justify-content-between align-items-start">
                         <div class="ms-2 me-auto">
-                            <a style="color: black" href="{{ route('user.ticket.show',$ticket) }}">
+                            <a style="color: black" href="{{ route('customer.ticket.show',$ticket) }}">
                             <div class="fw-bold"><b>{{ $ticket->title }}</b></div>
                             {{ $ticket->note }}
                             </a>
                             <span class="badge bg-primary rounded-pill">{{ $ticket->ticketmessages->count() }}</span>
                         </div>
-                        <form action="{{ route('user.ticket.destroy', $ticket) }}" method="POST"
+                        <form action="{{ route('customer.ticket.destroy', $ticket) }}" method="POST"
                             class="d-inline-block" onsubmit="return confirm('{{ __('Are you sure?') }}');">
                             @csrf
                             @method('DELETE')

@@ -23,7 +23,7 @@
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach ($platform->tickets as $ticket)
+                    @foreach ($tickets as $ticket)
                         <tr>
                             <td>{{ $ticket->title }}</td>
                             <td>{{ $ticket->platform->name }}</td>
@@ -50,6 +50,9 @@
                     @endforeach
                 </tbody>
             </table>
+        </div>
+        <div class="card-footer">
+            {{ $tickets->paginate(10) }}
         </div>
     </div>
 </x-app-layout>

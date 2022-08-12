@@ -21,7 +21,7 @@
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach ($users as $user)
+                    @foreach ($platform->users as $user)
                         <tr>
                             <td>{{ $user->name }}</td>
                             <td>{{ $user->email }}</td>
@@ -31,6 +31,10 @@
                                 @endforeach
                             </td>
                             <td class="text-right text-nowrap">
+                                <a href="{{ route('admin.user.ticket.index', $user) }}" class="btn btn-sm btn-primary">
+                                    <i class="fas fa-ticket-alt"></i>
+                                    <span class="d-none d-sm-inline">{{ __('Tickets') }}</span>
+                                </a>
                                 <a href="{{ route('admin.user.service.index', $user) }}" class="btn btn-sm btn-primary">
                                     <i class="fas fa-book"></i>
                                     <span class="d-none d-sm-inline">{{ __('Services') }}</span>
@@ -55,7 +59,7 @@
             </table>
         </div>
         <div class="card-footer">
-            {{ $users->links() }}
+            {{ $platform->users->paginate(10) }}
         </div>
     </div>
 </x-app-layout>

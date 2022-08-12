@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Models\User;
 use Illuminate\Http\Request;
+use App\Services\PlatformFacade;
 use Spatie\Permission\Models\Role;
 use Illuminate\Support\Facades\Hash;
 
@@ -21,9 +22,9 @@ class UserController extends Controller
      */
     public function index()
     {
-        $users = User::paginate();
+        $platform = PlatformFacade::model();
 
-        return view('admin.user.index', compact('users'));
+        return view('admin.user.index', compact('platform'));
     }
 
     /**
