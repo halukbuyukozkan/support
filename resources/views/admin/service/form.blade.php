@@ -7,7 +7,7 @@
     </x-slot>
 
     <form method="post" enctype="multipart/form-data"
-        action="{{ $service->exists ? route('admin.service.update', $service) : route('admin.service.store') }}">
+        action="{{ $service->exists ? route('admin.user.service.update',['user' => $user]) : route('admin.user.service.store',$user) }}">
         @csrf
         @if ($service->exists)
             @method('PUT')
@@ -15,7 +15,7 @@
         <div class="card">
             <div class="card-body">
                 <div class="row">
-                    <div class="col-md-6">
+                    <div class="col-md-12">
                         <div class="form-group">
                             <label for="name">{{ __('Name') }}</label>
                             <input type="text" class="form-control @error('name') is-invalid @enderror" id="name"
@@ -25,16 +25,6 @@
                                     <strong>{{ $message }}</strong>
                                 </span>
                             @enderror
-                        </div>
-                    </div>
-                    <div class="col-md-6">
-                        <div class="form-group">
-                            <label for="user_id">{{ __('User') }}</label>
-                            <select name="user_id" class="form-control" aria-label="Default select example">
-                                @foreach ($users as $user)
-                                    <option value="{{ $user->id }}">{{ $user->name }}</option>
-                                @endforeach
-                            </select>
                         </div>
                     </div>
                 </div>

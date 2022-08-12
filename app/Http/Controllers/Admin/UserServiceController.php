@@ -4,21 +4,20 @@ namespace App\Http\Controllers\Admin;
 
 use App\Models\User;
 use App\Models\Service;
-use App\Models\Platform;
 use Illuminate\Http\Request;
 use App\Http\Requests\ServiceRequest;
+use App\Http\Requests\ServiceUpdateRequest;
 
-class ServiceController extends Controller
+class UserServiceController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(User $user)
     {
-        $services = Service::paginate();
-        return view('admin.service.index', compact('services'));
+        return view('admin.service.index', compact('user'));
     }
 
     /**
@@ -26,12 +25,11 @@ class ServiceController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create(Request $request)
+    public function create(Request $request, User $user)
     {
         $service = new Service($request->old());
-        $users = User::all();
 
-        return view('admin.service.form', compact('service', 'users'));
+        return view('admin.service.form', compact('service', 'user'));
     }
 
     /**
@@ -40,13 +38,14 @@ class ServiceController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(ServiceRequest $request)
+    public function store(ServiceRequest $request, User $user)
     {
         $validated = $request->validated();
+        $validated['user_id'] = $user->id;
         $service = new Service($validated);
         $service->save();
 
-        return redirect()->route('admin.service.index')->with('success', __('Service created successfully'));
+        return redirect()->route('admin.user.service.index', compact('user'))->with('success', __('Service created successfully'));
     }
 
     /**
@@ -66,11 +65,10 @@ class ServiceController extends Controller
      * @param  \App\Models\Service  $service
      * @return \Illuminate\Http\Response
      */
-    public function edit(Request $request, Service $service)
+    public function edit(Request $request, User $user, Service $service)
     {
         $service->fill($request->old());
-        $users = User::all();
-        return view('admin.service.form', compact('service', 'users'));
+        return view('admin.service.form', compact('service', 'user'));
     }
 
     /**
@@ -80,13 +78,14 @@ class ServiceController extends Controller
      * @param  \App\Models\Service  $service
      * @return \Illuminate\Http\Response
      */
-    public function update(ServiceRequest $request, Service $service)
+    public function update(ServiceRequest $request, User $user, Service $service)
     {
         $validated = $request->validated();
+        $validated->user_id = $user->id;
         $service->fill($validated);
         $service->save();
 
-        return redirect()->route('admin.service.index')->with('success', __('Service updated successfully'));
+        return redirect()->route('admin.user.service.index', compact('user'))->with('success', __('Service updated successfully'));
     }
 
     /**
@@ -95,10 +94,10 @@ class ServiceController extends Controller
      * @param  \App\Models\Service  $service
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Service $service)
+    public function destroy(User $user, Service $service)
     {
         $service->delete();
 
-        return redirect()->route('admin.service.index')->with('success', 'Service deleted successfully');
+        return redirect()->route('admin.user.service.index', compact('user'))->with('success', 'Service deleted successfully');
     }
 }

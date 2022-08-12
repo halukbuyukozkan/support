@@ -4,12 +4,14 @@ namespace App\Providers;
 
 use App\Models\Platform;
 use App\Services\PlatformFind;
+use Illuminate\Support\Collection;
 use App\Observers\PlatformObserver;
 use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\URL;
 use Illuminate\Pagination\Paginator;
 use Illuminate\Support\ServiceProvider;
 use NascentAfrica\Jetstrap\JetstrapFacade;
+use Illuminate\Pagination\LengthAwarePaginator;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -41,5 +43,29 @@ class AppServiceProvider extends ServiceProvider
         if (config('app.force_https')) {
             URL::forceScheme('https');
         }
+
+        /**
+         * Paginate a standard Laravel Collection.
+         *
+         * @param int $perPage
+         * @param int $total
+         * @param int $page
+         * @param string $pageName
+         * @return array
+         */
+        Collection::macro('paginate', function ($perPage, $total = null, $page = null, $pageName = 'page') {
+            $page = $page ?: LengthAwarePaginator::resolveCurrentPage($pageName);
+
+            return new LengthAwarePaginator(
+                $this->forPage($page, $perPage),
+                $total ?: $this->count(),
+                $perPage,
+                $page,
+                [
+                    'path' => LengthAwarePaginator::resolveCurrentPath(),
+                    'pageName' => $pageName,
+                ]
+            );
+        });
     }
 }
