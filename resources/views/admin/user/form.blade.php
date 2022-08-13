@@ -7,8 +7,7 @@
     </x-slot>
 
     <section>
-        <div class="container mb-4">
-            <div class="row">
+            <div class="row mb-4">
                 <div class="col">
                     <ul class="nav nav-pills nav-fill">
                         <li class="nav-item">
@@ -23,7 +22,6 @@
                     </ul>
                 </div>
             <div>
-        </div>
     </section>
     <form method="post" enctype="multipart/form-data"
         action="{{ $user->exists ? route('admin.user.update', $user) : route('admin.user.store') }}">

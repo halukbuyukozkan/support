@@ -10,23 +10,21 @@
     </x-slot>
 
     <section>
-        <div class="container mb-4">
-            <div class="row">
-                <div class="col">
-                    <ul class="nav nav-pills nav-fill">
-                        <li class="nav-item">
-                            <a @if(request()->routeIs('admin.user.edit*')) class="nav-link active" @else class="nav-link" @endif name="references" href="{{ route('admin.user.edit', $user) }}">Edit</a>
-                        </li>
-                        <li class="nav-item">
-                            <a @if(request()->routeIs('admin.user.ticket*')) class="nav-link active" @else class="nav-link" @endif name="references" href="{{ route('admin.user.ticket.index', $user) }}">Tickets</a>
-                        </li>
-                        <li class="nav-item">
-                            <a @if(request()->routeIs('admin.user.service*')) class="nav-link active" @else class="nav-link" @endif name="references" href="{{ route('admin.user.service.index', $user) }}">Services</a>
-                        </li>
-                    </ul>
-                </div>
-            <div>
-        </div>
+        <div class="row mb-4">
+            <div class="col">
+                <ul class="nav nav-pills nav-fill">
+                    <li class="nav-item">
+                        <a @if(request()->routeIs('admin.user.edit*')) class="nav-link active" @else class="nav-link" @endif name="references" href="{{ route('admin.user.edit', $user) }}">Edit</a>
+                    </li>
+                    <li class="nav-item">
+                        <a @if(request()->routeIs('admin.user.ticket*')) class="nav-link active" @else class="nav-link" @endif name="references" href="{{ route('admin.user.ticket.index', $user) }}">Tickets</a>
+                    </li>
+                    <li class="nav-item">
+                        <a @if(request()->routeIs('admin.user.service*')) class="nav-link active" @else class="nav-link" @endif name="references" href="{{ route('admin.user.service.index', $user) }}">Services</a>
+                    </li>
+                </ul>
+            </div>
+        <div>
     </section>
     <div class="card">
         <div class="table-responsive">
