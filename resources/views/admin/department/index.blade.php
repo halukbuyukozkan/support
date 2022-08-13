@@ -20,7 +20,7 @@
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach ($departments as $department)
+                    @foreach ($platform->departments as $department)
                         <tr>
                             <td>{{ $department->name }}</td>
                             <td>{{ $department->platform->name }}</td>
@@ -46,7 +46,7 @@
             </table>
         </div>
         <div class="card-footer">
-            {{ $departments->links() }}
+            {{ $platform->departments->paginate(10) }}
         </div>
     </div>
 </x-app-layout>
