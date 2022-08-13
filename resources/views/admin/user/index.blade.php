@@ -31,14 +31,6 @@
                                 @endforeach
                             </td>
                             <td class="text-right text-nowrap">
-                                <a href="{{ route('admin.user.ticket.index', $user) }}" class="btn btn-sm btn-primary">
-                                    <i class="fas fa-ticket-alt"></i>
-                                    <span class="d-none d-sm-inline">{{ __('Tickets') }}</span>
-                                </a>
-                                <a href="{{ route('admin.user.service.index', $user) }}" class="btn btn-sm btn-primary">
-                                    <i class="fas fa-book"></i>
-                                    <span class="d-none d-sm-inline">{{ __('Services') }}</span>
-                                </a>
                                 <a href="{{ route('admin.user.edit', $user) }}" class="btn btn-sm btn-primary">
                                     <i class="fas fa-edit"></i>
                                     <span class="d-none d-sm-inline">{{ __('Edit') }}</span>

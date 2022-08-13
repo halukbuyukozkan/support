@@ -1,41 +1,52 @@
-<x-guest-layout>
+<x-app-layout>
+    <x-slot name="header">
+        <h2 class="h4 font-weight-bold">
+            {{ __('Tickets') }}
+            <a href="{{ route('customer.ticket.create') }}" class="btn btn-sm btn-primary float-right">
+                <i class="fa fa-plus"></i>
+                {{ __('Create Ticket') }}
+            </a>
+        </h2>
+    </x-slot>
 
-    <div class="container-fluid my-5 pt-5 px-5">
-        <div class="row justify-content-center">
-            <div class="col-md-10 py-2">
-                <h2 class="h4 font-weight-bold">
-                    {{ __('Tickets') }}
-                    <a href="{{ route('customer.ticket.create') }}" class="btn btn-sm btn-primary float-right">
-                        <i class="fa fa-plus"></i>
-                        {{ __('Create Ticket') }}
-                    </a>
-                </h2>
-            </div>
-            <div class="col-md-10">
-                @foreach ($tickets as $ticket)
-                <ol class="list-group list-group-numbered">
-                    <li class="list-group-item d-flex justify-content-between align-items-start">
-                        <div class="ms-2 me-auto">
-                            <a style="color: black" href="{{ route('customer.ticket.show',$ticket) }}">
-                            <div class="fw-bold"><b>{{ $ticket->title }}</b></div>
-                            {{ $ticket->note }}
-                            </a>
-                            <span class="badge bg-primary rounded-pill">{{ $ticket->ticketmessages->count() }}</span>
-                        </div>
-                        <form action="{{ route('customer.ticket.destroy', $ticket) }}" method="POST"
-                            class="d-inline-block" onsubmit="return confirm('{{ __('Are you sure?') }}');">
-                            @csrf
-                            @method('DELETE')
-                            <button type="submit" class="btn btn-sm btn-danger">
-                                <i class="fas fa-trash"></i>
-                                <span class="d-none d-sm-inline">{{ __('Delete') }}</span>
-                            </button>
-                        </form>
-                    </li>
-                </ol>
-                @endforeach
-            </div>
+    <div class="card">
+        <div class="table-responsive">
+            <table class="table table-hover">
+                <thead>
+                    <tr>
+                        <th>{{ __('Title') }}</th>
+                        <th>{{ __('Note') }}</th>
+                        <th style="width: 200px">{{ __('Actions') }}</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach ($tickets as $ticket)
+                        <tr>
+                            <td>{{ $ticket->title }} <span class="badge bg-primary rounded-pill">{{ $ticket->ticketmessages->count() }}</span></td>
+                            <td>{{ $ticket->note }}</td>
+                            <td class="text-right text-nowrap">
+                                <a href="{{ route('customer.ticket.show',$ticket) }}" class="btn btn-sm btn-primary">
+                                    <i class="fas fa-edit"></i>
+                                    <span class="d-none d-sm-inline">{{ __('Reply') }}</span>
+                                </a>
+                                <form action="{{ route('customer.ticket.destroy', $ticket) }}" method="POST"
+                                    class="d-inline-block" onsubmit="return confirm('{{ __('Are you sure?') }}');">
+                                    @csrf
+                                    @method('DELETE')
+                                    <button type="submit" class="btn btn-sm btn-danger">
+                                        <i class="fas fa-trash"></i>
+                                        <span class="d-none d-sm-inline">{{ __('Delete') }}</span>
+                                    </button>
+                                </form>
+                            </td>
+                        </tr>
+                    @endforeach
+                </tbody>
+            </table>
+        </div>
+        <div class="card-footer">
+            {{ $tickets->paginate(10) }}
         </div>
     </div>
+</x-app-layout>
 
-</x-guest-layout>

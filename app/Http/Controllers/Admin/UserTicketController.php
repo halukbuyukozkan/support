@@ -18,7 +18,7 @@ class UserTicketController extends Controller
     {
         $tickets = $user->tickets;
 
-        return view('admin.ticket.index', compact('tickets', 'user'));
+        return view('admin.user.ticket', compact('tickets', 'user'));
     }
 
     /**

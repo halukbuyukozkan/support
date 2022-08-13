@@ -8,7 +8,7 @@ use Illuminate\Support\Facades\Auth;
 use App\Http\Requests\TicketMessageRequest;
 use App\Models\Ticket;
 
-class UserTicketMessageController extends Controller
+class CustomerTicketMessageController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -46,7 +46,7 @@ class UserTicketMessageController extends Controller
         $ticketMessage = new TicketMessage($validated);
         $ticketMessage->save();
 
-        return redirect()->route('user.ticket.show', $ticket)->with('success', __('Ticket Message Created Successfully'));
+        return redirect()->route('customer.ticket.show', $ticket)->with('success', __('Ticket Message Created Successfully'));
     }
 
     /**

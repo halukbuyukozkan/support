@@ -1,10 +1,10 @@
 <x-app-layout>
     <x-slot name="header">
         <h2 class="h4 font-weight-bold">
-            {{ __('Services') }}
-            <a href="{{ route('admin.user.service.create',$user) }}" class="btn btn-sm btn-primary float-right">
+            {{ __('Tickets') }}
+            <a href="{{ route('admin.ticket.create') }}" class="btn btn-sm btn-primary float-right">
                 <i class="fa fa-plus"></i>
-                {{ __('Create Service') }}
+                {{ __('Create Ticket') }}
             </a>
         </h2>
     </x-slot>
@@ -33,23 +33,29 @@
             <table class="table table-hover">
                 <thead>
                     <tr>
-                        <th>{{ __('Name') }}</th>
+                        <th>{{ __('Title') }}</th>
                         <th>{{ __('Platform') }}</th>
+                        <th>{{ __('Department') }}</th>
+                        <th>{{ __('User') }}</th>
+                        <th>{{ __('Service') }}</th>
                         <th style="width: 200px">{{ __('Actions') }}</th>
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach ($user->services as $service)
+                    @foreach ($tickets as $ticket)
                         <tr>
-                            <td>{{ $service->name }}</td>
-                            <td>{{ $service->platform->name }}</td>
+                            <td>{{ $ticket->title }}</td>
+                            <td>{{ $ticket->platform->name }}</td>
+                            <td>{{ $ticket->department->name }}</td>
+                            <td>{{ $ticket->user->name }}</td>
+                            <td>@if ($ticket->service){{ $ticket->service->name }}@endif</td>
                             <td class="text-right text-nowrap">
-                                <a href="{{ route('admin.user.service.edit',['user' => $user,'service' => $service]) }}"
+                                <a href="{{ route('admin.ticket.show', $ticket) }}"
                                     class="btn btn-sm btn-primary">
                                     <i class="fas fa-edit"></i>
-                                    <span class="d-none d-sm-inline">{{ __('Edit') }}</span>
+                                    <span class="d-none d-sm-inline">{{ __('Reply') }}</span>
                                 </a>
-                                <form action="{{ route('admin.user.service.destroy', ['user' => $user,'service' => $service]) }}" method="POST"
+                                <form action="{{ route('admin.ticket.destroy', $ticket) }}" method="POST"
                                     class="d-inline-block" onsubmit="return confirm('{{ __('Are you sure?') }}');">
                                     @csrf
                                     @method('DELETE')
@@ -65,7 +71,7 @@
             </table>
         </div>
         <div class="card-footer">
-        {{ $user->services->paginate(10) }}
+            {{ $tickets->paginate(10) }}
         </div>
     </div>
 </x-app-layout>

@@ -13,6 +13,7 @@ use App\Http\Controllers\Admin\PermissionController;
 use App\Http\Controllers\Admin\UserTicketController;
 use App\Http\Controllers\Admin\UserServiceController;
 use App\Http\Controllers\Admin\TicketMessageController;
+use App\Http\Controllers\CustomerTicketMessageController;
 
 /*
 |--------------------------------------------------------------------------
