@@ -6,10 +6,6 @@
                 <i class="fa fa-plus"></i>
                 {{ __('Create Ticket') }}
             </a>
-            <a href="{{ route('admin.status.create') }}" class="btn btn-sm btn-primary float-right">
-                <i class="fa fa-plus"></i>
-                {{ __('Create Status') }}
-            </a>
         </h2>
     </x-slot>
 
@@ -43,7 +39,7 @@
                                 <a href="{{ route('admin.ticket.show', $ticket) }}"
                                     class="btn btn-sm btn-primary">
                                     <i class="fas fa-edit"></i>
-                                    <span class="d-none d-sm-inline">{{ __('Reply') }}</span>
+                                    <span class="d-none d-sm-inline">{{ __('Messages') }}</span>
                                 </a>
                                 <form action="{{ route('admin.ticket.destroy', $ticket) }}" method="POST"
                                     class="d-inline-block" onsubmit="return confirm('{{ __('Are you sure?') }}');">
