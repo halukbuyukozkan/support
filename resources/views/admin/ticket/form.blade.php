@@ -7,7 +7,7 @@
     </x-slot>
 
     <form method="post" enctype="multipart/form-data"
-        action="{{ $ticket->exists ? route('admin.ticket.update') : route('admin.ticket.store') }}">
+        action="{{ $ticket->exists ? route('admin.ticket.update',$ticket) : route('admin.ticket.store',$ticket) }}">
         @csrf
         @if ($ticket->exists)
             @method('PUT')
@@ -50,7 +50,7 @@
                     </div>
                 </div>
                 <div class="row">
-                    <div class="col-md-6">
+                    <div class="col-md-4">
                         <div class="form-group">
                             <label for="note">{{ __('Note') }}</label>
                             <input type="text" class="form-control @error('note') is-invalid @enderror" id="note"
@@ -62,12 +62,22 @@
                             @enderror
                         </div>
                     </div>
-                    <div class="col-md-6">
+                    <div class="col-md-4">
                         <div class="form-group">
                             <label for="user_id">{{ __('User') }}</label>
                             <select name="user_id" class="form-control" aria-label="Default select example">
                                 @foreach ($platform->users as $user)
                                     <option value="{{ $user->id }}">{{ $user->name }}</option>
+                                @endforeach
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <label for="status_id">{{ __('Status') }}</label>
+                            <select name="status_id" class="form-control" aria-label="Default select example">
+                                @foreach ($statuses as $status)
+                                    <option value="{{ $status->id }}">{{ $status->name }}</option>
                                 @endforeach
                             </select>
                         </div>

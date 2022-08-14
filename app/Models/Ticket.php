@@ -2,19 +2,18 @@
 
 namespace App\Models;
 
+use App\Models\Status;
 use App\Observers\TicketObserver;
-use App\Observers\UserTicketObserver;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Support\Facades\Auth;
 
 class Ticket extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['title', 'platform_id', 'department_id', 'user_id', 'service_id', 'note', 'created_by'];
+    protected $fillable = ['title', 'platform_id', 'department_id', 'user_id', 'service_id', 'note', 'created_by', 'status_id'];
 
     public static function boot()
     {
@@ -45,5 +44,10 @@ class Ticket extends Model
     public function ticketmessages(): HasMany
     {
         return $this->hasMany(TicketMessage::class);
+    }
+
+    public function status(): BelongsTo
+    {
+        return $this->belongsTo(Status::class);
     }
 }

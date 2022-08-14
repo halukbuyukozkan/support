@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Models\Status;
 use App\Models\Ticket;
 use Illuminate\Http\Request;
 use App\Services\PlatformFacade;
@@ -31,8 +32,9 @@ class TicketController extends Controller
     {
         $ticket = new Ticket($request->old());
         $platform = PlatformFacade::model();
+        $statuses = Status::all();
 
-        return view('admin.ticket.form', compact('ticket', 'platform'));
+        return view('admin.ticket.form', compact('ticket', 'platform', 'statuses'));
     }
 
     /**
@@ -69,7 +71,11 @@ class TicketController extends Controller
      */
     public function edit(Request $request, Ticket $ticket)
     {
-        //
+        $platform = PlatformFacade::model();
+        $statuses = Status::all();
+        $ticket->fill($request->old());
+
+        return view('admin.ticket.form', compact('ticket', 'platform', 'statuses'));
     }
 
     /**

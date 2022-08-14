@@ -23,6 +23,9 @@
                 <x-side-link href="{{ route('admin.ticket.index') }}" icon="fas fa-ticket-alt" :active="request()->routeIs('admin.ticket.*')">
                     {{ __('Tickets') }}
                 </x-side-link>
+                <x-side-link href="{{ route('admin.status.index') }}" icon="fas fa-calendar-check" :active="request()->routeIs('admin.status.*')">
+                    {{ __('Statuses') }}
+                </x-side-link>
                 @if (auth()->user()->hasPermissionTo('management.user'))
                 <x-side-link href="{{ route('admin.user.index') }}" icon="fas fa-users" :active="request()->routeIs('admin.user.*')">
                     {{ __('Users') }}

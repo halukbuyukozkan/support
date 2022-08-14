@@ -10,6 +10,7 @@ use App\Http\Controllers\Admin\PlatformController;
 use App\Http\Controllers\CustomerTicketController;
 use App\Http\Controllers\Admin\DepartmentController;
 use App\Http\Controllers\Admin\PermissionController;
+use App\Http\Controllers\Admin\StatusController;
 use App\Http\Controllers\Admin\UserTicketController;
 use App\Http\Controllers\Admin\UserServiceController;
 use App\Http\Controllers\Admin\TicketMessageController;
@@ -52,6 +53,7 @@ Route::middleware(['auth'])->group(function () {
         Route::resource('platform', PlatformController::class);
         Route::resource('department', DepartmentController::class);
         Route::resource('ticket', TicketController::class);
+        Route::resource('status', StatusController::class);
         Route::resource('ticket.message', TicketMessageController::class);
     });
 
