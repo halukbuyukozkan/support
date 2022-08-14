@@ -11,13 +11,13 @@
                 <div class="col">
                     <ul class="nav nav-pills nav-fill">
                         <li class="nav-item">
-                            <a @if(request()->routeIs('admin.user.edit*')) class="nav-link active" @else class="nav-link" @endif name="references" href="{{ route('admin.user.edit', $user) }}">Edit</a>
+                            <a @if(request()->routeIs('admin.user.edit*')) class="nav-link active" @else class="nav-link" @endif name="references" href="{{ route('admin.user.edit', $user) }}"><i class="fas fa-edit px-1"></i>Edit</a>
                         </li>
                         <li class="nav-item">
-                            <a @if(request()->routeIs('admin.user.ticket*')) class="nav-link active" @else class="nav-link" @endif name="references" href="{{ route('admin.user.ticket.index', $user) }}">Tickets</a>
+                            <a @if(request()->routeIs('admin.user.ticket*')) class="nav-link active" @else class="nav-link" @endif name="references" href="{{ route('admin.user.ticket.index', $user) }}"><i class="fas fa-ticket-alt px-1"></i>Tickets</a>
                         </li>
                         <li class="nav-item">
-                            <a @if(request()->routeIs('admin.user.service*')) class="nav-link active" @else class="nav-link" @endif name="references" href="{{ route('admin.user.service.index', $user) }}">Services</a>
+                            <a @if(request()->routeIs('admin.user.service*')) class="nav-link active" @else class="nav-link" @endif name="references" href="{{ route('admin.user.service.index', $user) }}"><i class="fas fa-bookmark px-1"></i>Services</a>
                         </li>
                     </ul>
                 </div>
