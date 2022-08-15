@@ -32,6 +32,12 @@
         </div>
         <div class="card-body">
             <table class="table table-hover">
+                <thead>
+                    <tr>
+                        <td>{{ __('Name') }}</td>
+                        <td>{{ __('Note') }}</td>
+                    </tr>
+                </thead>
                 <tbody>
                     @foreach ($activeTickets as $ticket)
                         <tr>
