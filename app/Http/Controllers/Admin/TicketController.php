@@ -47,7 +47,6 @@ class TicketController extends Controller
     {
         $validated = $request->validated();
         $platform = PlatformFacade::model();
-        // Platform default ticket status için
         if ($validated['status_id'] == null)
             $validated['status_id'] = $platform->status_id;
 

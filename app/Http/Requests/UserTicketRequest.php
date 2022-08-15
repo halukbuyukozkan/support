@@ -29,6 +29,7 @@ class UserTicketRequest extends FormRequest
             'service_id' => 'nullable|exists:services,id',
             'note' => 'nullable',
             'message' => 'nullable',
+            'status_id' => 'nullable',
         ];
     }
 }

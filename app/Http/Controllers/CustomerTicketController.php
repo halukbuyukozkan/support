@@ -45,6 +45,8 @@ class CustomerTicketController extends Controller
         $validated = $request->validated();
         $validated['platform_id'] = PlatformFacade::model()->id;
         $validated['user_id'] = Auth::user()->id;
+        $platform = PlatformFacade::model();
+        $validated['status_id'] = $platform->status_id;
         $ticket = new Ticket($validated);
         $ticket->save();
 
