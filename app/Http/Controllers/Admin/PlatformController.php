@@ -7,6 +7,7 @@ use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use App\Http\Requests\PlatformRequest;
 use App\Http\Requests\PlatformUpdateRequest;
+use App\Models\Status;
 
 class PlatformController extends Controller
 {
@@ -30,8 +31,9 @@ class PlatformController extends Controller
     public function create(Request $request)
     {
         $platform = new Platform($request->old());
+        $statuses = Status::all();
 
-        return view('admin.platform.form', compact('platform'));
+        return view('admin.platform.form', compact('platform', 'statuses'));
     }
 
     /**
@@ -72,7 +74,9 @@ class PlatformController extends Controller
     public function edit(Request $request, Platform $platform)
     {
         $platform->fill($request->old());
-        return view('admin.platform.form', compact('platform'));
+        $statuses = Status::all();
+
+        return view('admin.platform.form', compact('platform', 'statuses'));
     }
 
     /**

@@ -6,12 +6,13 @@ use App\Observers\PlatformObserver;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class Platform extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['name', 'logo', 'domain', 'api_token'];
+    protected $fillable = ['name', 'logo', 'domain', 'api_token', 'status_id'];
 
     public static function boot()
     {
@@ -37,5 +38,10 @@ class Platform extends Model
     public function tickets(): HasMany
     {
         return $this->hasMany(Ticket::class);
+    }
+
+    public function status(): BelongsTo
+    {
+        return $this->belongsTo(Status::class);
     }
 }

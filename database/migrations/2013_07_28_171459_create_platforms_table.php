@@ -20,6 +20,7 @@ return new class extends Migration
             $table->string('logo')->nullable();
             $table->string('domain');
             $table->string('api_token');
+            $table->foreignId('status_id')->nullable()->constrained('statuses');
 
             $table->timestamps();
         });

@@ -36,7 +36,7 @@
                     @enderror
                 </div>
                 <div class="form-group">
-                    <label for="name">{{ __('Domain') }}</label>
+                    <label for="domain">{{ __('Domain') }}</label>
                     <input type="text" class="form-control @error('domain') is-invalid @enderror" id="domain"
                         name="domain" value="{{ old('domain', $platform->domain) }}" required>
                     @error('domain')
@@ -44,6 +44,15 @@
                             <strong>{{ $message }}</strong>
                         </span>
                     @enderror
+                </div>
+                <div class="form-group">
+                    <label for="status_id">{{ __('Default Status') }}</label>
+                    <select name="status_id" class="form-control" aria-label="Default select example" @if($statuses->count()==0) disabled @endif >
+                            <option value="" class="text-muted">Seçiniz</option>
+                        @foreach ($statuses as $status)
+                            <option value="{{ $status->id }}">{{ $status->name }}</option>
+                        @endforeach
+                    </select>
                 </div>
             </div>
             <div class="card-footer">

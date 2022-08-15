@@ -16,4 +16,9 @@ class Status extends Model
     {
         return $this->hasMany(Ticket::class);
     }
+
+    public function platforms(): HasMany
+    {
+        return $this->hasMany(Platform::class);
+    }
 }

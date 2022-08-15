@@ -44,7 +44,7 @@
                 <div class="form-group">
                     <label for="note">{{ __('Note') }}</label>
                     <input type="text" class="form-control @error('note') is-invalid @enderror" id="note"
-                        name="note" value="{{ old('note', $ticket->note) }}" required>
+                        name="note" value="{{ old('note', $ticket->note) }}">
                     @error('note')
                         <span class="invalid-feedback" user="alert">
                             <strong>{{ $message }}</strong>
@@ -62,6 +62,7 @@
                 <div class="form-group">
                     <label for="status_id">{{ __('Status') }}</label>
                     <select name="status_id" class="form-control" aria-label="Default select example">
+                        <option value="" class="text-muted">Seçiniz</option>
                         @foreach ($statuses as $status)
                             <option value="{{ $status->id }}">{{ $status->name }}</option>
                         @endforeach

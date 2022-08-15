@@ -16,6 +16,7 @@
                     <tr>
                         <th>{{ __('Name') }}</th>
                         <th>{{ __('Logo') }}</th>
+                        <th>{{ __('Default Status') }}</th>
                         <th style="width: 200px">{{ __('Actions') }}</th>
                     </tr>
                 </thead>
@@ -24,6 +25,7 @@
                         <tr>
                             <td>{{ $platform->name }}</td>
                             <td><image src="{{ asset('storage/platforms/' .$platform->logo) }}" style="width: 100px"></td>
+                            <td>@if($platform->status){{ $platform->status->name }} @endif</td>
                             <td class="text-right text-nowrap">
                                 <a href="{{ route('admin.platform.edit', $platform) }}"
                                     class="btn btn-sm btn-primary">

@@ -29,7 +29,7 @@ class TicketRequest extends FormRequest
             'user_id' => 'required|exists:users,id',
             'service_id' => 'nullable|exists:services,id',
             'note' => 'nullable',
-            'status_id' => 'required',
+            'status_id' => 'nullable',
         ];
     }
 }

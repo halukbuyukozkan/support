@@ -46,7 +46,13 @@ class TicketController extends Controller
     public function store(TicketRequest $request)
     {
         $validated = $request->validated();
+        $platform = PlatformFacade::model();
+        // Platform default ticket status için
+        if ($validated['status_id'] == null)
+            $validated['status_id'] = $platform->status_id;
+
         $ticket = new Ticket($validated);
+
         $ticket->save();
 
         return redirect()->route('admin.ticket.index')->with('success', __('Ticket created successfully'));
