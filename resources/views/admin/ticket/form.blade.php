@@ -34,8 +34,9 @@
                 </div>
                 <div class="form-group">
                     <label for="service_id">{{ __('Service') }}</label>
-                    <select name="service_id" class="form-control" aria-label="Default select example">
-                            <option value="">{{ __('Service') }}</option>
+                    <select name="service_id" class="form-control" aria-label="Default select example"@if($platform->services->count() == 0) disabled @endif>
+                            @if($platform->services->count()== 0) <option value="">{{ __('No Service') }}</option> @endif
+                            <option value="">{{ __('Select Service') }}</option>
                         @foreach ($platform->services as $service)
                             <option value="{{ $service->id }}">{{ $service->name }}</option>
                         @endforeach
@@ -61,8 +62,8 @@
                 </div>
                 <div class="form-group">
                     <label for="status_id">{{ __('Status') }}</label>
-                    <select name="status_id" class="form-control" aria-label="Default select example">
-                        <option value="" class="text-muted">Seçiniz</option>
+                    <select name="status_id" class="form-control" aria-label="Default select example" @if($statuses->count() == 0) disabled @endif>
+                        <option value="" class="text-muted">{{ __('Select Status') }}</option>
                         @foreach ($statuses as $status)
                             <option value="{{ $status->id }}">{{ $status->name }}</option>
                         @endforeach

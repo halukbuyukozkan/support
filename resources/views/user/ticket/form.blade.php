@@ -31,7 +31,9 @@
                     <div class="col-md-4">
                         <div class="form-group">
                             <label for="department_id">{{ __('Department') }}</label>
-                            <select name="department_id" class="form-control" aria-label="Default select example">
+                            <select name="department_id" class="form-control" aria-label="Default select example" @if($platform->departments->count()== 0) disabled @endif>
+                                    @if($platform->departments->count()== 0) <option value="">{{ __('No Department') }}</option> @endif
+                                    <option value="">{{ __('Select Department') }}</option>
                                 @foreach ($platform->departments as $department)
                                     <option value="{{ $department->id }}">{{ $department->name }}</option>
                                 @endforeach
@@ -41,8 +43,9 @@
                     <div class="col-md-4">
                         <div class="form-group">
                             <label for="service_id">{{ __('Service') }}</label>
-                            <select name="service_id" class="form-control" aria-label="Default select example">
-                                    <option value="">{{ __('Service') }}</option>
+                            <select name="service_id" class="form-control" aria-label="Default select example" @if($platform->services->count()== 0) disabled @endif>
+                                    @if($platform->services->count()== 0) <option value="">{{ __('No Service') }}</option> @endif
+                                    <option value="">{{ __('Select Service') }}</option>
                                 @foreach ($platform->services as $service)
                                     <option value="{{ $service->id }}">{{ $service->name }}</option>
                                 @endforeach

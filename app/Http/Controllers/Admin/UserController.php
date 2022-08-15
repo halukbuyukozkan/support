@@ -37,7 +37,7 @@ class UserController extends Controller
         $user = new User($request->old());
         $roles = Role::all();
 
-        return view('admin.user.form', compact('user', 'roles'));
+        return view('admin.user.create', compact('user', 'roles'));
     }
 
     /**
@@ -56,6 +56,7 @@ class UserController extends Controller
         ]);
 
         $data['password'] = Hash::make($data['password']);
+        $data['platform_id'] = $platform = PlatformFacade::model()->id;
 
         $user = User::create($data);
         $user->syncRoles($data['roles'] ?? []);
