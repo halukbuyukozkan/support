@@ -35,9 +35,7 @@
                 <thead>
                     <tr>
                         <th>{{ __('Title') }}</th>
-                        <th>{{ __('Platform') }}</th>
                         <th>{{ __('Department') }}</th>
-                        <th>{{ __('User') }}</th>
                         <th>{{ __('Service') }}</th>
                         <th style="width: 200px">{{ __('Actions') }}</th>
                     </tr>
@@ -46,9 +44,7 @@
                     @foreach ($tickets as $ticket)
                         <tr>
                             <td>{{ $ticket->title }}</td>
-                            <td>{{ $ticket->platform->name }}</td>
                             <td>{{ $ticket->department->name }}</td>
-                            <td>{{ $ticket->user->name }}</td>
                             <td>@if ($ticket->service){{ $ticket->service->name }}@endif</td>
                             <td class="text-right text-nowrap">
                                 <a href="{{ route('admin.ticket.show', $ticket) }}"
