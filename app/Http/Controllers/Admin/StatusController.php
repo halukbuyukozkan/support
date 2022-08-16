@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Requests\StatusRequest;
 use App\Models\Status;
+use App\Models\StatusType;
 use Illuminate\Http\Request;
 
 class StatusController extends Controller
@@ -28,7 +29,10 @@ class StatusController extends Controller
     public function create(Request $request)
     {
         $status = new Status($request->old());
-        return view('admin.status.form', compact('status'));
+
+        $statusTypes = StatusType::all();
+
+        return view('admin.status.form', compact('status', 'statusTypes'));
     }
 
     /**
@@ -41,6 +45,7 @@ class StatusController extends Controller
     {
         $validated = $request->validated();
         $status = new Status($validated);
+
         $status->save();
 
         return redirect()->route('admin.status.index')->with('success', __('Status created successfully'));
@@ -67,7 +72,9 @@ class StatusController extends Controller
     {
         $status->fill($request->old());
 
-        return view('admin.status.form', compact('status'));
+        $statusTypes = StatusType::all();
+
+        return view('admin.status.form', compact('status', 'statusTypes'));
     }
 
     /**

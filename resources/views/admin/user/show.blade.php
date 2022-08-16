@@ -26,44 +26,48 @@
         <div>
     </section>
 
-    <div class="card col-md-6">
-        <div class="card-header">
-          Active Tickets
+    <div class="row">
+        <div class="col-md-6">
+            <div class="card">
+                <h5 class="card-header">{{ __('User İnformation') }}</h5>
+                <div class="card-body">
+                  <h5 class="card-title">İsim: {{ $user->name }}</h5>
+                  <p class="card-text">Email: {{ $user->email }}</p>
+                </div>
+              </div>
         </div>
-        <div class="card-body">
-            <table class="table table-hover">
-                <thead>
-                    <tr>
-                        <td>{{ __('Name') }}</td>
-                        <td>{{ __('Note') }}</td>
-                    </tr>
-                </thead>
-                <tbody>
+        <div class="col-md-6">
+            <div class="card">
+                <div class="card-header">
+                    Active Tickets
+                </div>
+                <ul class="list-group list-group-flush">
                     @foreach ($activeTickets as $ticket)
-                        <tr>
-                            <td>{{ $ticket->title }}</td>
-                            <td>{{ $ticket->note }}</td>
-                        </tr>
+                    <li class="list-group-item">{{ $ticket->title }}</li>
                     @endforeach
-                </tbody>
-            </table>
+                </ul>
+            </div>
         </div>
     </div>
-
-    <div class="card col-md-6">
-        <div class="card-header">
-          Delete User
-        </div>
-        <div class="card-body">
-            <form action="{{ route('admin.user.destroy', $user) }}" method="POST"
-            class="d-inline-block" onsubmit="return confirm('{{ __('Are you sure?') }}');">
-            @csrf
-            @method('DELETE')
-            <button type="submit" class="btn btn-sm btn-danger">
-                <i class="fas fa-trash"></i>
-                <span class="d-none d-sm-inline">{{ __('Delete') }}</span>
-            </button>
-            </form>
+    <div class="row">
+        <div class="col-md-6">
+            <div class="card card-danger">
+                <div class="card-header">
+                    <i class="fas fa-times"></i>
+                    {{ __('Deleting') }}
+                </div>
+                <div class="card-body text-danger">
+                    <form action="{{ route('admin.user.destroy', $user) }}" method="POST"
+                    class="d-inline-block" onsubmit="return confirm('{{ __('Are you sure?') }}');">
+                    @csrf
+                    @method('DELETE')
+                    <button type="submit" class="btn btn-sm btn-danger">
+                        <i class="fas fa-trash"></i>
+                        <span class="d-none d-sm-inline">{{ __('Delete') }}</span>
+                    </button>
+                    </form>
+                </div>
+            </div>
         </div>
     </div>
 

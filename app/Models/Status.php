@@ -4,13 +4,14 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Status extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['name'];
+    protected $fillable = ['name', 'statustype_id'];
 
     public function tickets(): HasMany
     {
@@ -20,5 +21,10 @@ class Status extends Model
     public function platforms(): HasMany
     {
         return $this->hasMany(Platform::class);
+    }
+
+    public function statustype(): BelongsTo
+    {
+        return $this->belongsTo(StatusType::class);
     }
 }

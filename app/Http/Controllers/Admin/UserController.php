@@ -73,8 +73,9 @@ class UserController extends Controller
     public function show(User $user)
     {
         $activeTickets = $user->tickets->filter(function ($value) {
-            return $value->status_id == 1;
+            return $value->status->statustype->id == 2;
         });
+
         return view('admin.user.show', compact('user', 'activeTickets'));
     }
 
