@@ -27,6 +27,7 @@
                 <div class="form-group">
                     <label for="department_id">{{ __('Department') }}</label>
                     <select name="department_id" class="form-control" aria-label="Default select example">
+                            <option value="">{{ __('Select Department') }}</option>
                         @foreach ($platform->departments as $department)
                             <option value="{{ $department->id }}">{{ $department->name }}</option>
                         @endforeach
