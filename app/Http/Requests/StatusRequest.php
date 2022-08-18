@@ -25,6 +25,7 @@ class StatusRequest extends FormRequest
     {
         return [
             'name' => 'required|string|max:255',
+            'type' => 'required|in:OPEN,SUPPORT_WAITING,CUSTOMER_WAITING,SOLVED,CLOSED',
         ];
     }
 }

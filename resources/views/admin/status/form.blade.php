@@ -28,9 +28,23 @@
                         </div>
                         <div class="form-group">
                             <label for="type">{{ __('Status Type') }}</label>
-                            <select name="type" class="form-control" aria-label="Default select example">
-                                    <option value="" class="text-muted">{{ __('Select Status Type') }}</option>
-
+                            <select name="type" id="type" class="form-control">
+                                <option value="">{{ __('Select Type') }}</option>
+                                <option value="OPEN" {{ $status->type == 'OPEN' ? 'selected' : '' }}>
+                                    {{ __('Open') }}
+                                </option>
+                                <option value="SUPPORT_WAITING" {{ $status->type == 'SUPPORT_WAITING' ? 'selected' : '' }}>
+                                    {{ __('Support Waiting') }}
+                                </option>
+                                <option value="CUSTOMER_WAITING" {{ $status->type == 'CUSTOMER_WAITING' ? 'selected' : '' }}>
+                                    {{ __('Customer Waiting') }}
+                                </option>
+                                <option value="SOLVED" {{ $status->type == 'SOLVED' ? 'selected' : '' }}>
+                                    {{ __('Solved') }}
+                                </option>
+                                <option value="CLOSED" {{ $status->type == 'CLOSED' ? 'selected' : '' }}>
+                                    {{ __('Closed') }}
+                                </option>
                             </select>
                         </div>
                     </div>
