@@ -51,23 +51,9 @@
     </div>
     <div class="row">
         <div class="col-md-6">
-            <div class="card card-danger">
-                <div class="card-header">
-                    <i class="fas fa-times"></i>
-                    {{ __('Deleting') }}
-                </div>
-                <div class="card-body text-danger">
-                    <form action="{{ route('admin.user.destroy', $user) }}" method="POST"
-                    class="d-inline-block" onsubmit="return confirm('{{ __('Are you sure?') }}');">
-                    @csrf
-                    @method('DELETE')
-                    <button type="submit" class="btn btn-sm btn-danger">
-                        <i class="fas fa-trash"></i>
-                        <span class="d-none d-sm-inline">{{ __('Delete') }}</span>
-                    </button>
-                    </form>
-                </div>
-            </div>
+            <x-delete-card href="{{ route('admin.user.destroy',$user) }}" :route="route('admin.user.destroy', $user)">
+                {{ __('Dashboard') }}
+            </x-delete-card>
         </div>
     </div>
 
