@@ -76,10 +76,7 @@ class TicketController extends Controller
      */
     public function update(TicketRequest $request, Ticket $ticket)
     {
-        $ticket->fill($request->validated());
-        $ticket->save();
-
-        return redirect()->route('admin.ticket.index')->with('success', __('Ticket created successfully'));
+        //
     }
 
     /**

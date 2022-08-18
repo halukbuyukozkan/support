@@ -74,7 +74,7 @@ class UserTicketController extends Controller
      * @param  \App\Models\Ticket  $ticket
      * @return \Illuminate\Http\Response
      */
-    public function edit(Ticket $ticket)
+    public function edit(Request $request, User $user, Ticket $ticket)
     {
         $platform = PlatformFacade::model();
         $statuses = Status::all();
@@ -90,9 +90,12 @@ class UserTicketController extends Controller
      * @param  \App\Models\Ticket  $ticket
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Ticket $ticket)
+    public function update(TicketRequest $request, User $user, Ticket $ticket)
     {
-        //
+        $ticket->fill($request->validated());
+        $ticket->save();
+
+        return redirect()->route('admin.user.ticket.index', $user)->with('success', __('Ticket created successfully'));
     }
 
     /**
