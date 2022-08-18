@@ -13,7 +13,6 @@
                         <th>{{ __('Title') }}</th>
                         <th>{{ __('Status') }}</th>
                         <th>{{ __('Department') }}</th>
-                        <th>{{ __('User') }}</th>
                         <th>{{ __('Service') }}</th>
                         <th style="width: 200px">{{ __('Actions') }}</th>
                     </tr>
@@ -27,11 +26,6 @@
                             <td>{{ $ticket->user->name }}</td>
                             <td>@if ($ticket->service){{ $ticket->service->name }}@endif</td>
                             <td class="text-right text-nowrap">
-                                <a href="{{ route('admin.ticket.edit', $ticket) }}"
-                                class="btn btn-sm btn-primary">
-                                <i class="fas fa-edit"></i>
-                                <span class="d-none d-sm-inline">{{ __('Edit') }}</span>
-                                </a>
                                 <a href="{{ route('admin.ticket.show', $ticket) }}"
                                     class="btn btn-sm btn-primary">
                                     <i class="fas fa-edit"></i>

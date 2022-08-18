@@ -9,13 +9,16 @@
         <div class="row justify-content-center">
             <div class="col-md-10">
                 @foreach ($ticket->ticketmessages as $message)
-                <ol class="list-group list-group-numbered">
+                <ol class="list-group list-group-numbered my-1">
                     <li class="list-group-item d-flex justify-content-between align-items-start">
                         <div class="ms-2 me-auto">
                             <div class="fw-bold">
                                 <b>{{ $message->user->name }}</b>
+                                <small class="mx-1 text-secondary">{{ $message->created_at }}</small>
                             </div>
-                            {{ $message->message }}
+                            <div>
+                                {{ $message->message }}
+                            </div>
                         </div>
                         @if($message->user_id == Auth::user()->id)
                             <form action="{{ route('admin.ticket.message.destroy',['ticket' => $ticket,'message'=> $message]) }}" method="POST"

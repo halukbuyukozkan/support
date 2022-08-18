@@ -7,7 +7,7 @@
     </x-slot>
 
     <form method="post" enctype="multipart/form-data"
-        action="{{ $ticket->exists ? route('admin.ticket.update',$ticket) : route('admin.ticket.store',$ticket) }}">
+        action="{{ $ticket->exists ? route('admin.user.ticket.update',['ticket'=>$ticket,'user'=>$user]) : route('admin.user.ticket.store',['ticket'=>$ticket,'user'=>$user]) }}">
         @csrf
         @if ($ticket->exists)
             @method('PUT')
@@ -52,14 +52,6 @@
                             <strong>{{ $message }}</strong>
                         </span>
                     @enderror
-                </div>
-                <div class="form-group">
-                    <label for="user_id">{{ __('User') }}</label>
-                    <select name="user_id" class="form-control" aria-label="Default select example">
-                        @foreach ($platform->users as $user)
-                            <option value="{{ $user->id }}">{{ $user->name }}</option>
-                        @endforeach
-                    </select>
                 </div>
                 <div class="form-group">
                     <label for="status_id">{{ __('Status') }}</label>

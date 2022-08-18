@@ -35,7 +35,6 @@
                 <thead>
                     <tr>
                         <th>{{ __('Name') }}</th>
-                        <th>{{ __('Platform') }}</th>
                         <th style="width: 200px">{{ __('Actions') }}</th>
                     </tr>
                 </thead>
@@ -43,7 +42,6 @@
                     @foreach ($user->services as $service)
                         <tr>
                             <td>{{ $service->name }}</td>
-                            <td>{{ $service->platform->name }}</td>
                             <td class="text-right text-nowrap">
                                 <a href="{{ route('admin.user.service.edit',['user' => $user,'service' => $service]) }}"
                                     class="btn btn-sm btn-primary">

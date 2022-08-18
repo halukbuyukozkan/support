@@ -2,7 +2,7 @@
     <x-slot name="header">
         <h2 class="h4 font-weight-bold">
             {{ __('Tickets') }}
-            <a href="{{ route('admin.ticket.create') }}" class="btn btn-sm btn-primary float-right">
+            <a href="{{ route('admin.user.ticket.create',$user) }}" class="btn btn-sm btn-primary float-right">
                 <i class="fa fa-plus"></i>
                 {{ __('Create Ticket') }}
             </a>
@@ -47,7 +47,12 @@
                             <td>{{ $ticket->department->name }}</td>
                             <td>@if ($ticket->service){{ $ticket->service->name }}@endif</td>
                             <td class="text-right text-nowrap">
-                                <a href="{{ route('admin.ticket.show', $ticket) }}"
+                                <a href="{{ route('admin.user.ticket.edit',['user' => $user,'ticket' => $ticket]) }}"
+                                class="btn btn-sm btn-primary">
+                                <i class="fas fa-edit"></i>
+                                <span class="d-none d-sm-inline">{{ __('Edit') }}</span>
+                                </a>
+                                <a href="{{ route('admin.ticket.show', ['user' => $user,'ticket' => $ticket]) }}"
                                     class="btn btn-sm btn-primary">
                                     <i class="fas fa-edit"></i>
                                     <span class="d-none d-sm-inline">{{ __('Reply') }}</span>

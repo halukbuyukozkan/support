@@ -7,6 +7,7 @@ use App\Models\Ticket;
 use Illuminate\Http\Request;
 use App\Services\PlatformFacade;
 use App\Http\Requests\TicketRequest;
+use App\Models\User;
 
 class TicketController extends Controller
 {
@@ -28,13 +29,9 @@ class TicketController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create(Request $request)
+    public function create(Request $request, User $user)
     {
-        $ticket = new Ticket($request->old());
-        $platform = PlatformFacade::model();
-        $statuses = Status::all();
-
-        return view('admin.ticket.form', compact('ticket', 'platform', 'statuses'));
+        //
     }
 
     /**
@@ -45,16 +42,7 @@ class TicketController extends Controller
      */
     public function store(TicketRequest $request)
     {
-        $validated = $request->validated();
-        $platform = PlatformFacade::model();
-        if ($validated['status_id'] == null)
-            $validated['status_id'] = $platform->status_id;
-
-        $ticket = new Ticket($validated);
-
-        $ticket->save();
-
-        return redirect()->route('admin.ticket.index')->with('success', __('Ticket created successfully'));
+        //
     }
 
     /**
@@ -76,11 +64,7 @@ class TicketController extends Controller
      */
     public function edit(Request $request, Ticket $ticket)
     {
-        $platform = PlatformFacade::model();
-        $statuses = Status::all();
-        $ticket->fill($request->old());
-
-        return view('admin.ticket.form', compact('ticket', 'platform', 'statuses'));
+        //
     }
 
     /**
