@@ -15,7 +15,6 @@ use App\Http\Controllers\Admin\UserTicketController;
 use App\Http\Controllers\Admin\UserServiceController;
 use App\Http\Controllers\Admin\TicketMessageController;
 use App\Http\Controllers\CustomerTicketMessageController;
-use App\Http\Controllers\Admin\StatusTypeController;
 
 /*
 |--------------------------------------------------------------------------
@@ -56,7 +55,6 @@ Route::middleware(['auth'])->group(function () {
         Route::resource('ticket', TicketController::class);
         Route::resource('ticket.message', TicketMessageController::class);
         Route::resource('status', StatusController::class);
-        Route::resource('statustype', StatusTypeController::class);
     });
 
     Route::prefix('account')->name('account.')->group(function () {

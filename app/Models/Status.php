@@ -11,7 +11,7 @@ class Status extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['name', 'statustype_id'];
+    protected $fillable = ['name'];
 
     public function tickets(): HasMany
     {
@@ -21,10 +21,5 @@ class Status extends Model
     public function platforms(): HasMany
     {
         return $this->hasMany(Platform::class);
-    }
-
-    public function statustype(): BelongsTo
-    {
-        return $this->belongsTo(StatusType::class);
     }
 }

@@ -27,12 +27,10 @@
                             @enderror
                         </div>
                         <div class="form-group">
-                            <label for="statustype_id">{{ __('Status Type') }}</label>
-                            <select name="statustype_id" class="form-control" aria-label="Default select example">
+                            <label for="type">{{ __('Status Type') }}</label>
+                            <select name="type" class="form-control" aria-label="Default select example">
                                     <option value="" class="text-muted">{{ __('Select Status Type') }}</option>
-                                @foreach ($statusTypes as $status)
-                                    <option value="{{ $status->id }}">{{ $status->name }}</option>
-                                @endforeach
+
                             </select>
                         </div>
                     </div>

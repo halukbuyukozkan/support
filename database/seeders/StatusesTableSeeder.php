@@ -23,7 +23,6 @@ class StatusesTableSeeder extends Seeder
             array(
                 'id' => 1,
                 'name' => 'Status1',
-                'statustype_id' => 1,
                 'created_at' => '2022-08-08 14:55:14',
                 'updated_at' => '2022-08-08 14:55:14',
             ),

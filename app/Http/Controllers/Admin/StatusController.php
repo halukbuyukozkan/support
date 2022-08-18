@@ -4,7 +4,6 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Requests\StatusRequest;
 use App\Models\Status;
-use App\Models\StatusType;
 use Illuminate\Http\Request;
 
 class StatusController extends Controller
@@ -30,9 +29,8 @@ class StatusController extends Controller
     {
         $status = new Status($request->old());
 
-        $statusTypes = StatusType::all();
 
-        return view('admin.status.form', compact('status', 'statusTypes'));
+        return view('admin.status.form', compact('status'));
     }
 
     /**
@@ -72,9 +70,8 @@ class StatusController extends Controller
     {
         $status->fill($request->old());
 
-        $statusTypes = StatusType::all();
 
-        return view('admin.status.form', compact('status', 'statusTypes'));
+        return view('admin.status.form', compact('status'));
     }
 
     /**

@@ -6,10 +6,6 @@
                 <i class="fa fa-plus"></i>
                 {{ __('Create Status') }}
             </a>
-            <a href="{{ route('admin.statustype.index') }}" class="btn btn-sm btn-primary float-right mx-2">
-                <i class="fa fa-plus"></i>
-                {{ __('Status Types') }}
-            </a>
         </h2>
     </x-slot>
 
@@ -27,7 +23,7 @@
                     @foreach ($statuses as $status)
                         <tr>
                             <td>{{ $status->name }}</td>
-                            <td>{{ $status->statustype->name }}</td>
+                            <td>{{ $status->type }}</td>
                             <td class="text-right text-nowrap">
                                 <a href="{{ route('admin.status.edit',$status) }}"
                                     class="btn btn-sm btn-primary">
