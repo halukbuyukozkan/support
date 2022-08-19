@@ -2,7 +2,7 @@
     <x-slot name="header">
         <h2 class="h4 font-weight-bold">
             {{ __('Tickets') }}
-            <a href="{{ route('admin.user.ticket.create',$user) }}" class="btn btn-sm btn-primary float-right">
+            <a href="{{ route('client.user.ticket.create',$user) }}" class="btn btn-sm btn-primary float-right">
                 <i class="fa fa-plus"></i>
                 {{ __('Create Ticket') }}
             </a>
@@ -51,7 +51,7 @@
                             <td>{{ $ticket->status->name }}</td>
                             <td>{{ $ticket->updated_at }}</td>
                             <td class="text-right text-nowrap">
-                                <a href="{{ route('admin.user.ticket.edit',['user' => $user,'ticket' => $ticket]) }}"
+                                <a href="{{ route('client.user.ticket.edit',['user' => $user,'ticket' => $ticket]) }}"
                                 class="btn btn-sm btn-primary">
                                 <i class="fas fa-edit"></i>
                                 <span class="d-none d-sm-inline">{{ __('Edit') }}</span>
@@ -61,7 +61,7 @@
                                     <i class="fas fa-edit"></i>
                                     <span class="d-none d-sm-inline">{{ __('Reply') }}</span>
                                 </a>
-                                <form action="{{ route('admin.ticket.destroy', $ticket) }}" method="POST"
+                                <form action="{{ route('client.user.ticket.destroy', ['user' => $user,'ticket' => $ticket]) }}" method="POST"
                                     class="d-inline-block" onsubmit="return confirm('{{ __('Are you sure?') }}');">
                                     @csrf
                                     @method('DELETE')

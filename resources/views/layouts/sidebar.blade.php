@@ -25,14 +25,14 @@
             <x-side-link href="{{ route('admin.status.index') }}" icon="fas fa-calendar-check" :active="request()->routeIs('admin.status.*')">
                 {{ __('Statuses') }}
             </x-side-link>
-            @if (auth()->user()->hasPermissionTo('management.user'))
-                <x-side-link href="{{ route('client.user.index') }}" icon="fas fa-users" :active="request()->routeIs('client.*')">
-                    {{ __('Clients') }}
-                </x-side-link>
-            @endif
             <x-side-link href="{{ route('admin.platform.index') }}" icon="fab fa-buffer" :active="request()->routeIs('admin.platform.*')">
                 {{ __('Platforms') }}
             </x-side-link>
         @endif
     </x-side-accordion>
+    @if (auth()->user()->hasPermissionTo('management.user'))
+    <x-side-link href="{{ route('client.user.index') }}" icon="fas fa-users" :active="request()->routeIs('client.*')">
+        {{ __('Clients') }}
+    </x-side-link>
+    @endif
 @endif

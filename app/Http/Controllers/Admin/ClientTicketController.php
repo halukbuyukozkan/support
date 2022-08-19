@@ -20,7 +20,7 @@ class ClientTicketController extends Controller
     {
         $tickets = $user->tickets;
 
-        return view('admin.client.ticket', compact('tickets', 'user'));
+        return view('client.ticket.index', compact('tickets', 'user'));
     }
 
     /**
@@ -34,7 +34,7 @@ class ClientTicketController extends Controller
         $platform = PlatformFacade::model();
         $statuses = Status::all();
 
-        return view('admin.ticket.form', compact('ticket', 'platform', 'statuses', 'user'));
+        return view('client.ticket.form', compact('ticket', 'platform', 'statuses', 'user'));
     }
 
     /**
@@ -54,7 +54,7 @@ class ClientTicketController extends Controller
 
         $ticket->save();
 
-        return redirect()->route('admin.user.ticket.index', compact('user'))->with('success', __('Ticket created successfully'));
+        return redirect()->route('client.user.ticket.index', compact('user'))->with('success', __('Ticket created successfully'));
     }
 
     /**
@@ -80,7 +80,7 @@ class ClientTicketController extends Controller
         $statuses = Status::all();
         $ticket->fill($request->old());
 
-        return view('admin.ticket.form', compact('ticket', 'platform', 'statuses', 'user'));
+        return view('ticket.form', compact('ticket', 'platform', 'statuses', 'user'));
     }
 
     /**
@@ -95,7 +95,7 @@ class ClientTicketController extends Controller
         $ticket->fill($request->validated());
         $ticket->save();
 
-        return redirect()->route('admin.user.ticket.index', $user)->with('success', __('Ticket created successfully'));
+        return redirect()->route('client.user.ticket.index', $user)->with('success', __('Ticket created successfully'));
     }
 
     /**
@@ -104,8 +104,10 @@ class ClientTicketController extends Controller
      * @param  \App\Models\Ticket  $ticket
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Ticket $ticket)
+    public function destroy(User $user, Ticket $ticket)
     {
-        //
+        $ticket->delete();
+
+        return redirect()->route('client.user.ticket.index', compact('user'))->with('success', __('Ticket deleted successfully'));
     }
 }

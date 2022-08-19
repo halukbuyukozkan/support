@@ -17,7 +17,7 @@ class ClientServiceController extends Controller
      */
     public function index(User $user)
     {
-        return view('admin.client.service', compact('user'));
+        return view('client.service.index', compact('user'));
     }
 
     /**
@@ -29,7 +29,7 @@ class ClientServiceController extends Controller
     {
         $service = new Service($request->old());
 
-        return view('admin.client.service.form', compact('service', 'user'));
+        return view('client.service.form', compact('service', 'user'));
     }
 
     /**
