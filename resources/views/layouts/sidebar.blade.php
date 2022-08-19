@@ -5,6 +5,11 @@
 @if (auth()->user()->hasAnyPermission(['management.user', 'management.role']))
     <x-side-accordion :title="__('System')" icon="fas fa-cogs" :active="request()->routeIs('admin.*')">
         @if (auth()->user()->hasPermissionTo('management.platform'))
+            @if (auth()->user()->hasPermissionTo('management.user'))
+            <x-side-link href="{{ route('admin.user.index') }}" icon="fas fa-users" :active="request()->routeIs('admin.user.*')">
+                {{ __('Users') }}
+            </x-side-link>
+            @endif
             <x-side-link href="{{ route('admin.role.index') }}" icon="fas fa-users-cog" :active="request()->routeIs('admin.role.*')">
                 {{ __('Roles') }}
             </x-side-link>
@@ -21,8 +26,8 @@
                 {{ __('Statuses') }}
             </x-side-link>
             @if (auth()->user()->hasPermissionTo('management.user'))
-                <x-side-link href="{{ route('admin.user.index') }}" icon="fas fa-users" :active="request()->routeIs('admin.user.*')">
-                    {{ __('Users') }}
+                <x-side-link href="{{ route('client.user.index') }}" icon="fas fa-users" :active="request()->routeIs('client.*')">
+                    {{ __('Clients') }}
                 </x-side-link>
             @endif
             <x-side-link href="{{ route('admin.platform.index') }}" icon="fab fa-buffer" :active="request()->routeIs('admin.platform.*')">
