@@ -6,8 +6,28 @@
         </h2>
     </x-slot>
 
+    <section>
+            <div class="row mb-4">
+                <div class="col">
+                    <ul class="nav nav-pills nav-fill">
+                        <li class="nav-item">
+                            <a @if(request()->routeIs('client.user.show*')) class="nav-link active" @else class="nav-link" @endif name="references" href="{{ route('client.user.show', $user) }}"><i class="fas fa-user px-1"></i></i>Show</a>
+                        </li>
+                        <li class="nav-item">
+                            <a @if(request()->routeIs('client.user.edit*')) class="nav-link active" @else class="nav-link" @endif name="references" href="{{ route('client.user.edit', $user) }}"><i class="fas fa-edit px-1"></i>Edit</a>
+                        </li>
+                        <li class="nav-item">
+                            <a @if(request()->routeIs('client.user.ticket*')) class="nav-link active" @else class="nav-link" @endif name="references" href="{{ route('client.user.ticket.index', $user) }}"><i class="fas fa-ticket-alt px-1"></i>Tickets</a>
+                        </li>
+                        <li class="nav-item">
+                            <a @if(request()->routeIs('client.user.service*')) class="nav-link active" @else class="nav-link" @endif name="references" href="{{ route('client.user.service.index', $user) }}"><i class="fas fa-bookmark px-1"></i>Services</a>
+                        </li>
+                    </ul>
+                </div>
+            <div>
+    </section>
     <form method="post" enctype="multipart/form-data"
-        action="{{ $user->exists ? route('admin.user.update', $user) : route('admin.user.store') }}">
+        action="{{ $user->exists ? route('client.user.update', $user) : route('client.user.store') }}">
         @csrf
         @if ($user->exists)
             @method('PUT')

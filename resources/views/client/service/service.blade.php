@@ -2,7 +2,7 @@
     <x-slot name="header">
         <h2 class="h4 font-weight-bold">
             {{ __('Services') }}
-            <a href="{{ route('admin.user.service.create',$user) }}" class="btn btn-sm btn-primary float-right">
+            <a href="{{ route('client.user.service.create',$user) }}" class="btn btn-sm btn-primary float-right">
                 <i class="fa fa-plus"></i>
                 {{ __('Create Service') }}
             </a>
@@ -43,12 +43,12 @@
                         <tr>
                             <td>{{ $service->name }}</td>
                             <td class="text-right text-nowrap">
-                                <a href="{{ route('admin.user.service.edit',['user' => $user,'service' => $service]) }}"
+                                <a href="{{ route('client.user.service.edit',['user' => $user,'service' => $service]) }}"
                                     class="btn btn-sm btn-primary">
                                     <i class="fas fa-edit"></i>
                                     <span class="d-none d-sm-inline">{{ __('Edit') }}</span>
                                 </a>
-                                <form action="{{ route('admin.user.service.destroy', ['user' => $user,'service' => $service]) }}" method="POST"
+                                <form action="{{ route('client.user.service.destroy', ['user' => $user,'service' => $service]) }}" method="POST"
                                     class="d-inline-block" onsubmit="return confirm('{{ __('Are you sure?') }}');">
                                     @csrf
                                     @method('DELETE')

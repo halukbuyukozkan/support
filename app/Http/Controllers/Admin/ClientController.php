@@ -28,7 +28,7 @@ class ClientController extends Controller
             return $value != $value->hasRole('Admin');
         });
 
-        return view('admin.client.index', compact('clients'));
+        return view('client.index', compact('clients'));
     }
 
     /**
@@ -39,9 +39,8 @@ class ClientController extends Controller
     public function create(Request $request)
     {
         $user = new User($request->old());
-        $roles = Role::all();
 
-        return view('admin.client.create', compact('user', 'roles'));
+        return view('client.create', compact('user'));
     }
 
     /**
@@ -65,7 +64,7 @@ class ClientController extends Controller
         $user = User::create($data);
         $user->syncRoles($data['roles'] ?? []);
 
-        return redirect()->route('admin.user.index')->with('success', __('User created successfully'));
+        return redirect()->route('client.user.index')->with('success', __('User created successfully'));
     }
 
     /**
@@ -80,7 +79,7 @@ class ClientController extends Controller
             return $value->status->type != 'CLOSED';
         });
 
-        return view('admin.client.show', compact('user', 'activeTickets'));
+        return view('client.show', compact('user', 'activeTickets'));
     }
 
     /**
@@ -94,7 +93,7 @@ class ClientController extends Controller
         $user->fill($request->old());
         $roles = Role::all();
 
-        return view('admin.client.form', compact('user', 'roles'));
+        return view('client.form', compact('user', 'roles'));
     }
 
     /**
@@ -122,7 +121,7 @@ class ClientController extends Controller
         $user->update($data);
         $user->syncRoles($data['roles'] ?? []);
 
-        return redirect()->route('admin.user.index')->with('success', __('User updated successfully'));
+        return redirect()->route('client.user.index')->with('success', __('User updated successfully'));
     }
 
     /**

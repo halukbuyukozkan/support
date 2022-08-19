@@ -29,7 +29,7 @@ class ClientServiceController extends Controller
     {
         $service = new Service($request->old());
 
-        return view('user.service.form', compact('service', 'user'));
+        return view('admin.client.service.form', compact('service', 'user'));
     }
 
     /**
@@ -85,7 +85,7 @@ class ClientServiceController extends Controller
         $service->fill($validated);
         $service->save();
 
-        return redirect()->route('admin.user.service.index', compact('user'))->with('success', __('Service updated successfully'));
+        return redirect()->route('client.user.service.index', compact('user'))->with('success', __('Service updated successfully'));
     }
 
     /**
@@ -98,6 +98,6 @@ class ClientServiceController extends Controller
     {
         $service->delete();
 
-        return redirect()->route('admin.user.service.index', compact('user'))->with('success', 'Service deleted successfully');
+        return redirect()->route('client.user.service.index', compact('user'))->with('success', 'Service deleted successfully');
     }
 }
