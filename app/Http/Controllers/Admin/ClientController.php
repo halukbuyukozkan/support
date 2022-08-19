@@ -135,6 +135,6 @@ class ClientController extends Controller
     {
         $user->delete();
 
-        return redirect()->route('admin.client.index')->with('success', __('User deleted successfully'));
+        return redirect()->route('client.user.index')->with('success', __('User deleted successfully'));
     }
 }

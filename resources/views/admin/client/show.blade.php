@@ -51,7 +51,7 @@
     </div>
     <div class="row">
         <div class="col-md-6">
-            <x-delete-card href="{{ route('admin.user.destroy',$user) }}" :route="route('admin.user.destroy', $user)">
+            <x-delete-card href="{{ route('client.user.destroy',$user) }}" :route="route('client.user.destroy', $user)">
                 {{ __('Dashboard') }}
             </x-delete-card>
         </div>
