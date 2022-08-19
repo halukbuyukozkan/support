@@ -63,9 +63,9 @@ class UserTicketController extends Controller
      * @param  \App\Models\Ticket  $ticket
      * @return \Illuminate\Http\Response
      */
-    public function show(Ticket $ticket)
+    public function show(User $user, Ticket $ticket)
     {
-        //
+        return view('admin.ticket.show', compact('ticket', 'user'));
     }
 
     /**

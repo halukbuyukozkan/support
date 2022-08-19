@@ -63,9 +63,9 @@ class ClientTicketController extends Controller
      * @param  \App\Models\Ticket  $ticket
      * @return \Illuminate\Http\Response
      */
-    public function show(Ticket $ticket)
+    public function show(User $user, Ticket $ticket)
     {
-        //
+        return view('client.ticket.show', compact('ticket', 'user'));
     }
 
     /**
@@ -80,7 +80,7 @@ class ClientTicketController extends Controller
         $statuses = Status::all();
         $ticket->fill($request->old());
 
-        return view('ticket.form', compact('ticket', 'platform', 'statuses', 'user'));
+        return view('client.ticket.form', compact('ticket', 'platform', 'statuses', 'user'));
     }
 
     /**

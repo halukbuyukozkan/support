@@ -58,7 +58,7 @@
                                 </a>
                                 <a href="{{ route('admin.ticket.show', ['user' => $user,'ticket' => $ticket]) }}"
                                     class="btn btn-sm btn-primary">
-                                    <i class="fas fa-edit"></i>
+                                    <i class="fas fa-comment"></i>
                                     <span class="d-none d-sm-inline">{{ __('Reply') }}</span>
                                 </a>
                                 <form action="{{ route('admin.ticket.destroy', $ticket) }}" method="POST"
