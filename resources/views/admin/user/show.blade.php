@@ -29,21 +29,46 @@
     <div class="row">
         <div class="col-md-6">
             <div class="card">
-                <h5 class="card-header">{{ __('User İnformation') }}</h5>
-                <div class="card-body">
-                  <h5 class="card-title">İsim: {{ $user->name }}</h5>
-                  <p class="card-text">Email: {{ $user->email }}</p>
+                <div class="card-header">
+                    <b>{{ __('User İnformation') }}</b>
                 </div>
-              </div>
+                <ul class="list-group list-group-flush">
+                    <li class="list-group-item">
+                        <p class="card-text"><b>İsim:</b> {{ $user->name }}</p>
+                        <p class="card-text"><b>Email:</b> {{ $user->email }}</p>
+                    </li>
+                </ul>
+            </div>
         </div>
         <div class="col-md-6">
             <div class="card">
                 <div class="card-header">
-                    Active Tickets
+                    <b>{{ __('Services') }}</b>
+                </div>
+                <ul class="list-group list-group-flush">
+                    @foreach ($user->services as $service)
+                    <li class="list-group-item">{{ $service->name }}</li>
+                    @endforeach
+                </ul>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="card">
+                <div class="card-header">
+                    <b>{{ __('Active Tickets') }}</b>
                 </div>
                 <ul class="list-group list-group-flush">
                     @foreach ($activeTickets as $ticket)
-                    <li class="list-group-item">{{ $ticket->title }}</li>
+                    <li class="list-group-item">{{ $ticket->title }}<form action="{{ route('client.user.ticket.destroy', ['user' => $user,'ticket' => $ticket]) }}" method="POST"
+                        class="d-inline-block float-right" onsubmit="return confirm('{{ __('Are you sure?') }}');">
+                        @csrf
+                        @method('DELETE')
+                        <button type="submit" class="btn btn-sm btn-danger">
+                            <i class="fas fa-trash"></i>
+                            <span class="d-none d-sm-inline">{{ __('Delete') }}</span>
+                        </button>
+                    </form></li>
+
                     @endforeach
                 </ul>
             </div>
