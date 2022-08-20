@@ -9,7 +9,7 @@
     <section>
             <div class="row mb-4">
                 <div class="col">
-                    @if(request()->routeIs('client.user.*'))
+                    @if(request()->routeIs('client.user.edit*'))
                     <ul class="nav nav-pills nav-fill">
                         <li class="nav-item">
                             <a @if(request()->routeIs('client.user.show*')) class="nav-link active" @else class="nav-link" @endif name="references" href="{{ route('client.user.show', $user) }}"><i class="fas fa-user px-1"></i></i>Show</a>
@@ -24,7 +24,7 @@
                             <a @if(request()->routeIs('client.user.service*')) class="nav-link active" @else class="nav-link" @endif name="references" href="{{ route('client.user.service.index', $user) }}"><i class="fas fa-bookmark px-1"></i>Services</a>
                         </li>
                     </ul>
-                    @elseif(request()->routeIs('admin.user.*'))
+                    @elseif(request()->routeIs('admin.user.edit*'))
                     <ul class="nav nav-pills nav-fill">
                         <li class="nav-item">
                             <a @if(request()->routeIs('admin.user.show*')) class="nav-link active" @else class="nav-link" @endif name="references" href="{{ route('admin.user.show', $user) }}"><i class="fas fa-user px-1"></i></i>Show</a>
@@ -35,16 +35,17 @@
                         <li class="nav-item">
                             <a @if(request()->routeIs('admin.user.ticket*')) class="nav-link active" @else class="nav-link" @endif name="references" href="{{ route('admin.user.ticket.index', $user) }}"><i class="fas fa-ticket-alt px-1"></i>Tickets</a>
                         </li>
-                        <li class="nav-item">
-                            <a @if(request()->routeIs('admin.user.service*')) class="nav-link active" @else class="nav-link" @endif name="references" href="{{ route('admin.user.service.index', $user) }}"><i class="fas fa-bookmark px-1"></i>Services</a>
-                        </li>
                     </ul>
                     @endif
                 </div>
             <div>
     </section>
     <form method="post" enctype="multipart/form-data"
+        @if(request()->routeIs('client.user.*'))
+        action="{{ $user->exists ? route('client.user.update', $user) : route('client.user.store') }}">
+        @elseif(request()->routeIs('admin.user.*'))
         action="{{ $user->exists ? route('admin.user.update', $user) : route('admin.user.store') }}">
+        @endif
         @csrf
         @if ($user->exists)
             @method('PUT')

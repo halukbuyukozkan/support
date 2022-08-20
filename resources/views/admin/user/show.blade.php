@@ -18,9 +18,6 @@
                     <li class="nav-item">
                         <a @if(request()->routeIs('admin.user.ticket*')) class="nav-link active" @else class="nav-link" @endif name="references" href="{{ route('admin.user.ticket.index', $user) }}"><i class="fas fa-ticket-alt px-1"></i>Tickets</a>
                     </li>
-                    <li class="nav-item">
-                        <a @if(request()->routeIs('admin.user.service*')) class="nav-link active" @else class="nav-link" @endif name="references" href="{{ route('admin.user.service.index', $user) }}"><i class="fas fa-bookmark px-1"></i>Services</a>
-                    </li>
                 </ul>
             </div>
         <div>

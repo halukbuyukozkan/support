@@ -39,8 +39,9 @@ class ClientController extends Controller
     public function create(Request $request)
     {
         $user = new User($request->old());
+        $roles = Role::all();
 
-        return view('client.create', compact('user'));
+        return view('admin.user.form', compact('user', 'roles'));
     }
 
     /**

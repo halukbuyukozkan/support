@@ -37,7 +37,7 @@ class UserController extends Controller
         $user = new User($request->old());
         $roles = Role::all();
 
-        return view('admin.user.create', compact('user', 'roles'));
+        return view('admin.user.form', compact('user', 'roles'));
     }
 
     /**
