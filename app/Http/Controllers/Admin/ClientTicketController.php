@@ -65,7 +65,7 @@ class ClientTicketController extends Controller
      */
     public function show(User $user, Ticket $ticket)
     {
-        return view('client.ticket.show', compact('ticket', 'user'));
+        return view('admin.ticket.show', compact('ticket', 'user'));
     }
 
     /**

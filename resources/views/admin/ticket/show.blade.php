@@ -11,10 +11,10 @@
             <div class="col">
                 <ul class="nav nav-pills nav-fill">
                     <li class="nav-item">
-                        <a @if(request()->routeIs('admin.user.ticket.show*')) class="nav-link active" @else class="nav-link" @endif name="references" href="{{ route('admin.user.ticket.show', ['user' => $user,'ticket' => $ticket]) }}"><i class="fas fa-comment px-1"></i>Messages</a>
+                        <a @if(request()->routeIs('client.user.ticket.show*')) class="nav-link active" @else class="nav-link" @endif name="references" href="{{ route('client.user.ticket.show', ['user' => $user,'ticket' => $ticket]) }}"><i class="fas fa-comment px-1"></i>Messages</a>
                     </li>
                     <li class="nav-item">
-                        <a @if(request()->routeIs('admin.user.ticket.edit*')) class="nav-link active" @else class="nav-link" @endif name="references" href="{{ route('admin.user.ticket.edit',['user' => $user,'ticket' => $ticket]) }}"><i class="fas fa-edit px-1"></i>Edit</a>
+                        <a @if(request()->routeIs('client.user.ticket.edit*')) class="nav-link active" @else class="nav-link" @endif name="references" href="{{ route('client.user.ticket.edit',['user' => $user,'ticket' => $ticket]) }}"><i class="fas fa-edit px-1"></i>Edit</a>
                     </li>
                 </ul>
             </div>
