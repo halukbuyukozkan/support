@@ -53,7 +53,7 @@
                                 <i class="fas fa-edit"></i>
                                 <span class="d-none d-sm-inline">{{ __('Edit') }}</span>
                                 </a>
-                                <a href="{{ route('admin.ticket.show', ['user' => $user,'ticket' => $ticket]) }}"
+                                <a href="{{ route('admin.user.ticket.show', ['user' => $user,'ticket' => $ticket]) }}"
                                     class="btn btn-sm btn-primary">
                                     <i class="fas fa-comment"></i>
                                     <span class="d-none d-sm-inline">{{ __('Reply') }}</span>
