@@ -16,6 +16,7 @@ use App\Http\Controllers\Admin\UserTicketController;
 use App\Http\Controllers\Admin\UserServiceController;
 use App\Http\Controllers\Admin\ClientTicketController;
 use App\Http\Controllers\Admin\ClientServiceController;
+use App\Http\Controllers\Admin\ClientTicketMessageController;
 use App\Http\Controllers\Admin\TicketMessageController;
 use App\Http\Controllers\CustomerTicketMessageController;
 
@@ -64,6 +65,7 @@ Route::middleware(['auth'])->group(function () {
         Route::resource('user', ClientController::class);
         Route::resource('user.service', ClientServiceController::class);
         Route::resource('user.ticket', ClientTicketController::class);
+        Route::resource('user.ticket.message', ClientTicketMessageController::class);
     });
 
 

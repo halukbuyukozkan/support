@@ -35,7 +35,7 @@
                             </div>
                         </div>
                         @if($message->user_id == Auth::user()->id)
-                            <form action="{{ route('admin.ticket.message.destroy',['ticket' => $ticket,'message'=> $message]) }}" method="POST"
+                            <form action="{{ route('client.user.ticket.message.destroy',['user' => $user,'ticket' => $ticket,'message'=> $message]) }}" method="POST"
                                 class="d-inline-block" onsubmit="return confirm('{{ __('Are you sure?') }}');">
                                 @csrf
                                 @method('DELETE')
@@ -51,7 +51,7 @@
             </div>
             <div class="col-md-10">
                 <form method="post" enctype="multipart/form-data"
-                action="{{ route('admin.ticket.message.store',$ticket) }}">
+                action="{{ route('client.user.ticket.message.store',['user' => $user,'ticket' => $ticket]) }}">
                 @csrf
                 <div class="card">
                     <div class="card-body">

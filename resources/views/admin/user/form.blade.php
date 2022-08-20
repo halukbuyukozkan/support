@@ -9,6 +9,22 @@
     <section>
             <div class="row mb-4">
                 <div class="col">
+                    @if(request()->routeIs('client.user.*'))
+                    <ul class="nav nav-pills nav-fill">
+                        <li class="nav-item">
+                            <a @if(request()->routeIs('client.user.show*')) class="nav-link active" @else class="nav-link" @endif name="references" href="{{ route('client.user.show', $user) }}"><i class="fas fa-user px-1"></i></i>Show</a>
+                        </li>
+                        <li class="nav-item">
+                            <a @if(request()->routeIs('client.user.edit*')) class="nav-link active" @else class="nav-link" @endif name="references" href="{{ route('client.user.edit', $user) }}"><i class="fas fa-edit px-1"></i>Edit</a>
+                        </li>
+                        <li class="nav-item">
+                            <a @if(request()->routeIs('client.user.ticket*')) class="nav-link active" @else class="nav-link" @endif name="references" href="{{ route('client.user.ticket.index', $user) }}"><i class="fas fa-ticket-alt px-1"></i>Tickets</a>
+                        </li>
+                        <li class="nav-item">
+                            <a @if(request()->routeIs('client.user.service*')) class="nav-link active" @else class="nav-link" @endif name="references" href="{{ route('client.user.service.index', $user) }}"><i class="fas fa-bookmark px-1"></i>Services</a>
+                        </li>
+                    </ul>
+                    @elseif(request()->routeIs('admin.user.*'))
                     <ul class="nav nav-pills nav-fill">
                         <li class="nav-item">
                             <a @if(request()->routeIs('admin.user.show*')) class="nav-link active" @else class="nav-link" @endif name="references" href="{{ route('admin.user.show', $user) }}"><i class="fas fa-user px-1"></i></i>Show</a>
@@ -23,6 +39,7 @@
                             <a @if(request()->routeIs('admin.user.service*')) class="nav-link active" @else class="nav-link" @endif name="references" href="{{ route('admin.user.service.index', $user) }}"><i class="fas fa-bookmark px-1"></i>Services</a>
                         </li>
                     </ul>
+                    @endif
                 </div>
             <div>
     </section>
@@ -74,6 +91,7 @@
                         </span>
                     @enderror
                 </div>
+                @if(request()->routeIs('admin.user*'))
                 <div class="form-group">
                     <label for="roles">{{ __('Roles') }}</label>
                     <select class="form-control @error('roles') is-invalid @enderror" id="roles" name="roles[]"
@@ -91,6 +109,7 @@
                         </span>
                     @enderror
                 </div>
+                @endif
             </div>
             <div class="card-footer">
                 <button type="submit" class="btn btn-primary">

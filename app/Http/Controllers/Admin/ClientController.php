@@ -93,7 +93,7 @@ class ClientController extends Controller
         $user->fill($request->old());
         $roles = Role::all();
 
-        return view('client.form', compact('user', 'roles'));
+        return view('admin.user.form', compact('user', 'roles'));
     }
 
     /**
