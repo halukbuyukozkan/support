@@ -32,8 +32,10 @@
             <form method="post" enctype="multipart/form-data"
             @if(request()->routeIs('admin.user.*'))
             action="{{ route('admin.user.ticket.update',['user'=>$user,'ticket'=>$ticket]) }}">
-            @else
+            @elseif(request()->routeIs('client.user.*'))
             action="{{ route('client.user.ticket.update',['user'=>$user,'ticket'=>$ticket]) }}">
+            @elseif(request()->routeIs('admin.ticket.*'))
+            action="{{ route('admin.ticket.update',$ticket) }}">
             @endif
             @csrf
             @if ($ticket->exists)
@@ -98,6 +100,7 @@
                 </div>
             </div>
             </form>
+
         </div>
         <div class="col-md-8">
             @foreach ($ticket->ticketmessages as $message)
@@ -127,8 +130,10 @@
             </ol>
             @endforeach
             <form method="post" enctype="multipart/form-data"
-            @if(request()->routeIs('admin.*'))
+            @if(request()->routeIs('admin.user.*'))
             action="{{ route('admin.user.ticket.message.store',['user'=>$user,'ticket'=>$ticket]) }}">
+            @elseif(request()->routeIs('admin.ticket.*'))
+            action="{{ route('admin.ticket.message.store',$ticket) }}">
             @else
             action="{{ route('client.user.ticket.message.store',['user'=>$user,'ticket'=>$ticket]) }}">
             @endif

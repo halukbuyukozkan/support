@@ -51,9 +51,13 @@ class TicketController extends Controller
      * @param  \App\Models\Ticket  $ticket
      * @return \Illuminate\Http\Response
      */
-    public function show(Ticket $ticket, User $user)
+    public function show(Ticket $ticket)
     {
-        return view('admin.ticket.show', compact('ticket', 'user'));
+        $user = $ticket->user;
+        $platform = PlatformFacade::model();
+        $statuses = Status::all();
+
+        return view('admin.ticket.show', compact('ticket', 'user', 'platform', 'statuses'));
     }
 
     /**
@@ -76,7 +80,10 @@ class TicketController extends Controller
      */
     public function update(TicketRequest $request, Ticket $ticket)
     {
-        //
+        $ticket->fill($request->validated());
+        $ticket->save();
+
+        return redirect()->route('admin.ticket.index')->with('success', __('Ticket updated successfully'));
     }
 
     /**

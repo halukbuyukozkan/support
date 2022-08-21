@@ -94,7 +94,7 @@ class UserTicketController extends Controller
         $ticket->fill($request->validated());
         $ticket->save();
 
-        return redirect()->route('admin.user.ticket.index', $user)->with('success', __('Ticket created successfully'));
+        return redirect()->route('admin.user.ticket.index', $user)->with('success', __('Ticket Updated successfully'));
     }
 
     /**
