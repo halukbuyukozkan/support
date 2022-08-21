@@ -100,7 +100,15 @@
                 </div>
             </div>
             </form>
-
+            @if(request()->routeIs('admin.user.*'))
+            <x-delete-card href="{{ route('admin.user.ticket.destroy',['user'=>$user,'ticket'=>$ticket]) }}" :route="route('admin.user.ticket.destroy',['user'=>$user,'ticket'=>$ticket])">
+                {{ __('Delete Ticket') }}
+            </x-delete-card>
+            @elseif(request()->routeIs('client.user.*'))
+            <x-delete-card href="{{ route('client.user.ticket.destroy',['user'=>$user,'ticket'=>$ticket]) }}" :route="route('client.user.ticket.destroy',['user'=>$user,'ticket'=>$ticket])">
+                {{ __('Delete Ticket') }}
+            </x-delete-card>
+            @endif
         </div>
         <div class="col-md-8">
             @foreach ($ticket->ticketmessages as $message)

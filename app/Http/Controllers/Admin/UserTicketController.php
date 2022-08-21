@@ -103,8 +103,10 @@ class UserTicketController extends Controller
      * @param  \App\Models\Ticket  $ticket
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Ticket $ticket)
+    public function destroy(User $user, Ticket $ticket)
     {
-        //
+        $ticket->delete();
+
+        return redirect()->route('admin.user.ticket.index', ['user' => $user, 'ticket' => $ticket])->with('success', __('Ticket deleted successfully'));
     }
 }
