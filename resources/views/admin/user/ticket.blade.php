@@ -48,15 +48,10 @@
                             <td>{{ $ticket->status->name }}</td>
                             <td>{{ $ticket->updated_at }}</td>
                             <td class="text-right text-nowrap">
-                                <a href="{{ route('admin.user.ticket.edit',['user' => $user,'ticket' => $ticket]) }}"
+                                <a href="{{ route('admin.user.ticket.show',['user' => $user,'ticket' => $ticket]) }}"
                                 class="btn btn-sm btn-primary">
                                 <i class="fas fa-edit"></i>
                                 <span class="d-none d-sm-inline">{{ __('Edit') }}</span>
-                                </a>
-                                <a href="{{ route('admin.user.ticket.show', ['user' => $user,'ticket' => $ticket]) }}"
-                                    class="btn btn-sm btn-primary">
-                                    <i class="fas fa-comment"></i>
-                                    <span class="d-none d-sm-inline">{{ __('Reply') }}</span>
                                 </a>
                                 <form action="{{ route('admin.ticket.destroy', $ticket) }}" method="POST"
                                     class="d-inline-block" onsubmit="return confirm('{{ __('Are you sure?') }}');">

@@ -6,10 +6,11 @@ use App\Models\User;
 use App\Models\Ticket;
 use Illuminate\Http\Request;
 use App\Models\TicketMessage;
+use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Requests\TicketMessageRequest;
 
-class TicketMessageController extends Controller
+class UserTicketMessageController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -26,7 +27,7 @@ class TicketMessageController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create(Request $request)
+    public function create()
     {
         //
     }
@@ -46,7 +47,7 @@ class TicketMessageController extends Controller
         $ticketMessage = new TicketMessage($validated);
         $ticketMessage->save();
 
-        return redirect()->route('admin.ticket.show', compact('user', 'ticket'))->with('success', __('Ticket Message Created Successfully'));
+        return redirect()->route('admin.user.ticket.show', ['user' => $user, 'ticket' => $ticket])->with('success', __('Ticket Message Created Successfully'));
     }
 
     /**
@@ -66,7 +67,7 @@ class TicketMessageController extends Controller
      * @param  \App\Models\TicketMessage  $ticketMessage
      * @return \Illuminate\Http\Response
      */
-    public function edit(Request $request, TicketMessage $ticketmessage)
+    public function edit(TicketMessage $ticketMessage)
     {
         //
     }
@@ -86,12 +87,11 @@ class TicketMessageController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\TicketMessage  $message
+     * @param  \App\Models\TicketMessage  $ticketMessage
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Ticket $ticket, TicketMessage $message)
+    public function destroy(TicketMessage $ticketMessage)
     {
-        $message->delete();
-        return redirect()->route('admin.ticket.show', $ticket)->with('success', __('Ticket Message deleted successfully'));
+        //
     }
 }

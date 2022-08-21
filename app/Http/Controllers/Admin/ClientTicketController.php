@@ -65,7 +65,10 @@ class ClientTicketController extends Controller
      */
     public function show(User $user, Ticket $ticket)
     {
-        return view('admin.ticket.show', compact('ticket', 'user'));
+        $platform = PlatformFacade::model();
+        $statuses = Status::all();
+
+        return view('admin.ticket.show', compact('ticket', 'user', 'platform', 'statuses'));
     }
 
     /**
@@ -76,11 +79,7 @@ class ClientTicketController extends Controller
      */
     public function edit(Request $request, User $user, Ticket $ticket)
     {
-        $platform = PlatformFacade::model();
-        $statuses = Status::all();
-        $ticket->fill($request->old());
-
-        return view('client.ticket.form', compact('ticket', 'platform', 'statuses', 'user'));
+        //
     }
 
     /**

@@ -2,95 +2,159 @@
 
 <x-slot name="header">
     <h2 class="h4 font-weight-bold">
-        {{ __('Tickets') }}
+        {{ $ticket->title }} {{ __('Ticket Messages') }}
     </h2>
 </x-slot>
 
-    <section>
-        <div class="row mb-4">
-            <div class="col">
-                <ul class="nav nav-pills nav-fill">
-                    @if(request()->routeIs('client.user.ticket.*'))
-                        <li class="nav-item">
-                            <a @if(request()->routeIs('client.user.ticket.show*')) class="nav-link active" @else class="nav-link" @endif name="references" href="{{ route('client.user.ticket.show', ['user' => $user,'ticket' => $ticket]) }}"><i class="fas fa-comment px-1"></i>Messages</a>
-                        </li>
-                        <li class="nav-item">
-                            <a @if(request()->routeIs('client.user.ticket.edit*')) class="nav-link active" @else class="nav-link" @endif name="references" href="{{ route('client.user.ticket.edit',['user' => $user,'ticket' => $ticket]) }}"><i class="fas fa-edit px-1"></i>Edit</a>
-                        </li>
-                    @elseif(request()->routeIs('admin.user.ticket.*'))
-                        <li class="nav-item">
-                            <a @if(request()->routeIs('admin.user.ticket.show*')) class="nav-link active" @else class="nav-link" @endif name="references" href="{{ route('admin.user.ticket.show', ['user' => $user,'ticket' => $ticket]) }}"><i class="fas fa-comment px-1"></i>Messages</a>
-                        </li>
-                        <li class="nav-item">
-                            <a @if(request()->routeIs('admin.user.ticket.edit*')) class="nav-link active" @else class="nav-link" @endif name="references" href="{{ route('admin.user.ticket.edit',['user' => $user,'ticket' => $ticket]) }}"><i class="fas fa-edit px-1"></i>Edit</a>
-                        </li>
-                    @endif
-
-
+    <div class="row justify-content-center">
+        <div class="col-md-4">
+            <div class="card">
+                <div class="card-header">
+                    <b>{{ __('User İnformation') }}</b>
+                </div>
+                <ul class="list-group list-group-flush">
+                    <li class="list-group-item">
+                        <p class="card-text"><b>İsim:</b> {{ $user->name }}</p>
+                        <p class="card-text"><b>Email:</b> {{ $user->email }}</p>
+                    </li>
                 </ul>
             </div>
-        <div>
-    </section>
-    <div class="container">
-        <div class="row justify-content-center">
-            <div class="col-md-10">
-                @foreach ($ticket->ticketmessages as $message)
-                <ol class="list-group list-group-numbered my-1">
-                    <li class="list-group-item d-flex justify-content-between align-items-start">
-                        <div class="ms-2 me-auto">
-                            <div class="fw-bold">
-                                <b>{{ $message->user->name }}</b>
-                                <small class="mx-1 text-secondary">{{ $message->created_at }}</small>
-                            </div>
-                            <div>
-                                {{ $message->message }}
-                            </div>
-                        </div>
-                        @if($message->user_id == Auth::user()->id)
-                            <form action="{{ route('admin.ticket.message.destroy',['ticket' => $ticket,'message'=> $message]) }}" method="POST"
-                                class="d-inline-block" onsubmit="return confirm('{{ __('Are you sure?') }}');">
-                                @csrf
-                                @method('DELETE')
-                                <button type="submit" class="btn btn-sm btn-danger float-right">
-                                    <i class="fas fa-trash"></i>
-                                    <span class="d-none d-sm-inline">{{ __('Delete') }}</span>
-                                </button>
-                            </form>
-                        @endif
-                    </li>
-                </ol>
-                @endforeach
+            <div class="card">
+                <div class="card-header">
+                    <b>{{ __('Services') }}</b>
+                </div>
+                <ul class="list-group list-group-flush">
+                    @foreach ($user->services as $service)
+                    <li class="list-group-item">{{ $service->name }}</li>
+                    @endforeach
+                </ul>
             </div>
-            <div class="col-md-10">
-                <form method="post" enctype="multipart/form-data"
-                @if(request()->routeIs('admin.*'))
-                action="{{ route('admin.ticket.message.store',$ticket) }}">
-                @else
-                action="{{ route('client.user.ticket.message.store',['user'=>$user,'ticket'=>$ticket]) }}">
-                @endif
-                @csrf
-                <div class="card">
-                    <div class="card-body">
-                        <div class="form-group">
-                            <label for="message">{{ __('Message') }}</label>
-                            <input type="text" class="form-control @error('message') is-invalid @enderror" id="message"
-                                name="message" required>
-                            @error('message')
-                                <span class="invalid-feedback" user="alert">
-                                    <strong>{{ $message }}</strong>
-                                </span>
-                            @enderror
-                        </div>
+            <form method="post" enctype="multipart/form-data"
+            @if(request()->routeIs('admin.user.*'))
+            action="{{ route('admin.user.ticket.update',['user'=>$user,'ticket'=>$ticket]) }}">
+            @else
+            action="{{ route('client.user.ticket.update',['user'=>$user,'ticket'=>$ticket]) }}">
+            @endif
+            @csrf
+            @if ($ticket->exists)
+                @method('PUT')
+            @endif
+            <div class="card">
+                <div class="card-body">
+                    <div class="form-group">
+                        <label for="title">{{ __('Title') }}</label>
+                        <input type="text" class="form-control @error('name') is-invalid @enderror" id="title"
+                            name="title" value="{{ old('title', $ticket->title) }}" required>
+                        @error('title')
+                            <span class="invalid-feedback" user="alert">
+                                <strong>{{ $message }}</strong>
+                            </span>
+                        @enderror
                     </div>
-                    <div class="card-footer">
-                        <button type="submit" class="btn btn-primary">
-                            <i class="fas fa-save"></i>
-                            {{ __('Save') }}
-                        </button>
+                    <div class="form-group">
+                        <label for="department_id">{{ __('Department') }}</label>
+                        <select name="department_id" class="form-control" aria-label="Default select example">
+                                <option value="">{{ __('Select Department') }}</option>
+                            @foreach ($platform->departments as $department)
+                                <option value="{{ $department->id }}" {{ $ticket->department == $department ? 'selected' : '' }}>{{ $department->name }}</option>
+                            @endforeach
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="service_id">{{ __('Service') }}</label>
+                        <select name="service_id" class="form-control" aria-label="Default select example"@if($platform->services->count() == 0) disabled @endif>
+                                @if($platform->services->count()== 0) <option value="">{{ __('No Service') }}</option> @endif
+                                <option value="">{{ __('Select Service') }}</option>
+                            @foreach ($platform->services as $service)
+                                <option value="{{ $service->id }}" {{ $ticket->service == $service ? 'selected' : '' }}>{{ $service->name }}</option>
+                            @endforeach
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="note">{{ __('Note') }}</label>
+                        <input type="text" class="form-control @error('note') is-invalid @enderror" id="note"
+                            name="note" value="{{ old('note', $ticket->note) }}">
+                        @error('note')
+                            <span class="invalid-feedback" user="alert">
+                                <strong>{{ $message }}</strong>
+                            </span>
+                        @enderror
+                    </div>
+                    <div class="form-group">
+                        <label for="status_id">{{ __('Status') }}</label>
+                        <select name="status_id" class="form-control" aria-label="Default select example" @if($statuses->count() == 0) disabled @endif>
+                            <option value="" class="text-muted">{{ __('Select Status') }}</option>
+                            @foreach ($statuses as $status)
+                                <option value="{{ $status->id }}" {{ $ticket->status == $status ? 'selected' : '' }}>{{ $status->name }}</option>
+                            @endforeach
+                        </select>
                     </div>
                 </div>
-                </form>
+                <div class="card-footer">
+                    <button type="submit" class="btn btn-primary">
+                        <i class="fas fa-save"></i>
+                        {{ __('Save') }}
+                    </button>
+                </div>
             </div>
+            </form>
+        </div>
+        <div class="col-md-8">
+            @foreach ($ticket->ticketmessages as $message)
+            <ol class="list-group list-group-numbered my-1">
+                <li class="list-group-item d-flex justify-content-between align-items-start">
+                    <div class="ms-2 me-auto">
+                        <div class="fw-bold">
+                            <b>{{ $message->user->name }}</b>
+                            <small class="mx-1 text-secondary">{{ $message->created_at }}</small>
+                        </div>
+                        <div>
+                            {{ $message->message }}
+                        </div>
+                    </div>
+                    @if($message->user_id == Auth::user()->id)
+                        <form action="{{ route('admin.ticket.message.destroy',['ticket' => $ticket,'message'=> $message]) }}" method="POST"
+                            class="d-inline-block" onsubmit="return confirm('{{ __('Are you sure?') }}');">
+                            @csrf
+                            @method('DELETE')
+                            <button type="submit" class="btn btn-sm btn-danger float-right">
+                                <i class="fas fa-trash"></i>
+                                <span class="d-none d-sm-inline">{{ __('Delete') }}</span>
+                            </button>
+                        </form>
+                    @endif
+                </li>
+            </ol>
+            @endforeach
+            <form method="post" enctype="multipart/form-data"
+            @if(request()->routeIs('admin.*'))
+            action="{{ route('admin.user.ticket.message.store',['user'=>$user,'ticket'=>$ticket]) }}">
+            @else
+            action="{{ route('client.user.ticket.message.store',['user'=>$user,'ticket'=>$ticket]) }}">
+            @endif
+            @csrf
+            <div class="card">
+                <div class="card-body">
+                    <div class="form-group">
+                        <label for="message">{{ __('Message') }}</label>
+                        <input type="text" class="form-control @error('message') is-invalid @enderror" id="message"
+                            name="message" required>
+                        @error('message')
+                            <span class="invalid-feedback" user="alert">
+                                <strong>{{ $message }}</strong>
+                            </span>
+                        @enderror
+                    </div>
+                </div>
+                <div class="card-footer">
+                    <button type="submit" class="btn btn-primary">
+                        <i class="fas fa-save"></i>
+                        {{ __('Save') }}
+                    </button>
+                </div>
+            </div>
+            </form>
         </div>
     </div>
+
 </x-app-layout>

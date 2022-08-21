@@ -65,7 +65,10 @@ class UserTicketController extends Controller
      */
     public function show(User $user, Ticket $ticket)
     {
-        return view('admin.ticket.show', compact('ticket', 'user'));
+        $platform = PlatformFacade::model();
+        $statuses = Status::all();
+
+        return view('admin.ticket.show', compact('ticket', 'user', 'platform', 'statuses'));
     }
 
     /**
@@ -74,13 +77,9 @@ class UserTicketController extends Controller
      * @param  \App\Models\Ticket  $ticket
      * @return \Illuminate\Http\Response
      */
-    public function edit(Request $request, User $user, Ticket $ticket)
+    public function edit(Request $request)
     {
-        $platform = PlatformFacade::model();
-        $statuses = Status::all();
-        $ticket->fill($request->old());
-
-        return view('admin.ticket.form', compact('ticket', 'platform', 'statuses', 'user'));
+        //
     }
 
     /**
