@@ -46,7 +46,7 @@ class CustomerTicketMessageController extends Controller
         $ticketMessage = new TicketMessage($validated);
         $ticketMessage->save();
 
-        return redirect()->route('customer.ticket.show', $ticket)->with('success', __('Ticket Message Created Successfully'));
+        return redirect()->route('customer.ticket.show', $ticket)->with('success', __('Ticket message created successfully'));
     }
 
     /**
