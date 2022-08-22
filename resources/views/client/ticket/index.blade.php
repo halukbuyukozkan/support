@@ -58,6 +58,11 @@
                 </tbody>
             </table>
         </div>
+        <div class="text-center">
+            @if($tickets->count()==0)
+            <h5><b>{{ __('There is no ticket') }}</b></h5>
+            @endif
+        </div>
         <div class="card-footer">
             {{ $tickets->paginate(10) }}
         </div>

@@ -45,6 +45,11 @@
                 </tbody>
             </table>
         </div>
+        <div class="text-center">
+            @if($statuses->count()==0)
+            <h5><b>{{ __('There is no status') }}</b></h5>
+            @endif
+        </div>
         <div class="card-footer">
         {{ $statuses->paginate(10) }}
         </div>

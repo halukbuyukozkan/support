@@ -36,6 +36,7 @@
                     </li>
                 </ul>
             </div>
+            @if($user->services->count()!=0)
             <div class="card">
                 <div class="card-header">
                     <b>{{ __('Services') }}</b>
@@ -46,8 +47,10 @@
                     @endforeach
                 </ul>
             </div>
+            @endif
         </div>
         <div class="col-md-6">
+            @if($activeTickets->count() != 0)
             <div class="card">
                 <div class="card-header">
                     <b>{{ __('Active Tickets') }}</b>
@@ -67,8 +70,10 @@
                     @endforeach
                 </ul>
             </div>
+            @endif
+
             <x-delete-card href="{{ route('admin.user.destroy',$user) }}" :route="route('admin.user.destroy', $user)">
-                {{ __('Dashboard') }}
+                {{ __('Are you sure you want to delete User') }}
             </x-delete-card>
         </div>
     </div>

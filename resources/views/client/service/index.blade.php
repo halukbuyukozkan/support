@@ -63,6 +63,11 @@
                 </tbody>
             </table>
         </div>
+        <div class="text-center">
+            @if($user->services->count()==0)
+            <h5><b>{{ __('There is no service') }}</b></h5>
+            @endif
+        </div>
         <div class="card-footer">
         {{ $user->services->paginate(10) }}
         </div>

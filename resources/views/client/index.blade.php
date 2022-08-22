@@ -44,6 +44,11 @@
                 </tbody>
             </table>
         </div>
+        <div class="text-center">
+            @if($clients->count()==0)
+            <h5><b>{{ __('There is no client') }}</b></h5>
+            @endif
+        </div>
         <div class="card-footer">
             {{ $clients->paginate(10) }}
         </div>

@@ -45,6 +45,11 @@
                 </tbody>
             </table>
         </div>
+        <div class="text-center">
+            @if($platform->departments->count()==0)
+            <h5><b>{{ __('There is no department') }}</b></h5>
+            @endif
+        </div>
         <div class="card-footer">
             {{ $platform->departments->paginate(10) }}
         </div>
