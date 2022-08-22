@@ -19,16 +19,16 @@
                     </li>
                 </ul>
             </div>
+            @if($ticket->service)
             <div class="card">
                 <div class="card-header">
                     <b>{{ __('Services') }}</b>
                 </div>
                 <ul class="list-group list-group-flush">
-                    @foreach ($user->services as $service)
-                    <li class="list-group-item">{{ $service->name }}</li>
-                    @endforeach
+                    <li class="list-group-item">{{ $ticket->service->name }}</li>
                 </ul>
             </div>
+            @endif
             <form method="post" enctype="multipart/form-data"
             @if(request()->routeIs('admin.user.*'))
             action="{{ route('admin.user.ticket.update',['user'=>$user,'ticket'=>$ticket]) }}">
