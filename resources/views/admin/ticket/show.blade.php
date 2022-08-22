@@ -102,7 +102,7 @@
             </form>
             @if(request()->routeIs('admin.user.*'))
             <x-delete-card href="{{ route('admin.user.ticket.destroy',['user'=>$user,'ticket'=>$ticket]) }}" :route="route('admin.user.ticket.destroy',['user'=>$user,'ticket'=>$ticket])">
-                {{ __('Delete Ticket') }}
+                {{ __('Do you want to delete Ticket') }}
             </x-delete-card>
             @elseif(request()->routeIs('client.user.*'))
             <x-delete-card href="{{ route('client.user.ticket.destroy',['user'=>$user,'ticket'=>$ticket]) }}" :route="route('client.user.ticket.destroy',['user'=>$user,'ticket'=>$ticket])">
