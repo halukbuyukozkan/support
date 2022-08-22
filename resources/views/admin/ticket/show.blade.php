@@ -161,8 +161,8 @@
                 </div>
                 <div class="card-footer">
                     <button type="submit" class="btn btn-primary">
-                        <i class="fas fa-save"></i>
-                        {{ __('Save') }}
+                        <i class="fas fa-reply"></i>
+                        {{ __('Reply') }}
                     </button>
                 </div>
             </div>
