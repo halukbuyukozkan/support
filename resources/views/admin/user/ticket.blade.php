@@ -36,33 +36,20 @@
                         <th>{{ __('Service') }}</th>
                         <th>{{ __('Status') }}</th>
                         <th>{{ __('Updated Date') }}</th>
-                        <th style="width: 200px">{{ __('Actions') }}</th>
                     </tr>
                 </thead>
                 <tbody>
                     @foreach ($tickets as $ticket)
                         <tr>
-                            <td>{{ $ticket->title }}</td>
+                            <td><a href="{{ route('admin.user.ticket.show',['user' => $user,'ticket' => $ticket]) }}"
+                                class="btn btn-sm btn-primary">
+                                <i class="fas fa-edit"></i>
+                                <span class="d-none d-sm-inline">{{ $ticket->title }}</span>
+                                </a></td>
                             <td>{{ $ticket->department->name }}</td>
                             <td>@if ($ticket->service){{ $ticket->service->name }}@endif</td>
                             <td>{{ $ticket->status->name }}</td>
                             <td>{{ $ticket->updated_at }}</td>
-                            <td class="text-right text-nowrap">
-                                <a href="{{ route('admin.user.ticket.show',['user' => $user,'ticket' => $ticket]) }}"
-                                class="btn btn-sm btn-primary">
-                                <i class="fas fa-edit"></i>
-                                <span class="d-none d-sm-inline">{{ __('Edit') }}</span>
-                                </a>
-                                <form action="{{ route('admin.ticket.destroy', $ticket) }}" method="POST"
-                                    class="d-inline-block" onsubmit="return confirm('{{ __('Are you sure?') }}');">
-                                    @csrf
-                                    @method('DELETE')
-                                    <button type="submit" class="btn btn-sm btn-danger">
-                                        <i class="fas fa-trash"></i>
-                                        <span class="d-none d-sm-inline">{{ __('Delete') }}</span>
-                                    </button>
-                                </form>
-                            </td>
                         </tr>
                     @endforeach
                 </tbody>
