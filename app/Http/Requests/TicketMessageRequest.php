@@ -24,7 +24,8 @@ class TicketMessageRequest extends FormRequest
     public function rules()
     {
         return [
-            'message' => 'required'
+            'message' => 'required',
+            'status_id' => 'nullable',
         ];
     }
 }
