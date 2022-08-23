@@ -8,7 +8,7 @@
     <div class="container-fluid my-5 px-5">
         <div class="row justify-content-center">
             <div class="col-md-12">
-                @foreach ($ticket->ticketmessages as $message)
+                @foreach ($ticket->messages as $message)
                 <ol class="list-group list-group-numbered">
                     <li class="list-group-item d-flex justify-content-between align-items-start">
                         <div class="ms-2 me-auto">

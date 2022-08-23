@@ -111,7 +111,7 @@
             @endif
         </div>
         <div class="col-md-8">
-            @foreach ($ticket->ticketmessages as $message)
+            @foreach ($ticket->messages as $message)
             <ol class="list-group list-group-numbered my-1">
                 <li class="list-group-item d-flex justify-content-between align-items-start">
                     <div class="ms-2 me-auto">

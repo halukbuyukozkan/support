@@ -22,7 +22,7 @@
                 <tbody>
                     @foreach ($tickets as $ticket)
                         <tr>
-                            <td>{{ $ticket->title }} <span class="badge bg-primary rounded-pill">{{ $ticket->ticketmessages->count() }}</span></td>
+                            <td>{{ $ticket->title }} <span class="badge bg-primary rounded-pill">{{ $ticket->messages->count() }}</span></td>
                             <td>{{ $ticket->note }}</td>
                             <td class="text-right text-nowrap">
                                 <a href="{{ route('customer.ticket.show',$ticket) }}" class="btn btn-sm btn-primary">

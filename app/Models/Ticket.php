@@ -41,7 +41,7 @@ class Ticket extends Model
         return $this->belongsTo(Service::class);
     }
 
-    public function ticketmessages(): HasMany
+    public function messages(): HasMany
     {
         return $this->hasMany(TicketMessage::class);
     }

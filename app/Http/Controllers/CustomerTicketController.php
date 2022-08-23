@@ -50,7 +50,7 @@ class CustomerTicketController extends Controller
         $ticket = new Ticket($validated);
         $ticket->save();
 
-        $ticket->ticketmessages()->create([
+        $ticket->messages()->create([
             'message' => $validated['message'],
             'ticket_id' => $ticket->id,
             'user_id' => Auth::user()->id,
