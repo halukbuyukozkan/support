@@ -21,7 +21,7 @@
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach ($platform->users as $user)
+                    @foreach ($users as $user)
                         <tr>
                             <td>{{ $user->name }}</td>
                             <td>{{ $user->email }}</td>
@@ -51,7 +51,7 @@
             </table>
         </div>
         <div class="card-footer">
-            {{ $platform->users->paginate(10) }}
+            {{ $users->links() }}
         </div>
     </div>
 </x-app-layout>

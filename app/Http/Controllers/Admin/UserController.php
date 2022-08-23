@@ -23,8 +23,9 @@ class UserController extends Controller
     public function index()
     {
         $platform = PlatformFacade::model();
+        $users = $platform->users()->paginate();
 
-        return view('admin.user.index', compact('platform'));
+        return view('admin.user.index', compact('platform', 'users'));
     }
 
     /**

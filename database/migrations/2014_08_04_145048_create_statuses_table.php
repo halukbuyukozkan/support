@@ -18,6 +18,7 @@ return new class extends Migration
         Schema::create('statuses', function (Blueprint $table) {
             $table->id();
 
+            $table->foreignId('platform_id')->nullable()->constrained('platforms');
             $table->string('name');
             $table->enum('type', ['OPEN', 'SUPPORT_WAITING', 'CUSTOMER_WAITING', 'SOLVED', 'CLOSED']);
 

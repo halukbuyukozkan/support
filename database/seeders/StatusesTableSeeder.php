@@ -22,9 +22,20 @@ class StatusesTableSeeder extends Seeder
             0 =>
             array(
                 'id' => 1,
-                'name' => 'Status1',
-                'created_at' => '2022-08-08 14:55:14',
-                'updated_at' => '2022-08-08 14:55:14',
+                'platform_id' => 1,
+                'name' => 'Active Status',
+                'type' => 'OPEN',
+                'created_at' => '2022-08-23 20:31:56',
+                'updated_at' => '2022-08-23 20:31:56',
+            ),
+            1 =>
+            array(
+                'id' => 2,
+                'platform_id' => 1,
+                'name' => 'Closed Status',
+                'type' => 'CLOSED',
+                'created_at' => '2022-08-23 20:32:25',
+                'updated_at' => '2022-08-23 20:32:25',
             ),
         ));
     }

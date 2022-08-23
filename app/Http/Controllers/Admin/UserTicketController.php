@@ -18,7 +18,7 @@ class UserTicketController extends Controller
      */
     public function index(User $user)
     {
-        $tickets = $user->tickets;
+        $tickets = $user->tickets()->paginate();
 
         return view('admin.user.ticket', compact('tickets', 'user'));
     }

@@ -16,11 +16,11 @@ return new class extends Migration
         Schema::create('platforms', function (Blueprint $table) {
             $table->id();
 
+            $table->string('status_id')->nullable();
             $table->string('name');
             $table->string('logo')->nullable();
             $table->string('domain');
             $table->string('api_token');
-            $table->foreignId('status_id')->nullable()->constrained('statuses');
 
             $table->timestamps();
         });

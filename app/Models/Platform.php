@@ -40,8 +40,8 @@ class Platform extends Model
         return $this->hasMany(Ticket::class);
     }
 
-    public function status(): BelongsTo
+    public function statuses(): HasMany
     {
-        return $this->belongsTo(Status::class);
+        return $this->hasMany(Status::class);
     }
 }
