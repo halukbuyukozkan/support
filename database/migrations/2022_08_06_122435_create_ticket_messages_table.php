@@ -18,7 +18,7 @@ return new class extends Migration
 
             $table->foreignId('ticket_id')->constrained('tickets')->onDelete('cascade');
             $table->foreignId('user_id')->constrained('users');
-            $table->enum('type', ['CUSTOMER', 'CLİENT', 'BOT', 'CUSTOM']);
+            $table->enum('type', ['CUSTOMER', 'CLIENT', 'BOT', 'CUSTOM']);
             $table->text('message');
             $table->string('created_by');
 
