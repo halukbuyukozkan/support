@@ -24,9 +24,7 @@ class ClientController extends Controller
     {
         $platform = PlatformFacade::model();
 
-        $clients = $platform->users->filter(function ($value) {
-            return $value != $value->hasRole('Admin');
-        });
+        $clients = User::role('Client')->platformusers()->get();
 
         return view('client.index', compact('clients'));
     }
