@@ -12,7 +12,7 @@ class ClientController extends Controller
 {
     public function __construct()
     {
-        $this->middleware('can:management.user');
+        $this->middleware('can:management.client');
     }
 
     /**
