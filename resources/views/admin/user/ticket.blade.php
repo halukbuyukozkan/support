@@ -42,9 +42,7 @@
                     @foreach ($tickets as $ticket)
                         <tr>
                             <td><a href="{{ route('admin.user.ticket.show',['user' => $user,'ticket' => $ticket]) }}"
-                                class="btn btn-sm btn-primary">
-                                <i class="fas fa-edit"></i>
-                                <span class="d-none d-sm-inline">{{ $ticket->title }}</span>
+                                <span class="d-none d-sm-inline"><strong>{{ $ticket->title }}</strong></span>
                                 </a></td>
                             <td>{{ $ticket->department->name }}</td>
                             <td>@if ($ticket->service){{ $ticket->service->name }}@endif</td>

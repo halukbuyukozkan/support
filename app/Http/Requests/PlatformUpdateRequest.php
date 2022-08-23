@@ -26,7 +26,7 @@ class PlatformUpdateRequest extends FormRequest
         return [
             'name' => 'required|string|max:255',
             'logo' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
-            'domain' => 'nullable|string|max:255',
+            'domain' => 'nullable|string|max:255|unique:platforms',
             'status_id' => 'nullable',
         ];
     }
