@@ -24,7 +24,7 @@ class ClientController extends Controller
     {
         $platform = PlatformFacade::model();
 
-        $clients = User::role('Client')->platformusers()->get();
+        $clients = User::role('Client')->platformusers()->paginate();
 
         return view('client.index', compact('clients'));
     }
@@ -37,9 +37,8 @@ class ClientController extends Controller
     public function create(Request $request)
     {
         $user = new User($request->old());
-        $roles = Role::all();
 
-        return view('admin.user.form', compact('user', 'roles'));
+        return view('admin.user.form', compact('user'));
     }
 
     /**
@@ -54,14 +53,14 @@ class ClientController extends Controller
             'name' => 'required|string|max:255',
             'email' => 'required|string|email|max:255|unique:users',
             'password' => 'required|string|min:6|confirmed',
-            'roles' => 'array|exists:roles,id',
         ]);
 
         $data['password'] = Hash::make($data['password']);
-        $data['platform_id'] = $platform = PlatformFacade::model()->id;
+        $data['platform_id'] = PlatformFacade::model()->id;
 
         $user = User::create($data);
-        $user->syncRoles($data['roles'] ?? []);
+        $user->assignRole('Client');
+        $user->save();
 
         return redirect()->route('client.user.index')->with('success', __('User created successfully'));
     }
@@ -74,9 +73,7 @@ class ClientController extends Controller
      */
     public function show(User $user)
     {
-        $activeTickets = $user->tickets->filter(function ($value) {
-            return $value->status->type != 'CLOSED';
-        });
+        $activeTickets = $user->tickets->where('status_id', '!=', '2');
 
         return view('client.show', compact('user', 'activeTickets'));
     }
@@ -90,9 +87,8 @@ class ClientController extends Controller
     public function edit(Request $request, User $user)
     {
         $user->fill($request->old());
-        $roles = Role::all();
 
-        return view('admin.user.form', compact('user', 'roles'));
+        return view('admin.user.form', compact('user'));
     }
 
     /**
@@ -108,7 +104,6 @@ class ClientController extends Controller
             'name' => 'required|string|max:255',
             'email' => 'required|string|email|max:255|unique:users,email,' . $user->id,
             'password' => 'nullable|string|min:6|confirmed',
-            'roles' => 'array|exists:roles,id',
         ]);
 
         if ($data['password']) {
@@ -118,7 +113,6 @@ class ClientController extends Controller
         }
 
         $user->update($data);
-        $user->syncRoles($data['roles'] ?? []);
 
         return redirect()->route('client.user.index')->with('success', __('User updated successfully'));
     }

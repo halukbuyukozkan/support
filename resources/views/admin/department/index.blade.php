@@ -20,7 +20,7 @@
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach ($platform->departments as $department)
+                    @foreach ($departments as $department)
                         <tr>
                             <td>{{ $department->name }}</td>
                             <td>{{ $department->platform->name }}</td>
@@ -46,12 +46,12 @@
             </table>
         </div>
         <div class="text-center">
-            @if($platform->departments->count()==0)
+            @if($departments->count()==0)
             <h5><b>{{ __('There is no department') }}</b></h5>
             @endif
         </div>
         <div class="card-footer">
-            {{ $platform->departments->paginate(10) }}
+            {{ $departments->links() }}
         </div>
     </div>
 </x-app-layout>

@@ -50,7 +50,7 @@
             @endif
         </div>
         <div class="card-footer">
-            {{ $clients->paginate(10) }}
+            {{ $clients->links() }}
         </div>
     </div>
 </x-app-layout>

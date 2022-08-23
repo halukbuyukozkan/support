@@ -20,7 +20,9 @@ class DepartmentController extends Controller
     {
         $platform = PlatformFacade::model();
 
-        return view('admin.department.index', compact('platform'));
+        $departments = $platform->departments()->paginate();
+
+        return view('admin.department.index', compact('departments'));
     }
 
     /**

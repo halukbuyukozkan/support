@@ -51,7 +51,7 @@
             @endif
         </div>
         <div class="card-footer">
-        {{ $statuses->paginate(10) }}
+        {{ $statuses->links() }}
         </div>
     </div>
 </x-app-layout>

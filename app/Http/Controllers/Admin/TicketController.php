@@ -19,7 +19,7 @@ class TicketController extends Controller
     public function index()
     {
         $platform = PlatformFacade::model();
-        $tickets = $platform->tickets;
+        $tickets = $platform->tickets()->paginate();
 
         return view('admin.ticket.index', compact('tickets'));
     }

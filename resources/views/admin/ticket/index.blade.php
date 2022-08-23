@@ -50,7 +50,7 @@
             </table>
         </div>
         <div class="card-footer">
-            {{ $tickets->paginate(10) }}
+            {{ $tickets->links() }}
         </div>
     </div>
 </x-app-layout>
