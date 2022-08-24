@@ -33,9 +33,7 @@ class PlatformController extends Controller
     {
         $platform = new Platform($request->old());
 
-        $statuses = PlatformFacade::model()->statuses;
-
-        return view('admin.platform.form', compact('platform', 'statuses'));
+        return view('admin.platform.form', compact('platform'));
     }
 
     /**

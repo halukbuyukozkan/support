@@ -45,16 +45,18 @@
                         </span>
                     @enderror
                 </div>
+                @if($platform->statuses->count()!= 0)
                 <div class="form-group">
                     <label for="status_id">{{ __('Default Status') }}</label>
-                    <select name="status_id" class="form-control" aria-label="Default select example" @if($statuses->count()==0) disabled @endif >
-                            @if($statuses->count()== 0) <option value="">{{ __('No Status') }}</option> @endif
+                    <select name="status_id" class="form-control" aria-label="Default select example" @if($platform->statuses->count()==0) disabled @endif >
+                            @if($platform->statuses->count()== 0) <option value="">{{ __('No Status') }}</option> @endif
                             <option value="" class="text-muted">{{ __('Select Status') }}</option>
-                        @foreach ($statuses as $status)
+                        @foreach ($platform->statuses as $status)
                             <option value="{{ $status->id }}">{{ $status->name }}</option>
                         @endforeach
                     </select>
                 </div>
+                @endif
             </div>
             <div class="card-footer">
                 <button type="submit" class="btn btn-primary">
