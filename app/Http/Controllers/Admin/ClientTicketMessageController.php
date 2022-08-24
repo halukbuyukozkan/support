@@ -52,7 +52,7 @@ class ClientTicketMessageController extends Controller
         }
 
 
-        return redirect()->route('client.user.ticket.show', ['user' => $user, 'ticket' => $ticket])->with('success', __('Ticket message created successfully'));
+        return redirect()->route('client.user.ticket.show', compact('user', 'ticket'))->with('success', __('Ticket message created successfully'));
     }
 
     /**
@@ -98,6 +98,6 @@ class ClientTicketMessageController extends Controller
     public function destroy(User $user, Ticket $ticket, TicketMessage $message)
     {
         $message->delete();
-        return redirect()->route('client.user.ticket.show', ['user' => $user, 'ticket' => $ticket])->with('success', __('Ticket Message deleted successfully'));
+        return redirect()->route('client.user.ticket.show', compact('user', 'ticket'))->with('success', __('Ticket Message deleted successfully'));
     }
 }

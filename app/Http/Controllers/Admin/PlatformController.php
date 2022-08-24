@@ -2,12 +2,13 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Models\Status;
 use App\Models\Platform;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
+use App\Services\PlatformFacade;
 use App\Http\Requests\PlatformRequest;
 use App\Http\Requests\PlatformUpdateRequest;
-use App\Models\Status;
 
 class PlatformController extends Controller
 {
@@ -31,7 +32,8 @@ class PlatformController extends Controller
     public function create(Request $request)
     {
         $platform = new Platform($request->old());
-        $statuses = Status::all();
+
+        $statuses = PlatformFacade::model()->statuses;
 
         return view('admin.platform.form', compact('platform', 'statuses'));
     }
@@ -74,7 +76,7 @@ class PlatformController extends Controller
     public function edit(Request $request, Platform $platform)
     {
         $platform->fill($request->old());
-        $statuses = Status::all();
+        $statuses = PlatformFacade::model()->statuses;
 
         return view('admin.platform.form', compact('platform', 'statuses'));
     }
