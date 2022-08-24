@@ -32,7 +32,7 @@ class UserTicketController extends Controller
     {
         $ticket = new Ticket($request->old());
         $platform = PlatformFacade::model();
-        $statuses = Status::all();
+        $statuses = $platform->statuses;
 
         return view('admin.ticket.form', compact('ticket', 'platform', 'statuses', 'user'));
     }
@@ -66,7 +66,7 @@ class UserTicketController extends Controller
     public function show(User $user, Ticket $ticket)
     {
         $platform = PlatformFacade::model();
-        $statuses = Status::all();
+        $statuses = $platform->statuses;
 
         return view('admin.ticket.show', compact('ticket', 'user', 'platform', 'statuses'));
     }

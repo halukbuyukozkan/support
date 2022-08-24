@@ -55,7 +55,7 @@ class TicketController extends Controller
     {
         $user = $ticket->user;
         $platform = PlatformFacade::model();
-        $statuses = Status::all();
+        $statuses = $platform->statuses;
 
         return view('admin.ticket.show', compact('ticket', 'user', 'platform', 'statuses'));
     }
