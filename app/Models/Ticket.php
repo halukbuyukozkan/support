@@ -50,10 +50,4 @@ class Ticket extends Model
     {
         return $this->belongsTo(Status::class);
     }
-
-    public function scopeActiveTicket($query)
-    {
-        $closedStatus = Status::closedstatus()->get()->first();
-        return $query->where('status_id', '!=', $closedStatus->id);
-    }
 }

@@ -3,7 +3,6 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Models\User;
-use App\Models\Ticket;
 use Illuminate\Http\Request;
 use App\Services\PlatformFacade;
 use Spatie\Permission\Models\Role;
@@ -74,7 +73,9 @@ class UserController extends Controller
      */
     public function show(User $user)
     {
-        $activeTickets = Ticket::activeticket()->get();
+        $activeTickets = $user->tickets->filter(function ($item) {
+            return $item->status->type != 'CLOSED';
+        });
 
         return view('admin.user.show', compact('user', 'activeTickets'));
     }
