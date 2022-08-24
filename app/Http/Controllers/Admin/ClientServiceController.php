@@ -43,9 +43,7 @@ class ClientServiceController extends Controller
     public function store(ServiceRequest $request, User $user)
     {
         $validated = $request->validated();
-        $validated['user_id'] = $user->id;
-        $service = new Service($validated);
-        $service->save();
+        $user->services()->create($validated);
 
         return redirect()->route('client.user.service.index', compact('user'))->with('success', __('Service created successfully'));
     }
