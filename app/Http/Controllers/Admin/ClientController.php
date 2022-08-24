@@ -3,9 +3,11 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Models\User;
+use App\Models\Ticket;
 use Illuminate\Http\Request;
 use App\Services\PlatformFacade;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Database\Eloquent\Builder;
 
 class ClientController extends Controller
 {
@@ -71,9 +73,10 @@ class ClientController extends Controller
      */
     public function show(User $user)
     {
-        $activeTickets = $user->tickets->filter(function ($item) {
-            return $item->status->type != 'CLOSED';
-        });
+        $activeTickets = Ticket::whereHas('status', function (Builder $query) {
+            $query->where('type', '!=', 'CLOSED');
+        })->userticket($user)->get();
+
 
         return view('client.show', compact('user', 'activeTickets'));
     }

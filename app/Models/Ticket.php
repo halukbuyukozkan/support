@@ -50,4 +50,9 @@ class Ticket extends Model
     {
         return $this->belongsTo(Status::class);
     }
+
+    public function scopeUserTicket($query, $user)
+    {
+        $query->where('user_id', $user->id);
+    }
 }
