@@ -22,8 +22,6 @@ class ClientController extends Controller
      */
     public function index()
     {
-        $platform = PlatformFacade::model();
-
         $clients = User::role('Client')->platformusers()->paginate();
 
         return view('client.index', compact('clients'));

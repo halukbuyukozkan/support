@@ -39,7 +39,7 @@
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach ($user->services as $service)
+                    @foreach ($services as $service)
                         <tr>
                             <td>{{ $service->name }}</td>
                             <td class="text-right text-nowrap">
@@ -64,12 +64,12 @@
             </table>
         </div>
         <div class="text-center">
-            @if($user->services->count()==0)
+            @if($services->count()==0)
             <h5><b>{{ __('There is no service') }}</b></h5>
             @endif
         </div>
         <div class="card-footer">
-        {{ $user->services->paginate(10) }}
+        {{ $services->links() }}
         </div>
     </div>
 </x-app-layout>

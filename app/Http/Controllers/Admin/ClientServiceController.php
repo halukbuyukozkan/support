@@ -17,7 +17,9 @@ class ClientServiceController extends Controller
      */
     public function index(User $user)
     {
-        return view('client.service.index', compact('user'));
+        $services = $user->services()->paginate();
+
+        return view('client.service.index', compact('user', 'services'));
     }
 
     /**
