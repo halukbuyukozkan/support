@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Models\User;
+use App\Models\Ticket;
 use Illuminate\Http\Request;
 use App\Services\PlatformFacade;
 use Spatie\Permission\Models\Role;
@@ -57,7 +58,7 @@ class UserController extends Controller
         ]);
 
         $data['password'] = Hash::make($data['password']);
-        $data['platform_id'] = $platform = PlatformFacade::model()->id;
+        $data['platform_id'] = PlatformFacade::model()->id;
 
         $user = User::create($data);
         $user->syncRoles($data['roles'] ?? []);
@@ -73,7 +74,7 @@ class UserController extends Controller
      */
     public function show(User $user)
     {
-        $activeTickets = $user->tickets->where('status_id', '!=', '2');
+        $activeTickets = Ticket::activeticket()->get();
 
         return view('admin.user.show', compact('user', 'activeTickets'));
     }

@@ -29,4 +29,9 @@ class Status extends Model
     {
         return $this->belongsTo(Platform::class);
     }
+
+    public function scopeClosedStatus($query)
+    {
+        return $query->where('type', 'CLOSED');
+    }
 }
