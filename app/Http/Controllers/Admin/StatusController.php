@@ -18,7 +18,6 @@ class StatusController extends Controller
     {
         $platform = PlatformFacade::model();
         $statuses = $platform->statuses()->paginate();
-        $statuses = Status::paginate();
 
         return view('admin.status.index', compact('statuses'));
     }
