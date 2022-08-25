@@ -69,7 +69,7 @@ class User extends Authenticatable
         return $this->hasMany(TicketMessage::class);
     }
 
-    public function scopeOfPlatformUsers($query)
+    public function scopeOfPlatformUsers(Builder $query)
     {
         $platform = PlatformFacade::model();
 
