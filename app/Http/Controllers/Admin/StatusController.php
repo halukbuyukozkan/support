@@ -2,9 +2,10 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Http\Requests\StatusRequest;
 use App\Models\Status;
 use Illuminate\Http\Request;
+use App\Services\PlatformFacade;
+use App\Http\Requests\StatusRequest;
 
 class StatusController extends Controller
 {
@@ -15,6 +16,8 @@ class StatusController extends Controller
      */
     public function index()
     {
+        $platform = PlatformFacade::model();
+        $statuses = $platform->statuses()->paginate();
         $statuses = Status::paginate();
 
         return view('admin.status.index', compact('statuses'));
