@@ -17,7 +17,8 @@ class CustomerTicketController extends Controller
      */
     public function index()
     {
-        $tickets = Auth::user()->tickets;
+        $tickets = Auth::user()->tickets()->paginate();
+
         return view('user.ticket.index', compact('tickets'));
     }
 
@@ -42,10 +43,10 @@ class CustomerTicketController extends Controller
      */
     public function store(UserTicketRequest $request, Ticket $ticket)
     {
-        $validated = $request->validated();
-        $validated['platform_id'] = PlatformFacade::model()->id;
-        $validated['user_id'] = Auth::user()->id;
         $platform = PlatformFacade::model();
+        $validated = $request->validated();
+        $validated['platform_id'] = $platform->id;
+        $validated['user_id'] = Auth::user()->id;
         $validated['status_id'] = $platform->status_id;
         $ticket = new Ticket($validated);
         $ticket->save();

@@ -5,6 +5,7 @@ namespace App\Models;
 use App\Models\Status;
 use App\Observers\TicketObserver;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -51,7 +52,7 @@ class Ticket extends Model
         return $this->belongsTo(Status::class);
     }
 
-    public function scopeOfUserTicket($query, $user)
+    public function scopeOfUserTicket(Builder $query, User $user)
     {
         $query->where('user_id', $user->id);
     }
