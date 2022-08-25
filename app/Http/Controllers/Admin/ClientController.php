@@ -24,7 +24,7 @@ class ClientController extends Controller
     public function index()
     {
 
-        $clients = User::doesntHave('roles')->platformusers()->paginate();
+        $clients = User::doesntHave('roles')->ofplatformusers()->paginate();
 
         return view('client.index', compact('clients'));
     }
