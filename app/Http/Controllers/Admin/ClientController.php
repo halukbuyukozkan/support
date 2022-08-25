@@ -59,7 +59,6 @@ class ClientController extends Controller
         $data['platform_id'] = PlatformFacade::model()->id;
 
         $user = User::create($data);
-        $user->assignRole('Client');
         $user->save();
 
         return redirect()->route('client.user.index')->with('success', __('User created successfully'));
