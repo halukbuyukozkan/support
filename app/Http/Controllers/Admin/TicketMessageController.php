@@ -41,8 +41,6 @@ class TicketMessageController extends Controller
     {
         $validated = $request->validated();
         $validated['ticket_id'] = $ticket->id;
-        $validated['user_id'] = Auth::user()->id;
-        $validated['created_by'] = Auth::user()->id;
         $ticketMessage = new TicketMessage($validated);
         $ticketMessage->save();
 
