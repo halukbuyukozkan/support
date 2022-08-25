@@ -3,10 +3,12 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Models\User;
+use App\Models\Ticket;
 use Illuminate\Http\Request;
 use App\Services\PlatformFacade;
 use Spatie\Permission\Models\Role;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Database\Eloquent\Builder;
 
 class UserController extends Controller
 {
@@ -73,9 +75,9 @@ class UserController extends Controller
      */
     public function show(User $user)
     {
-        $activeTickets = $user->tickets->filter(function ($item) {
-            return $item->status->type != 'CLOSED';
-        });
+        $activeTickets = Ticket::whereHas('status', function (Builder $query) {
+            $query->where('type', '!=', 'CLOSED');
+        })->ofuserticket($user)->get();
 
         return view('admin.user.show', compact('user', 'activeTickets'));
     }

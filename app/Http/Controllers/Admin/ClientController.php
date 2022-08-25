@@ -74,7 +74,7 @@ class ClientController extends Controller
     {
         $activeTickets = Ticket::whereHas('status', function (Builder $query) {
             $query->where('type', '!=', 'CLOSED');
-        })->userticket($user)->get();
+        })->ofuserticket($user)->get();
 
 
         return view('client.show', compact('user', 'activeTickets'));
