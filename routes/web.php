@@ -37,7 +37,7 @@ Route::middleware(['auth'])->group(function () {
             return view('dashboard');
         } else {
             $user = Auth::user();
-            return redirect()->route('customer.ticket.index', $user);
+            return redirect()->route('customer.ticket.index', Auth::user());
         }
     })->name('dashboard');
 
