@@ -47,6 +47,19 @@ class UsersTableSeeder extends Seeder
                 'created_at' => '2022-08-09 21:54:33',
                 'updated_at' => '2022-08-09 21:54:33',
             ),
+            2 => array(
+                'id' => 3,
+                'platform_id' => 1,
+                'platform_ref' => NULL,
+                'name' => 'Tunahan Caliskan',
+                'email' => 'mail@tunahancaliskan.com',
+                'email_verified_at' => NULL,
+                'password' => '$2y$10$NRwoLSchLPObIh36cRpPvuxvcMfVGBHTxfzQqiGoIeb3KpxUfyE/m',
+                'phone' => '+905316952429',
+                'remember_token' => NULL,
+                'created_at' => '2021-12-13 16:45:59',
+                'updated_at' => '2022-05-25 12:14:53',
+            ),
         ));
     }
 }
