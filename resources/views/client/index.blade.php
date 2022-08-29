@@ -20,7 +20,7 @@
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach ($clients as $user)
+                    @forelse ($clients as $user)
                         <tr>
                             <td>{{ $user->name }}</td>
                             <td>{{ $user->email }}</td>
@@ -40,14 +40,15 @@
                                 </form>
                             </td>
                         </tr>
-                    @endforeach
+                    @empty
+                        <tr>
+                            <td colspan="99" class="text-center text-muted">
+                                {{ __('No clients found.') }}
+                            </td>
+                        </tr>
+                    @endforelse
                 </tbody>
             </table>
-        </div>
-        <div class="text-center">
-            @if($clients->count()==0)
-            <h5><b>{{ __('There is no client') }}</b></h5>
-            @endif
         </div>
         <div class="card-footer">
             {{ $clients->links() }}
