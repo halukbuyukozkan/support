@@ -2,7 +2,7 @@
     <x-slot name="header">
         <h2 class="h4 font-weight-bold">
             {{ __('Tickets') }}
-            <a href="{{ route('customer.ticket.create') }}" class="btn btn-sm btn-primary float-right">
+            <a href="{{ route('ticket.create') }}" class="btn btn-sm btn-primary float-right">
                 <i class="fa fa-plus"></i>
                 {{ __('Create Ticket') }}
             </a>
@@ -25,11 +25,11 @@
                             <td>{{ $ticket->title }} <span class="badge bg-primary rounded-pill">{{ $ticket->messages->count() }}</span></td>
                             <td>{{ $ticket->note }}</td>
                             <td class="text-right text-nowrap">
-                                <a href="{{ route('customer.ticket.show',$ticket) }}" class="btn btn-sm btn-primary">
+                                <a href="{{ route('ticket.show',$ticket) }}" class="btn btn-sm btn-primary">
                                     <i class="fas fa-edit"></i>
                                     <span class="d-none d-sm-inline">{{ __('Reply') }}</span>
                                 </a>
-                                <form action="{{ route('customer.ticket.destroy', $ticket) }}" method="POST"
+                                <form action="{{ route('ticket.destroy', $ticket) }}" method="POST"
                                     class="d-inline-block" onsubmit="return confirm('{{ __('Are you sure?') }}');">
                                     @csrf
                                     @method('DELETE')

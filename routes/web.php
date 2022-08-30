@@ -37,7 +37,7 @@ Route::middleware(['auth'])->group(function () {
             return view('dashboard');
         } else {
             $user = Auth::user();
-            return redirect()->route('customer.ticket.index', Auth::user());
+            return redirect()->route('ticket.index', Auth::user());
         }
     })->name('dashboard');
 
@@ -68,6 +68,8 @@ Route::middleware(['auth'])->group(function () {
         Route::resource('user.ticket.message', ClientTicketMessageController::class);
     });
 
+    Route::resource('ticket', CustomerTicketController::class);
+    Route::resource('ticket.message', CustomerTicketMessageController::class);
 
     Route::prefix('account')->name('account.')->group(function () {
         Route::get('/', [AccountController::class, 'settings'])->name('settings');

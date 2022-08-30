@@ -57,7 +57,7 @@ class CustomerTicketController extends Controller
             'created_by' => Auth::user()->id,
         ]);
 
-        return redirect()->route('customer.ticket.index')->with('success', __('Ticket created successfully'));
+        return redirect()->route('ticket.index')->with('success', __('Ticket created successfully'));
     }
 
     /**
@@ -68,7 +68,10 @@ class CustomerTicketController extends Controller
      */
     public function show(Ticket $ticket)
     {
-        return view('user.message.index', compact('ticket'));
+        $user = Auth::user();
+        $platform = PlatformFacade::model();
+
+        return view('user.message.index', compact('ticket','user','platform'));
     }
 
     /**

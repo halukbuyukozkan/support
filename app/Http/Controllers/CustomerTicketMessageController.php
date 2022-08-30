@@ -43,7 +43,7 @@ class CustomerTicketMessageController extends Controller
         $ticketMessage = new TicketMessage($validated);
         $ticketMessage->save();
 
-        return redirect()->route('customer.ticket.show', $ticket)->with('success', __('Ticket message created successfully'));
+        return redirect()->route('ticket.show', $ticket)->with('success', __('Ticket message created successfully'));
     }
 
     /**
@@ -86,8 +86,9 @@ class CustomerTicketMessageController extends Controller
      * @param  \App\Models\TicketMessage  $ticketMessage
      * @return \Illuminate\Http\Response
      */
-    public function destroy(TicketMessage $ticketMessage)
+    public function destroy(Ticket $ticket,TicketMessage $message)
     {
-        //
+        $message->delete();
+        return redirect()->route('ticket.show', $ticket)->with('success', __('Ticket Message deleted successfully'));
     }
 }
