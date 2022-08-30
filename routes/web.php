@@ -41,8 +41,6 @@ Route::middleware(['auth'])->group(function () {
         }
     })->name('dashboard');
 
-    
-
     Route::prefix('admin')->name('admin.')->group(function () {
         Route::resource('user', UserController::class);
         Route::resource('user.ticket', UserTicketController::class);
