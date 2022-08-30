@@ -20,7 +20,7 @@
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach ($tickets as $ticket)
+                    @forelse ($tickets as $ticket)
                         <tr>
                             <td>{{ $ticket->title }} <span class="badge bg-primary rounded-pill">{{ $ticket->messages->count() }}</span></td>
                             <td>{{ $ticket->note }}</td>
@@ -40,7 +40,13 @@
                                 </form>
                             </td>
                         </tr>
-                    @endforeach
+                    @empty
+                        <tr>
+                            <td colspan="99" class="text-center text-muted">
+                                {{ __('No Tickets') }}
+                            </td>
+                        </tr>
+                    @endforelse
                 </tbody>
             </table>
         </div>

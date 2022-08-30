@@ -20,7 +20,7 @@
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach ($departments as $department)
+                    @forelse ($departments as $department)
                         <tr>
                             <td>{{ $department->name }}</td>
                             <td>{{ $department->platform->name }}</td>
@@ -41,14 +41,15 @@
                                 </form>
                             </td>
                         </tr>
-                    @endforeach
+                        @empty
+                        <tr>
+                            <td colspan="99" class="text-center text-muted">
+                                {{ __('No Departments') }}
+                            </td>
+                        </tr>
+                    @endforelse
                 </tbody>
             </table>
-        </div>
-        <div class="text-center">
-            @if($departments->count()==0)
-            <h5><b>{{ __('There is no department') }}</b></h5>
-            @endif
         </div>
         <div class="card-footer">
             {{ $departments->links() }}

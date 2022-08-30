@@ -20,7 +20,7 @@
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach ($statuses as $status)
+                    @forelse ($statuses as $status)
                         <tr>
                             <td>{{ $status->name }}</td>
                             <td>{{ $status->type }}</td>
@@ -41,14 +41,15 @@
                                 </form>
                             </td>
                         </tr>
-                    @endforeach
+                    @empty
+                        <tr>
+                            <td colspan="99" class="text-center text-muted">
+                                {{ __('No Statuses') }}
+                            </td>
+                        </tr>
+                    @endforelse
                 </tbody>
             </table>
-        </div>
-        <div class="text-center">
-            @if($statuses->count()==0)
-            <h5><b>{{ __('There is no status') }}</b></h5>
-            @endif
         </div>
         <div class="card-footer">
         {{ $statuses->links() }}
