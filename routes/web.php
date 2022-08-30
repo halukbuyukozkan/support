@@ -37,16 +37,11 @@ Route::middleware(['auth'])->group(function () {
             return view('dashboard');
         } else {
             $user = Auth::user();
-            return redirect()->route('ticket.index', Auth::user());
+            return redirect()->route('ticket.index');
         }
     })->name('dashboard');
 
-    Route::prefix('customer')->name('customer.')->group(function () {
-        Route::scopeBindings()->group(function () {
-            Route::resource('ticket', CustomerTicketController::class);
-            Route::resource('ticket.message', CustomerTicketMessageController::class);
-        });
-    });
+    
 
     Route::prefix('admin')->name('admin.')->group(function () {
         Route::resource('user', UserController::class);
