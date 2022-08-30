@@ -32,7 +32,6 @@ class PlatformController extends Controller
     public function create(Request $request)
     {
         $platform = new Platform($request->old());
-
         return view('admin.platform.form', compact('platform'));
     }
 

@@ -24,7 +24,7 @@
                     @foreach ($platforms as $platform)
                         <tr>
                             <td>{{ $platform->name }}</td>
-                            <td><image src="{{ asset('storage/platforms/' .$platform->logo) }}" style="width: 100px"></td>
+                            <td>@if($platform->logo)<image src="{{ asset('storage/platforms/' .$platform->logo) }}" style="width: 100px">@endif</td>
                             <td>@if($platform->status_id){{ $platform->status_id }} @endif</td>
                             <td class="text-right text-nowrap">
                                 <a href="{{ route('admin.platform.edit', $platform) }}"

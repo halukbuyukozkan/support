@@ -13,15 +13,8 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('platforms', function (Blueprint $table) {
-            $table->id();
-
-            $table->string('name');
-            $table->string('logo')->nullable();
-            $table->string('domain');
-            $table->string('api_token');
-
-            $table->timestamps();
+        Schema::table('platforms', function (Blueprint $table) {
+            $table->foreignId('status_id')->nullable()->after('id')->constrained();
         });
     }
 
@@ -32,6 +25,8 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('platforms');
+        Schema::table('platforms', function (Blueprint $table) {
+            $table->dropForeignId('status_id');
+        });
     }
 };

@@ -28,7 +28,7 @@
                     <label for="logo">{{ __('Logo') }}</label>
                     <input id="logo" type="file" class="form-control" name="logo" value="{{ $platform->logo }}" autocomplete="logo">
                     @if ($platform->logo)
-                    <img src="{{ asset('storage/platforms/' . $platform->logo) }}" alt="{{ $platform->title }}"
+                    <img src="{{ asset('storage/platforms/' . $platform->logo) }}" alt="{{ $platform->logo }}"
                         class="mt-3" style="max-height: 100px">
                     @endif
                     @error('logo')

@@ -22,7 +22,7 @@ class PlatformsTableSeeder extends Seeder
             0 =>
             array(
                 'id' => 1,
-                'status_id' => 1,
+                'status_id' => null,
                 'name' => 'localhost',
                 'logo' => 'bsmaZP3ChJsLeRbN.png',
                 'domain' => 'localhost',
