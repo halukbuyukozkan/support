@@ -76,7 +76,7 @@
             @endif
 
             <x-delete-card href="{{ route('client.user.destroy',$user) }}" :route="route('client.user.destroy', $user)">
-                {{ __('Dashboard') }}
+                {{ __('Do you want to delete user ?') }}
             </x-delete-card>
         </div>
     </div>

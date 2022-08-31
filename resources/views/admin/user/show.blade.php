@@ -73,7 +73,7 @@
             @endif
 
             <x-delete-card href="{{ route('admin.user.destroy',$user) }}" :route="route('admin.user.destroy', $user)">
-                {{ __('Are you sure you want to delete User') }}
+                {{ __('Do you want to delete user ?') }}
             </x-delete-card>
         </div>
     </div>
