@@ -60,7 +60,8 @@
                 </div>
                 <ul class="list-group list-group-flush">
                     @foreach ($activeTickets as $ticket)
-                    <li class="list-group-item">{{ $ticket->title }}<form action="{{ route('client.user.ticket.destroy', ['user' => $user,'ticket' => $ticket]) }}" method="POST"
+                    <li class="list-group-item"><a href="{{ route('admin.user.ticket.show',['user' => $user,'ticket' => $ticket]) }}"><strong>{{ $ticket->title }}</strong></a>
+                        <form action="{{ route('client.user.ticket.destroy', ['user' => $user,'ticket' => $ticket]) }}" method="POST"
                         class="d-inline-block float-right" onsubmit="return confirm('{{ __('Are you sure?') }}');">
                         @csrf
                         @method('DELETE')
