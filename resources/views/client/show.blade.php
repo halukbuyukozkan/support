@@ -27,7 +27,7 @@
     </section>
 
     <div class="row">
-        <div class="col-md-6">
+        <div class="col-md-4">
             <div class="card">
                 <div class="card-header">
                     <b>{{ __('User İnformation') }}</b>
@@ -39,21 +39,12 @@
                     </li>
                 </ul>
             </div>
-            @if($user->services->count()!=0)
-            <div class="card">
-                <div class="card-header">
-                    <b>{{ __('Services') }}</b>
-                </div>
-                <ul class="list-group list-group-flush">
-                    @foreach ($user->services as $service)
-                    <li class="list-group-item"><a href="{{ route('client.user.service.edit',['user' => $user,'service' => $service]) }}">
-                        <strong>{{ $service->name }}</strong></a></li>
-                    @endforeach
-                </ul>
-            </div>
-            @endif
+            <x-delete-card href="{{ route('client.user.destroy',$user) }}" :route="route('client.user.destroy', $user)">
+                {{ __('Do you want to delete user ?') }}
+            </x-delete-card>
+            
         </div>
-        <div class="col-md-6">
+        <div class="col-md-8">
             @if($activeTickets->count()!=0)
             <div class="card">
                 <div class="card-header">
@@ -76,10 +67,20 @@
                 </ul>
             </div>
             @endif
-
-            <x-delete-card href="{{ route('client.user.destroy',$user) }}" :route="route('client.user.destroy', $user)">
-                {{ __('Do you want to delete user ?') }}
-            </x-delete-card>
+            @if($user->services->count()!=0)
+            <div class="card">
+                <div class="card-header">
+                    <b>{{ __('Services') }}</b>
+                </div>
+                <ul class="list-group list-group-flush">
+                    @foreach ($user->services as $service)
+                    <li class="list-group-item"><a href="{{ route('client.user.service.edit',['user' => $user,'service' => $service]) }}">
+                        <strong>{{ $service->name }}</strong></a></li>
+                    @endforeach
+                </ul>
+            </div>
+            @endif
+            
         </div>
     </div>
 

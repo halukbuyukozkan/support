@@ -35,10 +35,10 @@
                 </div>
                 <div class="form-group">
                     <label for="service_id">{{ __('Service') }}</label>
-                    <select name="service_id" class="form-control" aria-label="Default select example"@if($platform->services->count() == 0) disabled @endif>
-                            @if($platform->services->count()== 0) <option value="">{{ __('No Service') }}</option> @endif
+                    <select name="service_id" class="form-control" aria-label="Default select example"@if($user->services->count() == 0) disabled @endif>
+                            @if($user->services->count()== 0) <option value="">{{ __('No Service') }}</option> @endif
                             <option value="">{{ __('Select Service') }}</option>
-                        @foreach ($platform->services as $service)
+                        @foreach ($user->services as $service)
                             <option value="{{ $service->id }}">{{ $service->name }}</option>
                         @endforeach
                     </select>
