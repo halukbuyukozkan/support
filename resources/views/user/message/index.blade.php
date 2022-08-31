@@ -90,7 +90,7 @@
 
                 <div class="card-footer">
                     <div class="input-group mb-3 col-md-4">
-                        <div class="input-group-prepend">
+                        <div class="input-group">
                             <button class="btn btn-primary" type="submit">Reply</button>
                         </div>
                     </div>
