@@ -42,7 +42,7 @@
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach ($tickets as $ticket)
+                    @forelse ($tickets as $ticket)
                         <tr>
                             <td><a href="{{ route('client.user.ticket.show',['user' => $user,'ticket' => $ticket]) }}">
                                 <span class="d-none d-sm-inline"><strong>{{ $ticket->title }}</strong></span>
@@ -52,14 +52,15 @@
                             <td>{{ $ticket->status->name }}</td>
                             <td>{{ $ticket->updated_at }}</td>
                         </tr>
-                    @endforeach
+                    @empty
+                        <tr>
+                            <td colspan="99" class="text-center text-muted">
+                                {{ __('No Tickets') }}
+                            </td>
+                        </tr>
+                    @endforelse
                 </tbody>
             </table>
-        </div>
-        <div class="text-center">
-            @if($tickets->count()==0)
-            <h5><b>{{ __('There is no ticket') }}</b></h5>
-            @endif
         </div>
         <div class="card-footer">
             {{ $tickets->links() }}

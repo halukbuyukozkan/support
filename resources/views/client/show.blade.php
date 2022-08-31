@@ -46,7 +46,8 @@
                 </div>
                 <ul class="list-group list-group-flush">
                     @foreach ($user->services as $service)
-                    <li class="list-group-item">{{ $service->name }}</li>
+                    <li class="list-group-item"><a href="{{ route('client.user.service.edit',['user' => $user,'service' => $service]) }}">
+                        <strong>{{ $service->name }}</strong></a></li>
                     @endforeach
                 </ul>
             </div>

@@ -39,7 +39,7 @@
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach ($services as $service)
+                    @forelse ($services as $service)
                         <tr>
                             <td>{{ $service->name }}</td>
                             <td class="text-right text-nowrap">
@@ -59,14 +59,15 @@
                                 </form>
                             </td>
                         </tr>
-                    @endforeach
+                    @empty
+                        <tr>
+                            <td colspan="99" class="text-center text-muted">
+                                {{ __('No Services') }}
+                            </td>
+                        </tr>
+                    @endforelse
                 </tbody>
             </table>
-        </div>
-        <div class="text-center">
-            @if($services->count()==0)
-            <h5><b>{{ __('There is no service') }}</b></h5>
-            @endif
         </div>
         <div class="card-footer">
         {{ $services->links() }}
