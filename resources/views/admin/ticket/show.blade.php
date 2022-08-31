@@ -1,9 +1,22 @@
 <x-app-layout>
 
 <x-slot name="header">
-    <h2 class="h4 font-weight-bold">
-        {{ $ticket->title }} {{ __('Ticket Messages') }}
-    </h2>
+    <div class="row">
+        <div class="col">
+            <h2 class="h4 font-weight-bold">
+                {{ $ticket->title }} {{ __('Ticket Messages') }}
+            </h2>
+        </div>
+        <div class="col">
+            @if(request()->routeIs('admin.*'))
+            <a href="{{ route('admin.user.ticket.index',$user) }}">
+            @else
+            <a href="{{ route('client.user.ticket.index',$user) }}">
+            @endif
+                <button class="btn btn-sm btn-danger float-right" type="submit"><i class="fas fa-chevron-left mr-1"></i>Close Ticket</button>    
+            </a>
+        </div>     
+    </div>
 </x-slot>
 
     <div class="row justify-content-center">
