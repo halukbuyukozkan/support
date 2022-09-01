@@ -56,4 +56,13 @@ class Ticket extends Model
     {
         $query->where('user_id', $user->id);
     }
+
+    public function scopeOfStatusNotClose(Builder $query)
+    {
+        
+        $query->whereHas('status', function (Builder $query) {
+            $query->where('type', '!=', 'CLOSED');
+        });
+        
+    }
 }

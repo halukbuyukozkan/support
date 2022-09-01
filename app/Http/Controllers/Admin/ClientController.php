@@ -24,7 +24,7 @@ class ClientController extends Controller
     public function index()
     {
 
-        $clients = User::doesntHave('roles')->ofplatformusers()->paginate();
+        $clients = User::doesntHave('roles')->ofplatform()->paginate();
 
         return view('client.index', compact('clients'));
     }
@@ -72,9 +72,9 @@ class ClientController extends Controller
      */
     public function show(User $user)
     {
-        $activeTickets = Ticket::whereHas('status', function (Builder $query) {
+        $activeTickets = $user->tickets()->whereHas('status', function (Builder $query) {
             $query->where('type', '!=', 'CLOSED');
-        })->ofuserticket($user)->get();
+        })->get();
 
 
         return view('client.show', compact('user', 'activeTickets'));

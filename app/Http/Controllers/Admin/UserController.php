@@ -75,9 +75,7 @@ class UserController extends Controller
      */
     public function show(User $user)
     {
-        $activeTickets = Ticket::whereHas('status', function (Builder $query) {
-            $query->where('type', '!=', 'CLOSED');
-        })->ofuserticket($user)->get();
+        $activeTickets = $user->tickets()->ofstatusnotclose()->get();
 
         return view('admin.user.show', compact('user', 'activeTickets'));
     }

@@ -46,7 +46,7 @@ class ClientTicketController extends Controller
     {
         $validated = $request->validated();
         $platform = PlatformFacade::model();
-        if ($validated['status_id'] == null)
+        if (empty($validated['status_id']))
             $validated['status_id'] = $platform->status_id;
         $validated['user_id'] = $user->id;
         $ticket = new Ticket($validated);
