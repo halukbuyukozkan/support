@@ -49,12 +49,19 @@
                     <b>{{ __('Active Tickets') }}</b>
                 </div>
                 <ul class="list-group list-group-flush">
-                    @foreach ($activeTickets as $ticket)
+                    @foreach ($activeTickets->take(5) as $ticket)
                     <li class="list-group-item"><a href="{{ route('admin.user.ticket.show',['user' => $user,'ticket' => $ticket]) }}">
                         <strong>{{ $ticket->title }}</strong></a>
                     </li>
                     @endforeach
                 </ul>
+                @if($activeTickets->count() >= 6)
+                <div class="card-footer">
+                    <div class="text-center">
+                        <a href="{{ route('admin.user.ticket.index',$user) }}"><strong>{{__('See all')}}</strong></a>
+                    </div>
+                </div>
+                @endif
             </div>
             @endif
             @if($user->services->count()!=0)
