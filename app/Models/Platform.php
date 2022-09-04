@@ -44,4 +44,9 @@ class Platform extends Model
     {
         return $this->hasMany(Status::class);
     }
+
+    public function status(): BelongsTo
+    {
+        return $this->belongsTo(Status::class);
+    }
 }
