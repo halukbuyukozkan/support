@@ -30,7 +30,7 @@
         <div class="col-md-4">
             <div class="card">
                 <div class="card-header">
-                    <b>{{ __('User İnformation') }}</b>
+                    {{ __('User Information') }}
                 </div>
                 <ul class="list-group list-group-flush">
                     <li class="list-group-item">
@@ -48,7 +48,7 @@
             @if($activeTickets->count()!=0)
             <div class="card">
                 <div class="card-header">
-                    <b>{{ __('Active Tickets') }}</b>
+                    {{ __('Active Tickets') }}
                 </div>
                 <ul class="list-group list-group-flush">
                     @foreach ($activeTickets->take(5) as $ticket)
@@ -69,7 +69,7 @@
             @if($user->services->count()!=0)
             <div class="card">
                 <div class="card-header">
-                    <b>{{ __('Services') }}</b>
+                    {{ __('Services') }}
                 </div>
                 <ul class="list-group list-group-flush">
                     @foreach ($user->services as $service)
