@@ -117,6 +117,10 @@
             <x-delete-card href="{{ route('admin.user.ticket.destroy',['user'=>$user,'ticket'=>$ticket]) }}" :route="route('admin.user.ticket.destroy',['user'=>$user,'ticket'=>$ticket])">
                 {{ __('Do you want to delete ticket ?') }}
             </x-delete-card>
+            @elseif(request()->routeIs('admin.ticket.*')) 
+            <x-delete-card href="{{ route('admin.ticket.destroy',$ticket) }}" :route="route('admin.ticket.destroy',$ticket)">
+                {{ __('Do you want to delete ticket ?') }}
+            </x-delete-card>
             @elseif(request()->routeIs('client.user.*'))
             <x-delete-card href="{{ route('client.user.ticket.destroy',['user'=>$user,'ticket'=>$ticket]) }}" :route="route('client.user.ticket.destroy',['user'=>$user,'ticket'=>$ticket])">
                 {{ __('Do you want to delete ticket ?') }}
@@ -174,7 +178,7 @@
                 </div>
 
                 <div class="card-footer">
-                    <div class="input-group mb-3 col-md-4">
+                    <div class="input-group col-md-4">
                         <div class="input-group-prepend">
                           <button class="btn btn-primary" type="submit">Reply</button>
                         </div>
