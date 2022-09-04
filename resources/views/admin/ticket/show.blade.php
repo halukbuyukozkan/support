@@ -178,16 +178,20 @@
                 </div>
 
                 <div class="card-footer">
-                    <div class="input-group col-md-4">
-                        <div class="input-group-prepend">
-                          <button class="btn btn-primary" type="submit">Reply</button>
-                        </div>
-                        <select name="status_id" class="form-control" aria-label="Default select example" @if($platform->statuses->count() == 0) disabled @endif>
-                            <option value="" class="text-muted">{{ __('Select Status') }}</option>
-                            @foreach ($platform->statuses as $status)
-                                <option value="{{ $status->id }}" {{ $ticket->status == $status ? 'selected' : '' }}>{{ $status->name }}</option>
-                            @endforeach
-                        </select>
+                    <div class="row">
+                         <div class="col-md-4">
+                            <div class="input-group">
+                                <div class="input-group-prepend">
+                                  <button class="btn btn-primary" type="submit">Reply</button>
+                                </div>
+                                <select name="status_id" class="form-control" aria-label="Default select example" @if($platform->statuses->count() == 0) disabled @endif>
+                                    <option value="" class="text-muted">{{ __('Select Status') }}</option>
+                                    @foreach ($platform->statuses as $status)
+                                        <option value="{{ $status->id }}" {{ $ticket->status == $status ? 'selected' : '' }}>{{ $status->name }}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+                         </div>
                     </div>
                 </div>
             </div>
