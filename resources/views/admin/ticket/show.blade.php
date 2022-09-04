@@ -23,7 +23,7 @@
         <div class="col-md-4">
             <div class="card">
                 <div class="card-header">
-                    <b>{{ __('User İnformation') }}</b>
+                    <b>{{ __('User Information') }}</b>
                 </div>
                 <ul class="list-group list-group-flush">
                     <li class="list-group-item">
