@@ -40,9 +40,7 @@ class TicketMessageController extends Controller
     public function store(TicketMessageRequest $request, User $user, Ticket $ticket)
     {
         $validated = $request->validated();
-        $validated['ticket_id'] = $ticket->id;
         $ticketMessage = $ticket->messages()->create($validated);
-        $ticketMessage->save();
 
         return redirect()->route('admin.ticket.show', compact('user', 'ticket'))->with('success', __('Ticket message created successfully'));
     }
