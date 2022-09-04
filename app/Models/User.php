@@ -2,10 +2,12 @@
 
 namespace App\Models;
 
+use App\Services\PlatformFacade;
 use Laravel\Sanctum\HasApiTokens;
 use Spatie\Permission\Traits\HasRoles;
 use Illuminate\Notifications\Notifiable;
-use Illuminate\Contracts\Auth\MustVerifyEmail;
+use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -50,5 +52,27 @@ class User extends Authenticatable
     public function platform(): BelongsTo
     {
         return $this->belongsTo(Platform::class);
+    }
+
+    public function services(): HasMany
+    {
+        return $this->hasMany(Service::class);
+    }
+
+    public function tickets(): HasMany
+    {
+        return $this->hasMany(Ticket::class);
+    }
+
+    public function messages(): HasMany
+    {
+        return $this->hasMany(TicketMessage::class);
+    }
+
+    public function scopeOfPlatform(Builder $query)
+    {
+        $platform = PlatformFacade::model();
+
+        return $query->where('platform_id', $platform->id);
     }
 }

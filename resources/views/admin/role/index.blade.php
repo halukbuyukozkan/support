@@ -19,7 +19,7 @@
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach ($roles as $role)
+                    @forelse ($roles as $role)
                         <tr>
                             <td>{{ $role->name }}</td>
                             <td class="text-right text-nowrap">
@@ -38,7 +38,13 @@
                                 </form>
                             </td>
                         </tr>
-                    @endforeach
+                    @empty
+                        <tr>
+                            <td colspan="99" class="text-center text-muted">
+                                {{ __('No Roles') }}
+                            </td>
+                        </tr>
+                    @endforelse
                 </tbody>
             </table>
         </div>

@@ -43,6 +43,14 @@ class PermissionsTableSeeder extends Seeder
                 'name' => 'management.platform',
                 'updated_at' => '2021-12-13 19:38:09',
             ),
+            3 =>
+            array(
+                'created_at' => '2021-12-13 19:19:07',
+                'guard_name' => 'web',
+                'id' => 4,
+                'name' => 'management.client',
+                'updated_at' => '2021-12-13 19:38:09',
+            ),
         ));
     }
 }

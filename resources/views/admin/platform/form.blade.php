@@ -28,7 +28,7 @@
                     <label for="logo">{{ __('Logo') }}</label>
                     <input id="logo" type="file" class="form-control" name="logo" value="{{ $platform->logo }}" autocomplete="logo">
                     @if ($platform->logo)
-                    <img src="{{ asset('storage/platforms/' . $platform->logo) }}" alt="{{ $platform->title }}"
+                    <img src="{{ asset('storage/platforms/' . $platform->logo) }}" alt="{{ $platform->logo }}"
                         class="mt-3" style="max-height: 100px">
                     @endif
                     @error('logo')
@@ -36,7 +36,7 @@
                     @enderror
                 </div>
                 <div class="form-group">
-                    <label for="name">{{ __('Domain') }}</label>
+                    <label for="domain">{{ __('Domain') }}</label>
                     <input type="text" class="form-control @error('domain') is-invalid @enderror" id="domain"
                         name="domain" value="{{ old('domain', $platform->domain) }}" required>
                     @error('domain')
@@ -45,6 +45,18 @@
                         </span>
                     @enderror
                 </div>
+                @if($platform->statuses->count()!= 0)
+                <div class="form-group">
+                    <label for="status_id">{{ __('Default Status') }}</label>
+                    <select name="status_id" class="form-control" aria-label="Default select example" @if($platform->statuses->count()==0) disabled @endif >
+                            @if($platform->statuses->count()== 0) <option value="">{{ __('No Status') }}</option> @endif
+                            <option value="" class="text-muted">{{ __('Select Status') }}</option>
+                        @foreach ($platform->statuses as $status)
+                            <option value="{{ $status->id }}">{{ $status->name }}</option>
+                        @endforeach
+                    </select>
+                </div>
+                @endif
             </div>
             <div class="card-footer">
                 <button type="submit" class="btn btn-primary">

@@ -34,6 +34,7 @@
 - title text
 - note nullable (Adminler icin)
 - created_by User
+- status 
 
 # TicketMessage
 - id

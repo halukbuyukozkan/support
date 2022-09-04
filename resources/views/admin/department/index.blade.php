@@ -20,7 +20,7 @@
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach ($departments as $department)
+                    @forelse ($departments as $department)
                         <tr>
                             <td>{{ $department->name }}</td>
                             <td>{{ $department->platform->name }}</td>
@@ -41,7 +41,13 @@
                                 </form>
                             </td>
                         </tr>
-                    @endforeach
+                        @empty
+                        <tr>
+                            <td colspan="99" class="text-center text-muted">
+                                {{ __('No Departments') }}
+                            </td>
+                        </tr>
+                    @endforelse
                 </tbody>
             </table>
         </div>

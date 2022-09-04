@@ -14,19 +14,23 @@ class ModelHasRolesTableSeeder extends Seeder
      */
     public function run()
     {
-        
+
 
         \DB::table('model_has_roles')->delete();
-        
-        \DB::table('model_has_roles')->insert(array (
-            0 => 
-            array (
+
+        \DB::table('model_has_roles')->insert(array(
+            0 =>
+            array(
                 'model_id' => 1,
                 'model_type' => 'App\\Models\\User',
                 'role_id' => 1,
             ),
+            1 =>
+            array(
+                'model_id' => 3,
+                'model_type' => 'App\\Models\\User',
+                'role_id' => 1,
+            ),
         ));
-        
-        
     }
 }

@@ -19,7 +19,7 @@
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach ($permissions as $permission)
+                    @forelse ($permissions as $permission)
                         <tr>
                             <td>{{ $permission->name }}</td>
                             <td class="text-right text-nowrap">
@@ -39,7 +39,13 @@
                                 </form>
                             </td>
                         </tr>
-                    @endforeach
+                    @empty
+                        <tr>
+                            <td colspan="99" class="text-center text-muted">
+                                {{ __('No Permissions') }}
+                            </td>
+                        </tr>
+                    @endforelse
                 </tbody>
             </table>
         </div>

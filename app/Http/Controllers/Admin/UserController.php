@@ -3,9 +3,12 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Models\User;
+use App\Models\Ticket;
 use Illuminate\Http\Request;
+use App\Services\PlatformFacade;
 use Spatie\Permission\Models\Role;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Database\Eloquent\Builder;
 
 class UserController extends Controller
 {
@@ -21,9 +24,10 @@ class UserController extends Controller
      */
     public function index()
     {
-        $users = User::paginate();
+        $platform = PlatformFacade::model();
+        $users = $platform->users()->paginate();
 
-        return view('admin.user.index', compact('users'));
+        return view('admin.user.index', compact('platform', 'users'));
     }
 
     /**
@@ -55,6 +59,7 @@ class UserController extends Controller
         ]);
 
         $data['password'] = Hash::make($data['password']);
+        $data['platform_id'] = PlatformFacade::model()->id;
 
         $user = User::create($data);
         $user->syncRoles($data['roles'] ?? []);
@@ -70,7 +75,9 @@ class UserController extends Controller
      */
     public function show(User $user)
     {
-        //
+        $activeTickets = $user->tickets()->ofstatusnotclose()->get();
+
+        return view('admin.user.show', compact('user', 'activeTickets'));
     }
 
     /**

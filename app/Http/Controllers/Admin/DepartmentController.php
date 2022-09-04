@@ -18,7 +18,9 @@ class DepartmentController extends Controller
      */
     public function index()
     {
-        $departments = Department::paginate();
+        $platform = PlatformFacade::model();
+
+        $departments = $platform->departments()->paginate();
 
         return view('admin.department.index', compact('departments'));
     }
