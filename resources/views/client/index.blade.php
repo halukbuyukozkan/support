@@ -21,7 +21,7 @@
                 <tbody>
                     @forelse ($clients as $user)
                         <tr>
-                            <td><a href="{{ route('client.user.edit', $user) }}"><strong>{{ $user->name }}</strong></a></td>
+                            <td><a href="{{ route('client.user.show', $user) }}"><strong>{{ $user->name }}</strong></a></td>
                             <td>{{ $user->email }}</td>
                         </tr>
                     @empty

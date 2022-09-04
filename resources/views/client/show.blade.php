@@ -34,13 +34,13 @@
                 </div>
                 <ul class="list-group list-group-flush">
                     <li class="list-group-item">
-                        <p class="card-text"><b>İsim:</b> {{ $user->name }}</p>
-                        <p class="card-text"><b>Email:</b> {{ $user->email }}</p>
+                        <p class="card-text"><b>{{ __('Name') }}:</b> {{ $user->name }}</p>
+                        <p class="card-text"><b>{{ __('Email') }}:</b> {{ $user->email }}</p>
                     </li>
                 </ul>
             </div>
             <x-delete-card href="{{ route('client.user.destroy',$user) }}" :route="route('client.user.destroy', $user)">
-                {{ __('Do you want to delete user ?') }}
+                {{ __('Do you want to delete user?') }}
             </x-delete-card>
             
         </div>

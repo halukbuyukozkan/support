@@ -22,7 +22,7 @@
                     @forelse ($tickets as $ticket)
                         <tr>
                             <td><a href="{{ route('admin.ticket.show', $ticket) }}"><strong>{{ $ticket->title }}</strong></a></td>
-                            <td>{{ $ticket->user->name }}</td>
+                            <td><a href="{{ route('client.user.show', $ticket->user) }}"><strong>{{ $ticket->user->name }}</strong></a></td>
                             <td>{{ $ticket->status->name }}</td>
                             <td>{{ $ticket->department->name }}</td>
                             <td>@if ($ticket->service){{ $ticket->service->name }}@endif</td>
