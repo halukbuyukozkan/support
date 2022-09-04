@@ -24,11 +24,14 @@
                     @foreach ($platforms as $platform)
                         <tr>
                             <td>{{ $platform->name }}</td>
-                            <td>@if($platform->logo)<image src="{{ asset('storage/platforms/' .$platform->logo) }}" style="width: 100px">@endif</td>
-                            <td>@if($platform->status_id){{ $platform->status->name }} @endif</td>
+                            <td>
+                                @if ($platform->logo)
+                                    <image src="{{ asset('storage/platforms/' . $platform->logo) }}" style="width: 100px">
+                                @endif
+                            </td>
+                            <td>{{ $platform->status?->name ?? '-' }}</td>
                             <td class="text-right text-nowrap">
-                                <a href="{{ route('admin.platform.edit', $platform) }}"
-                                    class="btn btn-sm btn-primary">
+                                <a href="{{ route('admin.platform.edit', $platform) }}" class="btn btn-sm btn-primary">
                                     <i class="fas fa-edit"></i>
                                     <span class="d-none d-sm-inline">{{ __('Edit') }}</span>
                                 </a>
