@@ -16,29 +16,13 @@
                     <tr>
                         <th>{{ __('Name') }}</th>
                         <th>{{ __('Email') }}</th>
-                        <th style="width: 200px">{{ __('Actions') }}</th>
                     </tr>
                 </thead>
                 <tbody>
                     @forelse ($clients as $user)
                         <tr>
-                            <td>{{ $user->name }}</td>
+                            <td><a href="{{ route('client.user.edit', $user) }}"><strong>{{ $user->name }}</strong></a></td>
                             <td>{{ $user->email }}</td>
-                            <td class="text-right text-nowrap">
-                                <a href="{{ route('client.user.edit', $user) }}" class="btn btn-sm btn-primary">
-                                    <i class="fas fa-edit"></i>
-                                    <span class="d-none d-sm-inline">{{ __('Edit') }}</span>
-                                </a>
-                                <form action="{{ route('client.user.destroy', $user) }}" method="POST"
-                                    class="d-inline-block" onsubmit="return confirm('{{ __('Are you sure?') }}');">
-                                    @csrf
-                                    @method('DELETE')
-                                    <button type="submit" class="btn btn-sm btn-danger">
-                                        <i class="fas fa-trash"></i>
-                                        <span class="d-none d-sm-inline">{{ __('Delete') }}</span>
-                                    </button>
-                                </form>
-                            </td>
                         </tr>
                     @empty
                         <tr>

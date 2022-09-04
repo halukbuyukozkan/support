@@ -11,21 +11,21 @@
                 <thead>
                     <tr>
                         <th>{{ __('Title') }}</th>
+                        <th>{{ __('User') }}</th>
                         <th>{{ __('Status') }}</th>
                         <th>{{ __('Department') }}</th>
                         <th>{{ __('Service') }}</th>
-                        <th>{{ __('User') }}</th>
                         <th>{{ __('Updated Date') }}</th>
                     </tr>
                 </thead>
                 <tbody>
                     @forelse ($tickets as $ticket)
                         <tr>
-                            <td><a href="{{ route('admin.ticket.show', $ticket) }}">{{ $ticket->title }}</a></td>
+                            <td><a href="{{ route('admin.ticket.show', $ticket) }}"><strong>{{ $ticket->title }}</strong></a></td>
+                            <td>{{ $ticket->user->name }}</td>
                             <td>{{ $ticket->status->name }}</td>
                             <td>{{ $ticket->department->name }}</td>
                             <td>@if ($ticket->service){{ $ticket->service->name }}@endif</td>
-                            <td>{{ $ticket->user->name }}</td>
                             <td>{{ $ticket->updated_at }}</td>
                         </tr>
                     @empty
