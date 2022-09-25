@@ -48,6 +48,7 @@
 - id
 - platform_id Platform
 - name string ['Üyelik', 'Sipariş', 'Ödeme']
+- slug
 - created_by User
 
 # Questions
