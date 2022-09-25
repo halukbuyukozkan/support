@@ -18,7 +18,7 @@ return new class extends Migration
 
             $table->foreignId('platform_id')->constrained();
             $table->string('name');
-            $table->foreignId('created_by')->constrained();
+            $table->foreignId('created_by')->constrained('users');
 
             $table->timestamps();
         });

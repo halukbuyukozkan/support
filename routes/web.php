@@ -18,7 +18,7 @@ use App\Http\Controllers\Admin\ClientServiceController;
 use App\Http\Controllers\Admin\ClientTicketMessageController;
 use App\Http\Controllers\Admin\TicketMessageController;
 use App\Http\Controllers\Admin\UserTicketMessageController;
-use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\CustomerTicketMessageController;
 
 /*

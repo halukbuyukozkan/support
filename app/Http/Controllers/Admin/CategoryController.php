@@ -1,9 +1,11 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
 
 use App\Models\Category;
 use Illuminate\Http\Request;
+use App\Services\PlatformFacade;
+use App\Http\Requests\CategoryRequest;
 
 class CategoryController extends Controller
 {
@@ -24,9 +26,11 @@ class CategoryController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Request $request)
     {
-        //
+        $category = new Category($request->old());
+
+        return view('admin.category.form',compact('category'));
     }
 
     /**
@@ -35,9 +39,17 @@ class CategoryController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(CategoryRequest $request)
     {
-        //
+        $validated = $request->validated();
+        $category = new Category($validated);
+
+        $platform = PlatformFacade::model();
+
+        $category->platform()->associate($platform->id);
+        $category->save();
+
+        return redirect()->route('admin.category.index')->with('success', __('Category created successfully'));
     }
 
     /**
@@ -57,9 +69,10 @@ class CategoryController extends Controller
      * @param  \App\Models\Category  $category
      * @return \Illuminate\Http\Response
      */
-    public function edit(Category $category)
+    public function edit(Category $category,Request $request)
     {
-        //
+        $category->fill($request->old());
+        return view('admin.category.form', compact('category'));
     }
 
     /**
@@ -69,9 +82,12 @@ class CategoryController extends Controller
      * @param  \App\Models\Category  $category
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Category $category)
+    public function update(CategoryRequest $request, Category $category)
     {
-        //
+        $category->fill($request->validated());
+        $category->save();
+
+        return redirect()->route('admin.category.index')->with('success', 'Department updated successfully');
     }
 
     /**
@@ -82,6 +98,8 @@ class CategoryController extends Controller
      */
     public function destroy(Category $category)
     {
-        //
+        $category->delete();
+
+        return redirect()->route('admin.category.index')->with('success', 'Category deleted successfully');
     }
 }
