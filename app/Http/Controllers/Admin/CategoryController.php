@@ -87,7 +87,7 @@ class CategoryController extends Controller
         $category->fill($request->validated());
         $category->save();
 
-        return redirect()->route('admin.category.index')->with('success', 'Department updated successfully');
+        return redirect()->route('admin.category.index')->with('success', 'Category updated successfully');
     }
 
     /**
