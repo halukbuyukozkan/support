@@ -21,7 +21,7 @@
 <x-side-link href="{{ route('admin.status.index') }}" icon="fas fa-calendar-check" :active="request()->routeIs('admin.status.*')">
     {{ __('Statuses') }}
 </x-side-link>
-<x-side-link href="{{ route('admin.category.index') }}" icon="fab fa-buffer" :active="request()->routeIs('admin.category.*')">
+<x-side-link href="{{ route('admin.category.index') }}" icon="fas fa-columns" :active="request()->routeIs('admin.category.*')">
     {{ __('Categories') }}
 </x-side-link>
 @endif
